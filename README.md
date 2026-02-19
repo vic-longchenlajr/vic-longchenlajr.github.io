@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio & Engineering Presentations
+
+**Chenla Long, Jr.** | *Scalable Engineering Systems | Fire Protection R&D | Software Innovation*
+
+This project serves as both a professional portfolio and an interactive presentation platform. It showcases the intersection of hardware R&D and scalable software architecture at Victaulic, specifically identifying how configuration-driven platforms reduce operational risk and accelerate engineering decision-making.
+
+## Project Overview
+
+The application is built to demonstrate:
+1.  **Complex Engineering Workflows:** Visualizing the friction in traditional hardware design processes.
+2.  **Software Solutions:** presenting the "Vortex Project Builder" and other tools that automate validation and systematize tribal knowledge.
+3.  **Professional Growth:** A timeline of key contributions and technical milestones.
+
+## Key Features
+
+### 🎥 Interactive Lunch & Learn Deck (`/lunchandlearn`)
+A custom-built presentation engine designed to replace static PowerPoint slides with dynamic, code-driven storytelling.
+-   **Workflow Friction Visualization:** Animates the compounding risk across Design, Validation, Quoting, and Delivery phases.
+-   **Process Loop:** Interactive circular navigation showing the software development lifecycle (Discovery → Immersion → Architecture → etc.).
+-   **System Architecture Comparisons:** Visual diffs between "Independent System Calculations" and "Project-Level Hierarchy" models.
+-   **Live Demo Mode:** A dedicated view for transitioning from slides to live software demonstration.
+
+### 📄 Professional Summary (`/summary`)
+An interactive curriculum vitae and project timeline.
+-   **Project Roadmap:** Expandable timeline detailing projects like Vortex Configurator (V1 & V2), VicFlex Bracket Filter, and Scalable DAQ.
+-   **Executive Summary:** High-level overview of cross-functional impact between R&D, Lab Ops, and Sales.
+-   **Impact Metrics:** Quantifiable results of engineering automation (e.g., 400h+ saved annually).
+
+## Tech Stack
+
+Built with modern web technologies to ensure performance, type safety, and maintainability:
+
+-   **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
+-   **UI Library:** [React 19](https://react.dev/)
+-   **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) + CSS Modules (for complex, high-performance animations)
+-   **Language:** [TypeScript](https://www.typescriptlang.org/)
 
 ## Getting Started
 
-First, run the development server:
+To run the portfolio locally:
 
 ```bash
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to explore the portfolio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Navigation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+-   **Home:** `/` - Welcome screen and navigation hub.
+-   **Summary:** `/summary` - Detailed professional timeline and impact analysis.
+-   **Presentation:** `/lunchandlearn` - The interactive slide deck.

@@ -1,0 +1,1779 @@
+:root {
+    --navbar-height: 70px;
+    --header-height: 12%;
+    --footer-height: 10%;
+    --main-height: 75%;
+    --slide-padding-x: 8%;
+    --sidebar-width: 320px;
+}
+
+.presentationContainer {
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    position: relative;
+    background-color: var(--brand-black);
+}
+
+/* Base Slide Styles */
+.slide {
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: grid !important;
+    /* Force grid to prevent layout overrides */
+    grid-template-columns: 1fr var(--sidebar-space);
+    /* Content + Sidebar Buffer */
+    grid-template-rows: 120px 1fr;
+    background-color: var(--bg-page);
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.hasFooter {
+    grid-template-rows: 120px 1fr 70px;
+}
+
+.noFooter {
+    grid-template-rows: 120px 1fr;
+}
+
+.noHeader.noFooter {
+    grid-template-rows: 1fr;
+}
+
+.noHeader.hasFooter {
+    grid-template-rows: 1fr 70px;
+}
+
+/* Zones - Force them into the first column */
+.headerZone,
+.mainZone,
+.footerZone {
+    grid-column: 1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.headerZone {
+    grid-row: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px var(--slide-padding-x);
+    border-bottom: 1px solid var(--border);
+}
+
+.headerInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.mainZone {
+    grid-row: 2;
+    padding: 30px var(--slide-padding-x);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    /* Ensure content fills the entire grid column */
+    overflow: hidden;
+    position: relative;
+}
+
+.noHeader .mainZone {
+    grid-row: 1;
+}
+
+.noHeader .footerZone {
+    grid-row: 2;
+}
+
+.footerZone {
+    grid-row: 3;
+    background: linear-gradient(90deg, var(--brand-black) 0%, var(--bg-page) 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--slide-padding-x);
+    z-index: 10;
+}
+
+.footerZone p {
+    color: white;
+    mix-blend-mode: difference;
+}
+
+/* Constrain all slide content consistently */
+.mainInner {
+    width: 100%;
+}
+
+/* Animations */
+.animateIn {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.visible .animateIn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay1 {
+    transition-delay: 0.1s;
+}
+
+.delay2 {
+    transition-delay: 0.2s;
+}
+
+.delay3 {
+    transition-delay: 0.3s;
+}
+
+/* Layout: Hero */
+.hero {
+    background: linear-gradient(135deg, var(--brand-black) 0%, #222 100%);
+    color: white;
+}
+
+.hero .headerZone {
+    border-bottom: none;
+}
+
+.hero .footerZone {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: var(--brand-orange);
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+/* Layout: Pain Board */
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    width: 100%;
+}
+
+.painCard {
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    padding: 10px;
+    transition: all 0.3s ease;
+    cursor: default;
+
+}
+
+.painCard:hover {
+    border-color: var(--brand-orange);
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    scrollbar-width: none;
+
+}
+
+.painCard h3 {
+    color: var(--brand-orange);
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.realExample {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--border);
+    display: none;
+}
+
+.painCard:hover .realExample {
+    display: block;
+}
+
+/* Layout: Lifecycle Map */
+
+/* Layout: Workflow Friction (Slide 2 Redesign) */
+.workflowContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+}
+
+.workflowStages {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    position: relative;
+    padding-bottom: 40px;
+    /* Space for gradient line */
+}
+
+/* Connectors between stages */
+.workflowStages::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg,
+            rgba(242, 103, 34, 0.1) 0%,
+            rgba(242, 103, 34, 0.4) 50%,
+            rgba(242, 103, 34, 0.8) 100%);
+    border-radius: 2px;
+}
+
+.workflowStage {
+    flex: 1;
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: all 0.4s ease;
+    position: relative;
+    /* Subtle separation */
+    margin-right: 20px;
+}
+
+.workflowStage:last-child {
+    margin-right: 0;
+    border-color: rgba(242, 103, 34, 0.3);
+    background: linear-gradient(135deg, var(--bg-sidebar) 0%, rgba(242, 103, 34, 0.05) 100%);
+}
+
+.workflowStage:hover {
+    transform: translateY(-5px);
+    border-color: var(--brand-orange);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.stageHeader {
+    font-size: 0.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--brand-blue);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid var(--highlight);
+    padding-bottom: 10px;
+}
+
+/* Stage Number (optional if we want 01, 02 etc) */
+.stageHeader::before {
+    /* content: attr(data-step);  -- handled in REACT if needed, or static */
+    font-size: 1.2rem;
+    color: var(--border);
+    font-weight: 900;
+}
+
+.stageBullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stageBullets li {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    position: relative;
+    padding-left: 15px;
+    line-height: 1.4;
+}
+
+.stageBullets li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--brand-orange);
+    font-weight: bold;
+}
+
+/* Arrow between cards */
+.stageArrow {
+    position: absolute;
+    right: -22px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--border);
+    font-size: 1.5rem;
+    z-index: 1;
+}
+
+.workflowCaption {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* Layout: Process Loop (Slide 3) */
+.processLoopContainer {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+}
+
+.loopLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+}
+
+.loopSvg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 440px;
+    height: 440px;
+    overflow: visible;
+}
+
+.svgTrack {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 2;
+    stroke-dasharray: 4 6;
+}
+
+.svgHighlight {
+    fill: none;
+    stroke: var(--brand-orange);
+    stroke-width: 6;
+    /* Circumference is 1068, 120 deg (1/3) is 356 */
+    stroke-dasharray: 356 1068;
+    stroke-linecap: round;
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+    filter: drop-shadow(0 0 12px rgba(242, 103, 34, 0.5));
+}
+
+.nodeActive {
+    border-color: var(--brand-orange);
+    transform: translate(-50%, -50%) scale(1.15);
+    box-shadow: 0 15px 45px rgba(242, 103, 34, 0.25);
+    z-index: 100;
+    animation: activePulse 4s infinite ease-in-out;
+}
+
+@keyframes activePulse {
+
+    0%,
+    100% {
+        box-shadow: 0 15px 45px rgba(242, 103, 34, 0.25);
+    }
+
+    50% {
+        box-shadow: 0 15px 60px rgba(242, 103, 34, 0.4);
+    }
+}
+
+.loopNode {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    background: white;
+    border: 3px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 50;
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.nodeIcon {
+    font-size: 1.7rem;
+    margin-bottom: 2px;
+}
+
+.nodeLabel {
+    font-size: 0.58rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.nodeActive .nodeLabel {
+    color: var(--brand-orange);
+}
+
+.loopRight {
+    padding-left: 40px;
+    border-left: 2px solid var(--highlight);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.detailPanel {
+    animation: fadeSlideIn 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.detailIndex {
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    color: var(--brand-orange);
+    margin-bottom: 12px;
+}
+
+.detailTitle {
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px 0;
+    line-height: 1.1;
+    color: var(--brand-black);
+}
+
+.detailDesc {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 35px;
+    max-width: 380px;
+}
+
+.detailTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.detailTag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 999px;
+    color: var(--brand-black);
+}
+
+.detailTag.tagStakeholder {
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+}
+
+.detailTag.tagValue {
+    background: rgba(0, 80, 255, 0.08);
+    border: 1px solid rgba(0, 80, 255, 0.25);
+    color: var(--brand-blue);
+}
+
+/* Orbiting highlight ring + pointer */
+.highlightOrbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Layout: Product Complexity (Slide 4) */
+.productComplexity {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.productCard {
+    background: white;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    height: 100%;
+    box-sizing: border-box;
+    width: 45%;
+}
+
+.productCard:hover {
+    border-color: var(--brand-orange);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+.productHeader {
+    border-bottom: 2px solid var(--highlight);
+    padding-bottom: 20px;
+}
+
+.productBadge {
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--brand-orange);
+    margin-bottom: 10px;
+}
+
+.productTitle {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin: 0 0 8px 0;
+    color: var(--brand-black);
+}
+
+.productSub {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.productSections {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.productSection {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sectionLabel {
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brand-blue);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sectionLabel::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--brand-blue);
+    border-radius: 50%;
+}
+
+.productList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.productList li {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 18px;
+}
+
+.productList li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--border);
+    font-weight: 700;
+}
+
+.frictionChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.frictionChip {
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(242, 103, 34, 0.05);
+    border: 1px solid rgba(242, 103, 34, 0.15);
+    color: var(--brand-orange);
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+/* Responsive */
+@media screen and (max-width: 1200px) {
+    .processMap {
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .processMap {
+        grid-template-columns: 1fr;
+    }
+}
+
+@keyframes travel {
+    0% {
+        left: 0%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+.caseContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 40px;
+}
+
+.caseLeft,
+.caseRight {
+    flex: 1;
+}
+
+.caseDivider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.caseArrow {
+    font-size: 2rem;
+    opacity: 0.4;
+}
+
+.caseHighlights {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.highlightItem {
+    padding: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-page);
+}
+
+/* Judgment Encoding Flow (Slide 5 Refactor) */
+.judgmentFlow {
+    display: flex;
+    justify-content: center;
+    /* Center the entire flow */
+    align-items: stretch;
+    width: 100%;
+    gap: 80px;
+    /* Generous gap for balance */
+}
+
+.flowCol {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Align Title top, Graphic center, Caption bottom */
+    gap: 25px;
+    min-height: 320px;
+}
+
+.colLabel {
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    margin: 0;
+}
+
+/* LEFT: Spreadsheet Stack */
+.sheetStack {
+    position: relative;
+    width: 200px;
+    height: 240px;
+    opacity: 0;
+    margin-left: -60px;
+    /* Shift the visual group left to balance the spread */
+}
+
+.sheetCard {
+    position: absolute;
+    width: 160px;
+    height: 200px;
+    background: white;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--brand-black);
+    transition: all 0.5s ease;
+    /* Center all cards by default, then offset */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sheetCard:nth-child(1) {
+    animation: sheetCycle 9s infinite;
+}
+
+.sheetCard:nth-child(2) {
+    animation: sheetCycle 9s -3s infinite;
+}
+
+.sheetCard:nth-child(3) {
+    animation: sheetCycle 9s -6s infinite;
+}
+
+.sheetCard:nth-child(4) {
+    animation: sheetCycle 9s -6s infinite;
+}
+
+.varianceIcon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.5rem;
+    z-index: 10;
+}
+
+.tinyCaption {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+    /* Push to bottom of col */
+}
+
+/* CENTER: Rules Engine */
+.engineCard {
+    width: 280px;
+    background: white;
+    border: 2px solid var(--brand-black);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 4px;
+    position: relative;
+    opacity: 0;
+}
+
+.engineCard::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 10px;
+    height: 10px;
+    background: var(--brand-orange);
+}
+
+.engineHeader {
+    font-size: 0.9rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+.engineBody {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.engineModule {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.engineModule:last-child {
+    border-bottom: none;
+}
+
+/* RIGHT: Output Stack */
+.outputStack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 250px;
+}
+
+.outputTile {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 12px 15px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.outputTile.visible {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.5s ease;
+}
+
+.checkIcon {
+    color: #10b981;
+    font-weight: 900;
+}
+
+/* Connectors */
+.flowArrow {
+    font-size: 2rem;
+    color: var(--border);
+    opacity: 0.5;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+}
+
+/* Animations */
+@keyframes stackFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes stackCollapse {
+    0% {
+        transform: scale(1) translateX(0);
+    }
+
+    100% {
+        transform: scale(0.9) translateX(50px);
+    }
+}
+
+@keyframes engineEntry {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes enginePulseOnce {
+    0% {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 30px var(--brand-orange);
+        transform: scale(1.05);
+    }
+
+    100% {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@keyframes enginePulse {
+
+    0%,
+    100% {
+        border-color: var(--brand-black);
+        transform: scale(1);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    50% {
+        border-color: var(--brand-orange);
+        transform: scale(1.02);
+        box-shadow: 0 15px 50px rgba(242, 103, 34, 0.15);
+    }
+}
+
+@keyframes tileAppear {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes arrowAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+}
+
+@keyframes sheetCycle {
+
+    0%,
+    30% {
+        top: calc(50% - 20px);
+        left: calc(50% - 20px);
+        z-index: 1;
+        opacity: 0.3;
+    }
+
+    33%,
+    63% {
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        opacity: 0.6;
+    }
+
+    66%,
+    96% {
+        top: calc(50% + 20px);
+        left: calc(50% + 20px);
+        z-index: 3;
+        opacity: 1;
+    }
+
+    100% {
+        top: calc(50% - 20px);
+        left: calc(50% - 20px);
+        z-index: 1;
+        opacity: 0.3;
+    }
+}
+
+/* Triggered states when slide is visible */
+.visible .sheetStack {
+    animation: stackFadeIn 0.5s ease forwards, stackCollapse 0.6s 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.visible .engineCard {
+    animation: engineEntry 0.5s 0.5s ease forwards, enginePulseOnce 0.6s 1.2s ease-in-out forwards, enginePulse 4s 1.8s infinite ease-in-out;
+}
+
+.visible .flowArrow {
+    animation: arrowAppear 0.5s 1s ease forwards;
+}
+
+.visible .outputTile {
+    animation: tileAppear 0.5s forwards;
+}
+
+.visible .outputTile:nth-child(1) {
+    animation-delay: 1.8s;
+}
+
+.visible .outputTile:nth-child(2) {
+    animation-delay: 2.0s;
+}
+
+.visible .outputTile:nth-child(3) {
+    animation-delay: 2.2s;
+}
+
+.visible .outputTile:nth-child(4) {
+    animation-delay: 2.4s;
+}
+
+/* Slide 6: Platform Model Comparison (Before vs After) */
+.comparisonContainer {
+    display: grid;
+    grid-template-columns: 1.85fr 1fr;
+    gap: 48px;
+    align-items: center;
+    width: 100%;
+}
+
+.modelSplit {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    height: 100%;
+}
+
+.comparisonRow {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px 24px;
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    position: relative;
+    transition: all 0.5s ease;
+    min-height: 240px;
+    justify-content: center;
+}
+
+.activeRow {
+    border-color: var(--brand-orange);
+    box-shadow: 0 4px 20px rgba(242, 103, 34, 0.1);
+    background: white;
+}
+
+.rowLabel {
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: var(--brand-black);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    position: absolute;
+    top: 16px;
+    left: 20px;
+}
+
+.rowCaption {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: auto;
+    opacity: 0.8;
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
+}
+
+.flowCanvas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.flowRow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.node {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 14px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    opacity: 0;
+    transform: translateX(-8px);
+    white-space: nowrap;
+}
+
+.node.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.node.active {
+    border-color: var(--brand-orange);
+    color: var(--brand-black);
+    box-shadow: 0 4px 12px rgba(242, 103, 34, 0.15);
+}
+
+.nodeSmall {
+    padding: 5px 10px;
+    font-size: 0.6rem;
+    font-weight: 600;
+}
+
+.nodeLarge {
+    padding: 16px 28px;
+    font-size: 0.95rem;
+    font-weight: 900;
+}
+
+.nodeOutput {
+    background: rgba(242, 103, 34, 0.05);
+    border-style: dashed;
+    color: var(--brand-orange);
+}
+
+.nodeUnified {
+    border: 2px solid var(--brand-orange);
+    background: white;
+    color: var(--brand-black);
+    box-shadow: 0 0 20px rgba(242, 103, 34, 0.2);
+}
+
+.connector {
+    font-weight: 900;
+    color: var(--border);
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.connector.visible {
+    opacity: 1;
+}
+
+.connectorActive {
+    color: var(--brand-orange);
+}
+
+.convergence {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.capabilityPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.capabilityTitle {
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: var(--brand-black);
+    margin: 0;
+}
+
+.capabilityList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.capabilityList li {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    position: relative;
+    padding-left: 28px;
+    font-weight: 600;
+}
+
+.capabilityList li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--brand-orange);
+    font-weight: 900;
+}
+
+.capabilityCaption {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* Sidebar Tracker (Floating Glassy) */
+.sidebarTracker {
+    position: fixed;
+    right: 20px;
+    top: calc(var(--navbar-height) + 30px);
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--navbar-height) - 60px);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    padding: 40px 25px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+}
+
+.progressItem {
+    padding: 12px 18px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+    border-radius: 15px;
+}
+
+.progressItem:hover {
+    color: var(--brand-orange);
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateX(5px);
+}
+
+.activeProgress {
+    color: var(--brand-orange) !important;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transform: scale(1.02) translateX(8px);
+}
+
+/* Mobile Bar */
+.mobileProgress {
+    position: fixed;
+    top: 70px;
+    /* Below Navbar */
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    display: none;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+}
+
+/* Layout: Before/After */
+.beforeAfterContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    width: 100%;
+}
+
+.panel {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 30px;
+}
+
+.panel h4 {
+    color: var(--brand-black);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.afterPanel {
+    border-top: 5px solid var(--brand-orange);
+}
+
+.toastStack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.toast {
+    background: var(--bg-sidebar);
+    border-left: 4px solid var(--brand-orange);
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.visible .toast {
+    animation: slideInToast 0.5s forwards;
+}
+
+@keyframes slideInToast {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Layout: Dashboard */
+.dashboardMock {
+    width: 100%;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.tabHeader {
+    display: flex;
+    background: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border);
+}
+
+.tab {
+    padding: 15px 25px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-right: 1px solid var(--border);
+}
+
+.tabActive {
+    background: white;
+    color: var(--brand-orange);
+}
+
+.kpiGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.kpiCardMini {
+    background: var(--bg-page);
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+}
+
+.miniTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.miniTable td {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.75rem;
+}
+
+/* Layout: Micro Tool */
+.toolLayout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    width: 100%;
+}
+
+.calcWidget {
+    background: var(--bg-sidebar);
+    padding: 30px;
+    border: 1px solid var(--border);
+}
+
+.inputGroup {
+    margin-bottom: 20px;
+}
+
+.inputGroup label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.inputGroup input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+}
+
+.resultDisplay {
+    background: var(--brand-black);
+    color: var(--brand-orange);
+    padding: 20px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+
+/* Layout: Principles Grid (Slide 7) */
+.principlesItems {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+.principleTile {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 35px;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+}
+
+.principleTile:hover {
+    border-color: var(--brand-orange);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+.principleTile h4 {
+    color: var(--brand-orange);
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+    font-weight: 900;
+}
+
+/* Layout: Scoreboard */
+.scoreboard {
+    width: 100%;
+}
+
+.impactGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.statCard {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 25px;
+}
+
+.milestoneContainer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+}
+
+.milestone {
+    text-align: center;
+    position: relative;
+}
+
+.milestone::before {
+    content: "";
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: var(--brand-orange);
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+/* Layout: Backlog Board (Slide 9) */
+.backlogGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    gap: 40px;
+    width: 100%;
+    align-items: start;
+}
+
+.backlogColumn h4 {
+    border-bottom: 4px solid var(--brand-blue);
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.backlogItem {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 24px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+}
+
+/* Layout: Guided Demo */
+.demoLayout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 40px;
+    width: 100%;
+}
+
+.stepper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.step {
+    padding: 15px;
+    border-left: 4px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 700;
+    opacity: 0.5;
+    font-size: 0.8rem;
+}
+
+.stepActive {
+    border-left-color: var(--brand-orange);
+    color: var(--brand-black);
+    opacity: 1;
+    background: var(--bg-sidebar);
+}
+
+/* Presenter Notes (Summary) Overlay */
+.notesOverlay {
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    width: 420px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    color: var(--brand-black);
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    z-index: 2000;
+    font-size: 1rem;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+    animation: floatIn 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Constrain all slide content consistently */
+.mainInner {
+    width: 100%;
+    max-width: 1400px;
+}
+
+/* Replace the flex-centering wrapper with this by updating TSX */
+.mainZone>.animateIn {
+    width: 100%;
+}
+
+/* 6-Column Flattened Hierarchy Grid */
+.hierarchyGrid {
+    display: grid;
+    /* Columns: Enc1, Arrow, Enc2, Arrow, Zone, Arrow, System, Arrow, Project, Arrow, Output */
+    grid-template-columns: 0.8fr 0.1fr 0.2fr 1fr 0.2fr 1.2fr 0.2fr 1fr 0.2fr 1.2fr;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px 0;
+    /* Vertical gap 10px, Horizontal handled by columns */
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
+    align-items: center;
+}
+
+/* Grid Placement Helpers */
+.gridCell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+}
+
+/* Connectors */
+.gridConnector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--border);
+    font-size: 0.8rem;
+    font-weight: 900;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.gridConnector.visible {
+    opacity: 1;
+}
+
+/* System Group Styling (Spans 2 rows) */
+.systemNodeGroup {
+    grid-column: 7;
+    /* System Column */
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.systemNodeGroup.active {
+    border-color: var(--brand-orange);
+    background: rgba(242, 103, 34, 0.05);
+}
+
+/* Project Node (Spans 4 rows) */
+.projectNodeGroup {
+    grid-column: 9;
+    /* Project Column */
+    grid-row: 1 / span 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Output Node (Spans 4 rows) */
+.outputNodeGroup {
+    grid-column: 11;
+    /* Output Column */
+    grid-row: 1 / span 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Connector special cases for spanning nodes */
+.connectorSpanned {
+    grid-column: 8;
+    /* Arrow after System */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Slide 9 */
+.backlogGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    width: 100%;
+    align-items: start;
+}
+
+.backlogColumn {
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+    min-height: 420px;
+}
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 1200px) {
+
+    .principlesItems,
+    .backlogGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .slide>* {
+        margin-right: 0;
+    }
+
+    .sidebarTracker {
+        display: none;
+    }
+
+    .principlesItems,
+    .backlogGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .mainZone {
+        padding: 40px 30px;
+    }
+
+    .mobileProgress {
+        display: flex;
+    }
+}

@@ -1,0 +1,425 @@
+/* Main Content Styles */
+.mainContent {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.section {
+    background: white;
+    padding: 45px;
+    border-radius: 0;
+    border: 1px solid var(--border);
+    margin-bottom: 40px;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.03);
+    position: relative;
+}
+
+.section::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    width: 10px;
+    height: 100%;
+    border-left: 1px solid var(--border);
+}
+
+.section h2 {
+    font-size: 1.6rem;
+    color: var(--brand-black);
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-left: 8px solid var(--brand-orange);
+    padding-left: 20px;
+    font-weight: 800;
+}
+
+.execSummary p {
+    font-size: 1.15rem;
+    color: var(--text-main);
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.pillarMeta {
+    margin-bottom: 30px;
+}
+
+.pillarValue {
+    font-weight: 700;
+    color: var(--brand-blue);
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.enabledContent {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--brand-black);
+    padding: 30px;
+    margin-top: 20px;
+}
+
+.enabledLabel {
+    font-size: 0.85rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+    display: block;
+    margin-bottom: 15px;
+    letter-spacing: 0.15em;
+}
+
+.enabledContent p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.evidenceList {
+    margin-top: 25px;
+    padding-left: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.evidenceItem {
+    padding: 12px;
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.evidenceItem:hover {
+    border-color: var(--brand-orange);
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.evidenceLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.evidenceLink:hover .evidenceTitle {
+    color: var(--brand-orange);
+}
+
+.evidenceTitle {
+    font-weight: 800;
+    color: var(--brand-black);
+    display: block;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+@media screen and (max-width: 900px) {
+    .mainContent {
+        padding: 20px;
+    }
+
+    .section {
+        padding: 30px;
+    }
+
+    .evidenceList {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.sidebar {
+    position: sticky;
+    top: 100px;
+    background: var(--bg-sidebar);
+    padding: 25px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+}
+
+.sidebar h2 {
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    border-left: none !important;
+    padding-left: 0 !important;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--brand-orange);
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 24px;
+    border-left: 2px solid var(--border);
+}
+
+.timelineItem {
+    position: relative;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.timelineItem::before {
+    content: "";
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border: 3px solid var(--brand-orange);
+    border-radius: 0;
+    z-index: 1;
+}
+
+.timelineDate {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--brand-orange);
+    text-transform: uppercase;
+}
+
+.timelineTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--brand-black);
+    display: block;
+    margin-top: 2px;
+}
+
+.timelineSummary {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    background: white;
+    padding: 0 12px;
+    border-left: 3px solid var(--brand-blue);
+}
+
+.expandedSummary {
+    max-height: 400px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--brand-blue);
+}
+
+.timelineControls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.tlBtn {
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 8px 12px;
+    border-radius: 0;
+    border: 1px solid var(--brand-black);
+    background: white;
+    color: var(--brand-black);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+}
+
+.tlBtn:hover {
+    background: var(--brand-black);
+    color: white;
+}
+
+.roleHeader {
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: var(--brand-black);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin: 40px 0 20px -10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.roleHeader::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: var(--brand-orange);
+}
+
+.statusBadge {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 0;
+    font-weight: 800;
+    margin-left: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.statusCompleted {
+    background: #f1f1f1;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.statusCurrent {
+    background: var(--highlight);
+    color: var(--brand-orange);
+    border: 1px solid var(--brand-orange);
+}
+
+.summaryLabel {
+    font-weight: 800;
+    color: var(--brand-black);
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Main Content Styles */
+.section {
+    background: white;
+    padding: 45px;
+    border-radius: 0;
+    border: 1px solid var(--border);
+    margin-bottom: 40px;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.03);
+    position: relative;
+}
+
+.section::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    width: 10px;
+    height: 100%;
+    border-left: 1px solid var(--border);
+}
+
+.section h2 {
+    font-size: 1.6rem;
+    color: var(--brand-black);
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-left: 8px solid var(--brand-orange);
+    padding-left: 20px;
+    font-weight: 800;
+}
+
+.execSummary p {
+    font-size: 1.15rem;
+    color: var(--text-main);
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+.pillarMeta {
+    margin-bottom: 30px;
+}
+
+.pillarValue {
+    font-weight: 700;
+    color: var(--brand-blue);
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.enabledContent {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--brand-black);
+    padding: 30px;
+    margin-top: 20px;
+}
+
+.enabledLabel {
+    font-size: 0.85rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+    display: block;
+    margin-bottom: 15px;
+    letter-spacing: 0.15em;
+}
+
+.evidenceList {
+    margin-top: 25px;
+    padding-left: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.evidenceItem {
+    padding: 12px;
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.evidenceItem:hover {
+    border-color: var(--brand-orange);
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.evidenceLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.evidenceLink:hover .evidenceTitle {
+    color: var(--brand-orange);
+}
+
+.evidenceTitle {
+    font-weight: 800;
+    color: var(--brand-black);
+    display: block;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+@media screen and (max-width: 900px) {
+    .layoutGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+        order: 2;
+        margin-top: 30px;
+    }
+}

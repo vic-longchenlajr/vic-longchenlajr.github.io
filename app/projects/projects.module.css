@@ -1,0 +1,325 @@
+/* Page Container - 70/30 Split */
+.pageContainer {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    min-height: 100vh;
+    background-color: var(--brand-black);
+}
+
+/* Main Content Area - 70% */
+.mainContent {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    background-color: var(--bg-page);
+}
+
+/* Individual Project Section */
+.projectSection {
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 80px;
+    box-sizing: border-box;
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+.projectSection.active {
+    opacity: 1;
+}
+
+/* Project Card */
+.projectCard {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 50px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    transition: all 0.3s ease;
+}
+
+.active .projectCard {
+    border-color: var(--brand-orange);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+/* Project Header */
+.projectHeader {
+    border-bottom: 2px solid var(--highlight);
+    padding-bottom: 25px;
+}
+
+.projectDate {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--brand-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+}
+
+.projectTitle {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: var(--brand-black);
+    margin: 0;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.projectSubtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.statusBadge {
+    font-size: 0.7rem;
+    padding: 6px 12px;
+    border-radius: 0;
+    font-weight: 800;
+    margin-top: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    width: fit-content;
+}
+
+.statusCompleted {
+    background: #f1f1f1;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.statusCurrent {
+    background: var(--highlight);
+    color: var(--brand-orange);
+    border: 1px solid var(--brand-orange);
+}
+
+/* Project Content */
+.projectContent {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.contentBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contentLabel {
+    font-weight: 800;
+    color: var(--brand-black);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.contentText {
+    font-size: 1.05rem;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Project Footer */
+.projectFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.projectIndex {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    font-family: monospace;
+}
+
+.navHint {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Timeline Sidebar - 30% */
+.timelineSidebar {
+    background: var(--bg-sidebar);
+    border-left: 1px solid var(--border);
+    padding: 40px 30px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+}
+
+.sidebarHeader {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--brand-orange);
+}
+
+.sidebarHeader h3 {
+    font-size: 1rem;
+    margin: 0 0 10px 0;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+}
+
+.progressIndicator {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--brand-orange);
+}
+
+/* Timeline */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.roleSection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.roleHeader {
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: var(--brand-black);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--brand-orange);
+}
+
+.timelineItem {
+    position: relative;
+    padding-left: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 8px 8px 8px 24px;
+    margin-left: -8px;
+    border-radius: 2px;
+}
+
+.timelineItem:hover {
+    background: rgba(242, 103, 34, 0.05);
+}
+
+.timelineItem::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+}
+
+.timelineActive::before {
+    background: var(--brand-orange);
+    width: 4px;
+}
+
+.timelineDot {
+    position: absolute;
+    left: -5px;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border: 3px solid var(--brand-orange);
+    border-radius: 0;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.timelineActive .timelineDot {
+    background: var(--brand-orange);
+    transform: scale(1.2);
+}
+
+.timelineContent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.timelineDate {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--brand-orange);
+    text-transform: uppercase;
+}
+
+.timelineTitle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--brand-black);
+    line-height: 1.3;
+}
+
+.timelineActive .timelineTitle {
+    color: var(--brand-orange);
+}
+
+/* Responsive */
+@media screen and (max-width: 1200px) {
+    .pageContainer {
+        grid-template-columns: 65% 35%;
+    }
+
+    .projectSection {
+        padding: 40px 50px;
+    }
+
+    .projectCard {
+        padding: 40px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .pageContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .timelineSidebar {
+        display: none;
+    }
+
+    .projectSection {
+        padding: 30px 20px;
+    }
+
+    .projectCard {
+        padding: 30px;
+    }
+
+    .projectTitle {
+        font-size: 1.5rem;
+    }
+}

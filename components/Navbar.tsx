@@ -23,9 +23,10 @@ const Navbar = () => {
                     <li className={styles.dropdown}>
                         <Link href="/projects" className={pathname === '/projects' ? styles.active : ''}>Projects</Link>
                         <ul className={styles.dropdownMenu}>
-                            <li><Link href="/projects#vortex-v2">Vortex Project Builder</Link></li>
-                            <li><Link href="/projects#resource-dashboard">LP Resource Dashboard</Link></li>
-                            <li><Link href="/projects#vicflex">VicFlex Bracket Filter</Link></li>
+                            <li><a href="/vortex-project-builder/" target="_blank" rel="noopener noreferrer">Vortex Project Builder</a></li>
+                            <li><a href="/resource-dashboard/" target="_blank" rel="noopener noreferrer">LP Resource Dashboard</a></li>
+                            <li><a href="/spray-trace/" target="_blank" rel="noopener noreferrer">SprayTrace</a></li>
+                            <li><a href="/vicflex-bracket-filter/" target="_blank" rel="noopener noreferrer">VicFlex Bracket Filter</a></li>
                         </ul>
                     </li>
                     <li>

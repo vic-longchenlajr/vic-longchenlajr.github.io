@@ -1,89 +1,90 @@
 .navbar {
-    background-color: var(--bg-page);
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  background-color: var(--bg-page);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo a {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--brand-black);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--brand-black);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .navLinks {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
 }
 
 .navLinks a {
-    text-decoration: none;
-    color: var(--text-main);
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    transition: color 0.2s ease;
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.2s ease;
 }
 
 .navLinks a:hover {
-    color: var(--brand-orange);
+  color: var(--brand-orange);
 }
 
 .dropdown {
-    position: relative;
+  position: static;
+  padding-bottom: 1rem;
+  margin-bottom: -1rem;
 }
 
 .dropdownMenu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--bg-page);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.5rem 0;
-    margin-top: 0.75rem;
-    list-style: none;
-    min-width: 240px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 200;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-page);
+  border-bottom: 1px solid var(--border);
+  padding: 0.6rem 40px;
+  margin: 0;
+  list-style: none;
+  z-index: 99;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .dropdown:hover .dropdownMenu {
-    display: block;
+  display: flex;
 }
 
 .dropdownMenu li a {
-    display: block;
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    text-transform: none;
-    letter-spacing: 0;
-    color: var(--text-main);
-    white-space: nowrap;
+  display: block;
+  padding: 0.3rem 0;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color 0.2s ease;
 }
 
 .dropdownMenu li a:hover {
-    background-color: var(--border);
-    color: var(--brand-orange);
+  color: var(--brand-orange);
 }

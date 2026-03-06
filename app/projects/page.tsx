@@ -55,6 +55,18 @@ const projects: Project[] = [
     appUrl: "/resource-dashboard/",
   },
   {
+    id: "spray-trace",
+    date: "Mar 2026 – Present",
+    title: "SprayTrace",
+    status: "current",
+    problem:
+      "Deflector development iterations and distribution test results were tracked in scattered spreadsheets — making it difficult to search history, compare performance, or evaluate pass/fail against FM and UL standards.",
+    solution:
+      "Built a structured iteration-tracking tool with heatmap visualizations and standards-based evaluation — giving engineers a searchable history of every deflector design and its test results in one place.",
+    role: "Engineer 1",
+    appUrl: "/spray-trace/",
+  },
+  {
     id: "vicflex",
     date: "Early 2025 – Present",
     title: "VicFlex Bracket Filter",

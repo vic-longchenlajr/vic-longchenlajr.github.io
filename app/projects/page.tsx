@@ -43,6 +43,18 @@ const projects: Project[] = [
     role: "Engineer 1",
   },
   {
+    id: "resource-dashboard",
+    date: "Feb 2026 – Present",
+    title: "LP Resource Dashboard",
+    status: "current",
+    problem:
+      "LiquidPlanner's native dashboards provided basic timesheet tracking but lacked the depth of insight engineering leadership needed — no clear picture of team utilization trends, project health, or forward-looking capacity against prioritized work.",
+    solution:
+      "Built a live resource dashboard that ingests LiquidPlanner timesheet data and surfaces utilization metrics, NPD vs. Sustaining allocation, and capacity planning insights across multiple stakeholder views — from director-level operations to VP-level strategic planning.",
+    role: "Engineer 1",
+    appUrl: "/resource-dashboard/",
+  },
+  {
     id: "vicflex",
     date: "Early 2025 – Present",
     title: "VicFlex Bracket Filter",

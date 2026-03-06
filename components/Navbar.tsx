@@ -20,14 +20,22 @@ const Navbar = () => {
                     <li>
                         <Link href="/" className={pathname === '/' ? styles.active : ''}>Home</Link>
                     </li>
-                    <li>
+                    <li className={styles.dropdown}>
                         <Link href="/projects" className={pathname === '/projects' ? styles.active : ''}>Projects</Link>
+                        <ul className={styles.dropdownMenu}>
+                            <li><Link href="/projects#vortex-v2">Vortex Project Builder</Link></li>
+                            <li><Link href="/projects#resource-dashboard">LP Resource Dashboard</Link></li>
+                            <li><Link href="/projects#vicflex">VicFlex Bracket Filter</Link></li>
+                        </ul>
                     </li>
                     <li>
                         <Link href="/summary" className={pathname === '/summary' ? styles.active : ''}>Summary</Link>
                     </li>
-                    <li>
+                    <li className={styles.dropdown}>
                         <Link href="/presentations" className={pathname === '/presentations' ? styles.active : ''}>Presentations</Link>
+                        <ul className={styles.dropdownMenu}>
+                            <li><Link href="/presentations/lunchandlearn">From Workflow Friction to Validated Systems</Link></li>
+                        </ul>
                     </li>
                 </ul>
             </div>

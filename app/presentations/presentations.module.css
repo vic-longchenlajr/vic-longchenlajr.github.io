@@ -1,0 +1,116 @@
+/* ============================================
+   Presentations Hub Page
+   ============================================ */
+
+.page {
+    min-height: 100vh;
+}
+
+/* ---- Dark Header ---- */
+.pageHeader {
+    background: var(--brand-black);
+    padding: 60px 40px 50px;
+}
+
+.headerInner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.pageTitle {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0 0 10px;
+}
+
+.pageSubtitle {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    line-height: 1.5;
+    max-width: 600px;
+}
+
+/* ---- Main Content ---- */
+.mainContent {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+}
+
+/* ---- Card List ---- */
+.cardList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 35px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--brand-orange);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.cardLabel {
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: var(--brand-orange);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.cardTitle {
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+    color: var(--brand-black);
+}
+
+.card:hover .cardTitle {
+    color: var(--brand-orange);
+}
+
+.cardDesc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media screen and (max-width: 900px) {
+    .pageHeader {
+        padding: 40px 20px 35px;
+    }
+
+    .pageTitle {
+        font-size: 1.6rem;
+    }
+
+    .mainContent {
+        padding: 30px 20px 60px;
+    }
+
+    .card {
+        padding: 28px;
+    }
+}

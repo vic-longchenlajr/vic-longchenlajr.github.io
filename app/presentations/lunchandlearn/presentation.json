@@ -1,0 +1,320 @@
+{
+    "meta": {
+        "title": "Delivering Engineering Software Solutions",
+        "subtitle": "Reducing risk and scaling knowledge across the product lifecycle",
+        "presenter": "Chenla Long, Jr",
+        "department": "Fire Suppression Technology",
+        "sidebarTitle": "LUNCH & LEARN",
+        "sidebarSubtitle": "From Workflow Friction to Validated Systems",
+        "theme": "dark"
+    },
+    "slides": [
+        {
+            "id": "hero",
+            "title": "Delivering Engineering Software Solutions",
+            "subtitle": "Reducing risk and scaling knowledge across the product lifecycle",
+            "breadcrumb": "CONTEXT",
+            "layout": "hero",
+            "hideTakeaway": true,
+            "takeaway": "When workflow rules are encoded into systems, risk drops and efficiency scales.",
+            "notes": {
+                "intent": "Establish positioning as a strategic, cross-department systems builder.",
+                "summary": "Introduce the talk as a cross-functional, systems-driven approach to reducing manual friction and operational risk."
+            },
+            "content": {
+                "heading": "FROM WORKFLOW FRICTION TO VALIDATED SYSTEMS",
+                "tagline": "Cross-functional engineering workflows translated into reliable, scalable software platforms."
+            }
+        },
+        {
+            "id": "pain",
+            "title": "Where Risk Enters the Workflow",
+            "subtitle": "When system logic is fragmented, friction appears at every stage of design and delivery.",
+            "breadcrumb": "FRICTION",
+            "layout": "flow",
+            "takeaway": "When validation happens late, friction multiplies across the workflow.",
+            "notes": {
+                "intent": "Demonstrate that 'friction' is a structural workflow problem, not just an organizational one.",
+                "summary": "Show where risk enters the engineering workflow when complex systems are designed using fragmented logic."
+            },
+            "content": {
+                "stages": [
+                    {
+                        "title": "DESIGN",
+                        "bullets": [
+                            "Manual constraint interpretation",
+                            "Training-dependent outcomes",
+                            "Logic spread across multiple files"
+                        ]
+                    },
+                    {
+                        "title": "VALIDATION",
+                        "bullets": [
+                            "Late-stage rule discovery",
+                            "Cross-zone or compliance mismatches",
+                            "Rework after calculation"
+                        ]
+                    },
+                    {
+                        "title": "QUOTING",
+                        "bullets": [
+                            "Pricing + partcode reconciliation",
+                            "Engineering dependency for confirmation",
+                            "Slower turnaround"
+                        ]
+                    },
+                    {
+                        "title": "DELIVERY",
+                        "bullets": [
+                            "Inconsistent BOM documentation",
+                            "Audit variance",
+                            "Output standardization gaps"
+                        ]
+                    }
+                ],
+                "caption": "\"Fragmented logic shifts validation downstream and multiplies risk.\""
+            }
+        },
+        {
+            "id": "process",
+            "title": "How I Build Internal Platforms",
+            "subtitle": "A cross-functional workflow from concept → deployment.",
+            "breadcrumb": "Systems",
+            "layout": "custom",
+            "component": "ProcessLoop",
+            "takeaway": "Alignment + validation + iteration is what makes tools scalable.",
+            "notes": {
+                "intent": "Demonstrate operational rigor and empathy for the end-user (engineer/designer).",
+                "summary": "I follow a formal product lifecycle even for internal tools. This includes immersion with project engineers, prototyping with calc designers, and validation sprints with test groups."
+            }
+        },
+        {
+            "id": "systems-practice",
+            "title": "Powerful Products. Complex Systems.",
+            "subtitle": "Engineering excellence introduces configuration complexity.",
+            "breadcrumb": "SYSTEMS → APPLICATION",
+            "layout": "comparison",
+            "takeaway": "As product capability increases, structured tooling becomes necessary to reduce risk and variability.",
+            "notes": {
+                "intent": "Demonstrate product depth understanding and set up case studies as necessary solutions—not optional tools.",
+                "summary": "Increased product capability naturally results in system-level configuration density. Structured engineering platforms are necessary to translate this complexity into consistent, risk-mitigated outputs."
+            },
+            "content": {
+                "cards": [
+                    {
+                        "badge": "SYSTEM CASE A",
+                        "title": "VORTEX HYBRID SYSTEM",
+                        "subtitle": "Hybrid dual-agent suppression for mission-critical applications.",
+                        "sections": [
+                            {
+                                "label": "Core Capability",
+                                "items": [
+                                    "Hybrid media discharge (atomized water + nitrogen)",
+                                    "Effective in water-sensitive + energized environments",
+                                    "Environmentally safe, minimal asset damage"
+                                ]
+                            },
+                            {
+                                "label": "System Complexity",
+                                "items": [
+                                    "Full system design required before sizing + pricing",
+                                    "Logic, partcodes, and pricing fragmented across spreadsheets",
+                                    "Method-specific agency rules layered onto constraints",
+                                    "Training-dependent design expertise"
+                                ]
+                            }
+                        ],
+                        "chips": [
+                            "Engineering Bottlenecks",
+                            "Spreadsheet Variance",
+                            "Human Data Entry Error",
+                            "Exponential Design Time"
+                        ]
+                    },
+                    {
+                        "badge": "SYSTEM CASE B",
+                        "title": "VICFLEX FLEXIBLE FITTINGS",
+                        "subtitle": "Modular sprinkler connection system across diverse install conditions.",
+                        "sections": [
+                            {
+                                "label": "Core Capability",
+                                "items": [
+                                    "Modular flexible sprinkler connectivity",
+                                    "Engineered assemblies for multiple ceiling types",
+                                    "Accelerated installation vs traditional pipe"
+                                ]
+                            },
+                            {
+                                "label": "System Complexity",
+                                "items": [
+                                    "Large compatibility matrix across product lines",
+                                    "High configuration variability per application",
+                                    "Application-specific constraints (layout, hazard, ceiling)",
+                                    "Repetitive but non-identical design requests"
+                                ]
+                            }
+                        ],
+                        "chips": [
+                            "Engineering Gatekeeping",
+                            "Sales Information Gaps",
+                            "Quoting Delays",
+                            "Lost Velocity"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "configurator",
+            "title": "Encoding Engineering Judgment",
+            "subtitle": "Case Study 1: From manual variance to rule-based validation",
+            "breadcrumb": "SYSTEMS → CASE STUDIES",
+            "layout": "transform",
+            "takeaway": "When requirements become code, outputs become consistent — and risk shifts upstream.",
+            "notes": {
+                "intent": "Prove that automation here means structural risk reduction, not just calculation speed.",
+                "summary": "Demonstrates the transition from spreadsheet-based logic to an encoded rules engine with real-time validation and standardized outputs."
+            },
+            "content": {
+                "beforeLabel": "BEFORE",
+                "afterLabel": "AFTER",
+                "centerLabel": "Vortex Estimator Tool → Vortex Configurator",
+                "beforeItems": ["Pricing", "Partcodes", "Calculation Logic", "Design Reviews"],
+                "centerItems": [
+                    "Centralizes design logic",
+                    "Enforces constraints at input",
+                    "Applies method-specific compliance",
+                    "Links calculations to partcodes + pricing",
+                    "Generates standardized outputs"
+                ],
+                "afterItems": ["Consistent Results", "Faster Validation", "Reduced Rework", "Lower Risk"],
+                "beforeCaption": "Fragmented design workflow",
+                "centerCaption": "Validation moved upstream",
+                "afterCaption": "Standardized results at scale"
+            }
+        },
+        {
+            "id": "builder",
+            "title": "From Tool to Platform",
+            "subtitle": "Project-Level Orchestration",
+            "breadcrumb": "SCALING CAPABILITY",
+            "layout": "custom",
+            "component": "PlatformOrchestration",
+            "takeaway": "Project-level hierarchy turns many enclosures into one consistent BOM and documentation set.",
+            "notes": {
+                "intent": "Highlight the shift from single-system validation to project-wide coordination and repeatable deliverables.",
+                "summary": "Shows how enclosure → zone → system → project aggregation enables cross-zone validation and standardized outputs."
+            }
+        },
+        {
+            "id": "bracket",
+            "title": "Small Automation, Big Leverage",
+            "subtitle": "Case Study 3: Eliminating a high-frequency bottleneck",
+            "breadcrumb": "SYSTEMS → CASE STUDIES",
+            "layout": "highlight",
+            "takeaway": "Automating the decisions made 40 times creates more impact than optimizing the ones made once.",
+            "notes": {
+                "intent": "Show that structured thinking scales from large platforms down to small, high-frequency workflows.",
+                "summary": "Illustrates how targeted automation of repetitive calculations reduces engineering gatekeeping and accelerates quoting."
+            },
+            "content": {
+                "problemTitle": "High-Frequency Bottleneck",
+                "problemDescription": "Engineers repeatedly filtered bracket compatibility across matrices and PDF references.",
+                "metric": "40+ Repetitions",
+                "metricLabel": "Per Project",
+                "results": [
+                    "Instant compatible outputs",
+                    "Zero interpretation risk",
+                    "No engineering gatekeeping"
+                ]
+            }
+        },
+        {
+            "id": "principles",
+            "title": "The Automation Playbook",
+            "subtitle": "Principles that guide the work",
+            "breadcrumb": "Approach → Principles → Future",
+            "layout": "grid",
+            "takeaway": "The goal is to make the correct way the easy way.",
+            "notes": {
+                "intent": "Elevate from 'tools' to 'systems'.",
+                "summary": "Synthesize lessons into repeatable approach."
+            },
+            "content": {
+                "columns": 3,
+                "tiles": [
+                    { "icon": "🛡️", "title": "Validate Early", "description": "Stop errors at the point of entry." },
+                    { "icon": "🔗", "title": "Encode Rules", "description": "Translate manuals into logic constraints." },
+                    { "icon": "✂️", "title": "Cut Handoffs", "description": "Single data entry from sales to build." },
+                    { "icon": "📏", "title": "Standardize", "description": "Uniform outputs for every stakeholder." },
+                    { "icon": "🏛️", "title": "Institutionalize", "description": "Memory lives in code, not individuals." },
+                    { "icon": "🎯", "title": "High Coherence", "description": "Pricing and config always match." }
+                ]
+            }
+        },
+        {
+            "id": "impact",
+            "title": "Impact You Can Feel",
+            "subtitle": "Reliability, Speed, & Consistency",
+            "breadcrumb": "Approach → Principles → Future",
+            "layout": "metrics",
+            "takeaway": "Automation isn't about flash—it's about workflow reliability.",
+            "notes": {
+                "intent": "Translate work into business benefits.",
+                "summary": "Make impact concrete with KPIs."
+            },
+            "content": {
+                "kpis": [
+                    { "label": "TIME SAVED", "value": "400h+", "sub": "Annual / Lab Ops", "type": "Estimated" },
+                    { "label": "RISK REDUCTION", "value": "80%", "sub": "Logic Regressions", "type": "Observed" },
+                    { "label": "CONSISTENCY", "value": "100%", "sub": "Output Formats", "type": "Qualitative" }
+                ],
+                "milestones": [
+                    { "label": "V1 Launch", "date": "Q1 2026" },
+                    { "label": "Builder Beta", "date": "Q2 2026" },
+                    { "label": "Global Release", "date": "Q3 2026" },
+                    { "label": "AI Integration", "date": "Q4 2026" }
+                ]
+            }
+        },
+        {
+            "id": "next",
+            "title": "What should we automate next?",
+            "subtitle": "Turn friction into a backlog",
+            "breadcrumb": "Approach → Principles → Future",
+            "layout": "board",
+            "takeaway": "If a workflow is repetitive and rule-based, it's a candidate for code.",
+            "notes": {
+                "intent": "Spark discussion and generate projects.",
+                "summary": "Invite collaboration on future friction."
+            },
+            "content": {
+                "columns": [
+                    { "title": "High Value / Easy", "items": ["Auto-partcode Gen", "Margin Guardrails"] },
+                    { "title": "High Value / Hard", "items": ["3D Zone Preview", "ERP Direct Sync"] },
+                    { "title": "Needs Discovery", "items": ["Field Image Ingestion", "Mobile App Sync"] }
+                ]
+            }
+        },
+        {
+            "id": "demo",
+            "title": "Guided Demo Mode",
+            "subtitle": "Vortex Builder v2.4 Live Preview",
+            "breadcrumb": "Live Demo",
+            "layout": "demo",
+            "takeaway": "From input to design-ready output—without spreadsheet archaeology.",
+            "notes": {
+                "intent": "End with tangible experience of improvements.",
+                "summary": "Deterministic demo mode end-to-end."
+            },
+            "content": {
+                "steps": ["Load Preset", "Define Zones", "Resolve Warnings", "Export BOM"],
+                "activeStep": 2,
+                "title": "DEMO MODE ACTIVE",
+                "description": "Interactive platform view ready for live walkthrough.",
+                "buttonLabel": "LAUNCH BUILDER",
+                "icon": "🏗️"
+            }
+        }
+    ]
+}

@@ -1,0 +1,1029 @@
+/* ============================================
+   Best Practices Page — 75/25 Layout with TOC
+   ============================================ */
+
+/* Page Grid */
+.pageContainer {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    min-height: 100vh;
+}
+
+/* ---- Main Content ---- */
+.mainContent {
+    padding: 40px 60px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ---- Page Header ---- */
+.pageHeader {
+    border-top: 8px solid var(--brand-orange);
+    padding-top: 30px;
+    margin-bottom: 50px;
+}
+
+.pageTitle {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--brand-black);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0 0 10px;
+}
+
+.pageSubtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.pageMeta {
+    display: flex;
+    gap: 20px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.metaItem {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+.metaValue {
+    color: var(--brand-orange);
+    margin-left: 6px;
+}
+
+/* ---- Section Blocks ---- */
+.section {
+    margin-bottom: 50px;
+    scroll-margin-top: calc(var(--navbar-height) + 20px);
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--brand-black);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 25px;
+    border-left: 8px solid var(--brand-orange);
+    padding-left: 20px;
+}
+
+.sectionIntro {
+    font-size: 1rem;
+    color: var(--text-main);
+    line-height: 1.7;
+    margin: 0 0 25px;
+}
+
+/* ---- Subsection ---- */
+.subsection {
+    margin-bottom: 30px;
+}
+
+.subsectionTitle {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--brand-black);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--highlight);
+}
+
+.bodyText {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.7;
+    margin: 0 0 12px;
+}
+
+/* ---- TOC Sidebar ---- */
+.tocSidebar {
+    background: var(--bg-sidebar);
+    border-left: 1px solid var(--border);
+    padding: 30px 20px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+}
+
+.tocHeader {
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--brand-orange);
+}
+
+.tocList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.tocItem {
+    position: relative;
+    padding: 8px 10px 8px 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+}
+
+.tocItem::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+    transition: all 0.2s ease;
+}
+
+.tocItem:hover {
+    background: rgba(242, 103, 34, 0.05);
+}
+
+.tocItemActive::before {
+    background: var(--brand-orange);
+    width: 4px;
+}
+
+.tocItemActive {
+    background: rgba(242, 103, 34, 0.05);
+}
+
+.tocLink {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    display: block;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+}
+
+.tocItemActive .tocLink {
+    color: var(--brand-orange);
+    font-weight: 700;
+}
+
+.tocItem:hover .tocLink {
+    color: var(--brand-orange);
+}
+
+.tocDivider {
+    height: 1px;
+    background: var(--border);
+    margin: 10px 0;
+}
+
+/* ---- Mobile TOC ---- */
+.mobileToc {
+    display: none;
+    position: sticky;
+    top: var(--navbar-height);
+    z-index: 50;
+    background: var(--bg-page);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+}
+
+.mobileTocToggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brand-black);
+    cursor: pointer;
+}
+
+.mobileTocToggle:hover {
+    border-color: var(--brand-orange);
+}
+
+.mobileTocArrow {
+    font-size: 0.6rem;
+    transition: transform 0.2s ease;
+}
+
+.mobileTocArrowOpen {
+    transform: rotate(180deg);
+}
+
+.mobileTocDropdown {
+    position: absolute;
+    top: 100%;
+    left: 12px;
+    right: 12px;
+    background: var(--bg-page);
+    border: 1px solid var(--border);
+    border-top: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-height: 60vh;
+    overflow-y: auto;
+    z-index: 51;
+}
+
+.mobileTocList {
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+}
+
+.mobileTocItem {
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+}
+
+.mobileTocItem:hover {
+    background: var(--highlight);
+    color: var(--brand-orange);
+}
+
+.mobileTocItemActive {
+    color: var(--brand-orange);
+    font-weight: 700;
+    border-left: 4px solid var(--brand-orange);
+}
+
+/* ---- Project Inventory Cards ---- */
+.projectGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.projectCard {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 24px;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.projectCard:hover {
+    border-color: var(--brand-orange);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.projectCardName {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--brand-black);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 0;
+}
+
+.projectCardDesc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.projectCardMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.metaRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.metaLabel {
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    min-width: 60px;
+    padding-top: 3px;
+}
+
+.tagGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    background: var(--highlight);
+    color: var(--brand-orange);
+    border: 1px solid rgba(242, 103, 34, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.tagBlue {
+    background: rgba(0, 163, 224, 0.08);
+    color: var(--brand-blue);
+    border-color: rgba(0, 163, 224, 0.2);
+}
+
+.tagGray {
+    background: var(--bg-sidebar);
+    color: var(--text-muted);
+    border-color: var(--border);
+}
+
+/* ---- Lifecycle Diagram ---- */
+.lifecycleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.lifecyclePhase {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lifecyclePhase:hover .phaseIndicator {
+    background: rgba(242, 103, 34, 0.05);
+}
+
+.phaseIndicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    position: relative;
+    transition: background 0.2s ease;
+}
+
+.phaseNumber {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: var(--text-muted);
+    background: white;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.phaseNumberActive {
+    border-color: var(--brand-orange);
+    color: var(--brand-orange);
+    background: var(--highlight);
+}
+
+.phaseConnector {
+    width: 3px;
+    flex: 1;
+    background: var(--border);
+    margin-top: 4px;
+}
+
+.phaseConnectorActive {
+    background: var(--brand-orange);
+}
+
+.phaseContent {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.phaseName {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--brand-black);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.phaseExpandIcon {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+}
+
+.phaseExpandIconOpen {
+    transform: rotate(180deg);
+}
+
+.phaseTagline {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0;
+}
+
+.phaseDetails {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.phaseDetailsOpen {
+    max-height: 600px;
+    padding-top: 14px;
+}
+
+.phaseDetailList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.phaseDetailItem {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    padding-left: 16px;
+    position: relative;
+}
+
+.phaseDetailItem::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: var(--brand-orange);
+}
+
+.exitCriteria {
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--brand-blue);
+    padding: 12px 16px;
+    margin-top: 8px;
+}
+
+.exitLabel {
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--brand-blue);
+    margin: 0 0 6px;
+}
+
+.exitText {
+    font-size: 0.82rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ---- Directory Tree ---- */
+.directoryTree {
+    background: var(--brand-black);
+    color: #e0e0e0;
+    padding: 24px 28px;
+    font-family: 'Geist Mono', 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 0.82rem;
+    line-height: 1.8;
+    overflow-x: auto;
+    border-left: 4px solid var(--brand-orange);
+    margin: 0 0 20px;
+    white-space: pre;
+}
+
+.treeComment {
+    color: #666;
+}
+
+/* ---- Decision Table ---- */
+.decisionTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.decisionTable th {
+    background: var(--brand-black);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 12px 16px;
+    text-align: left;
+}
+
+.decisionTable td {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+}
+
+.decisionTable tr:hover td {
+    background: var(--highlight);
+}
+
+/* ---- Tech Stack ---- */
+.stackGroup {
+    margin-bottom: 20px;
+}
+
+.stackGroupLabel {
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--brand-black);
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--brand-orange);
+}
+
+.stackGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.stackItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: white;
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+}
+
+.stackItem:hover {
+    border-color: var(--brand-orange);
+}
+
+.stackName {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--brand-black);
+}
+
+.stackVersion {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--brand-orange);
+    font-family: monospace;
+    margin-left: auto;
+}
+
+.stackNote {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 2px;
+}
+
+/* ---- Commit Convention ---- */
+.commitTypeGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.commitType {
+    padding: 10px 14px;
+    background: white;
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.commitTypeLabel {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--brand-black);
+    font-family: monospace;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.commitTypeDesc {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+/* ---- Code Block ---- */
+.codeBlock {
+    background: var(--brand-black);
+    color: #e0e0e0;
+    padding: 20px 24px;
+    font-family: 'Geist Mono', 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    overflow-x: auto;
+    border-left: 4px solid var(--brand-orange);
+    margin-bottom: 16px;
+    white-space: pre;
+}
+
+.codeComment {
+    color: #6a9955;
+}
+
+.codeKeyword {
+    color: var(--brand-orange);
+}
+
+.codeString {
+    color: var(--brand-blue);
+}
+
+/* ---- Checklists ---- */
+.checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.checklistItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    background: white;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.checklistItem:hover {
+    border-color: var(--brand-orange);
+    background: var(--highlight);
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    transition: all 0.2s ease;
+    font-size: 0.7rem;
+    color: transparent;
+}
+
+.checkboxChecked {
+    border-color: var(--brand-orange);
+    background: var(--brand-orange);
+    color: white;
+}
+
+.checklistText {
+    font-size: 0.88rem;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+.checklistTextChecked {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+/* ---- Info Callout ---- */
+.callout {
+    background: var(--highlight);
+    border: 1px solid rgba(242, 103, 34, 0.2);
+    border-left: 4px solid var(--brand-orange);
+    padding: 16px 20px;
+    margin-bottom: 16px;
+}
+
+.calloutBlue {
+    background: rgba(0, 163, 224, 0.06);
+    border-color: rgba(0, 163, 224, 0.2);
+    border-left-color: var(--brand-blue);
+}
+
+.calloutLabel {
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--brand-orange);
+    margin: 0 0 6px;
+}
+
+.calloutBlue .calloutLabel {
+    color: var(--brand-blue);
+}
+
+.calloutText {
+    font-size: 0.88rem;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ---- Bullet List ---- */
+.bulletList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bulletItem {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    line-height: 1.6;
+    padding-left: 18px;
+    position: relative;
+}
+
+.bulletItem::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    background: var(--brand-orange);
+}
+
+/* ---- Label Table ---- */
+.labelGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.labelItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: white;
+    border: 1px solid var(--border);
+}
+
+.labelBadge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+.labelBadgeBug {
+    background: #fde8e8;
+    color: #c53030;
+    border: 1px solid #feb2b2;
+}
+
+.labelBadgeEnhancement {
+    background: #e6fffa;
+    color: #276749;
+    border: 1px solid #9ae6b4;
+}
+
+.labelBadgeCalculation {
+    background: rgba(0, 163, 224, 0.08);
+    color: var(--brand-blue);
+    border: 1px solid rgba(0, 163, 224, 0.2);
+}
+
+.labelBadgeData {
+    background: var(--highlight);
+    color: var(--brand-orange);
+    border: 1px solid rgba(242, 103, 34, 0.2);
+}
+
+.labelBadgeDocs {
+    background: #f0f0f0;
+    color: #555;
+    border: 1px solid #ddd;
+}
+
+.labelBadgeCritical {
+    background: #c53030;
+    color: white;
+    border: 1px solid #c53030;
+}
+
+.labelBadgeNormal {
+    background: var(--bg-sidebar);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+
+.labelDesc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ---- AI Tools Table ---- */
+.aiToolGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.aiToolItem {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: white;
+    border: 1px solid var(--border);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.03);
+}
+
+.aiToolName {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--brand-black);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    min-width: 140px;
+}
+
+.aiToolUse {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ---- Glossary ---- */
+.glossaryGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.glossaryItem {
+    display: flex;
+    gap: 10px;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid var(--border);
+}
+
+.glossaryTerm {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--brand-black);
+    font-family: monospace;
+    min-width: 60px;
+}
+
+.glossaryDef {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* ---- README Template ---- */
+.readmePreview {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 30px;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.03);
+}
+
+.readmePreview h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--brand-black);
+    margin: 0 0 6px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--brand-orange);
+}
+
+.readmePreview h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--brand-black);
+    margin: 18px 0 8px;
+}
+
+.readmePreview p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0 0 12px;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media screen and (max-width: 1100px) {
+    .pageContainer {
+        grid-template-columns: 1fr 240px;
+    }
+
+    .mainContent {
+        padding: 30px 40px 60px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .pageContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .tocSidebar {
+        display: none;
+    }
+
+    .mobileToc {
+        display: block;
+    }
+
+    .mainContent {
+        padding: 20px 20px 60px;
+    }
+
+    .pageTitle {
+        font-size: 1.6rem;
+    }
+
+    .projectGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .stackGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .labelGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .glossaryGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .lifecyclePhase {
+        grid-template-columns: 60px 1fr;
+    }
+
+    .commitTypeGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

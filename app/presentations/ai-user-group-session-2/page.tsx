@@ -2,15 +2,13 @@
 
 import { PresentationEngine } from '@/components/PresentationEngine';
 import presentationData from './presentation.json';
-import { slideComponents } from './slides';
 import type { PresentationMeta, SlideDefinition } from '@/components/PresentationEngine';
 
-export default function LunchAndLearnPage() {
+export default function AIUserGroupSession2Page() {
     return (
         <PresentationEngine
             meta={presentationData.meta as PresentationMeta}
             slides={presentationData.slides as SlideDefinition[]}
-            components={slideComponents}
         />
     );
 }

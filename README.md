@@ -1,56 +1,74 @@
-# Portfolio & Engineering Presentations
+# Portfolio and Engineering Presentations
 
-**Chenla Long, Jr.** | *Scalable Engineering Systems | Fire Protection R&D | Software Innovation*
+A professional portfolio and interactive presentation platform for Victaulic Fire Suppression Engineering. The application showcases the intersection of hardware R&D and scalable software architecture, demonstrating how configuration-driven platforms reduce operational risk and accelerate engineering decision-making.
 
-This project serves as both a professional portfolio and an interactive presentation platform. It showcases the intersection of hardware R&D and scalable software architecture at Victaulic, specifically identifying how configuration-driven platforms reduce operational risk and accelerate engineering decision-making.
+---
 
-## Project Overview
+## Features
 
-The application is built to demonstrate:
-1.  **Complex Engineering Workflows:** Visualizing the friction in traditional hardware design processes.
-2.  **Software Solutions:** presenting the "Vortex Project Builder" and other tools that automate validation and systematize tribal knowledge.
-3.  **Professional Growth:** A timeline of key contributions and technical milestones.
+### Interactive presentation engine
 
-## Key Features
+- Custom-built slide deck replacing static PowerPoint with dynamic, code-driven storytelling
+- Workflow friction visualization animating compounding risk across Design, Validation, Quoting, and Delivery phases
+- Interactive circular navigation showing the software development lifecycle
+- System architecture comparisons between independent calculations and project-level hierarchy models
+- Live demo mode for transitioning from slides to software demonstration
 
-### 🎥 Interactive Lunch & Learn Deck (`/lunchandlearn`)
-A custom-built presentation engine designed to replace static PowerPoint slides with dynamic, code-driven storytelling.
--   **Workflow Friction Visualization:** Animates the compounding risk across Design, Validation, Quoting, and Delivery phases.
--   **Process Loop:** Interactive circular navigation showing the software development lifecycle (Discovery → Immersion → Architecture → etc.).
--   **System Architecture Comparisons:** Visual diffs between "Independent System Calculations" and "Project-Level Hierarchy" models.
--   **Live Demo Mode:** A dedicated view for transitioning from slides to live software demonstration.
+### Professional summary
 
-### 📄 Professional Summary (`/summary`)
-An interactive curriculum vitae and project timeline.
--   **Project Roadmap:** Expandable timeline detailing projects like Vortex Configurator (V1 & V2), VicFlex Bracket Filter, and Scalable DAQ.
--   **Executive Summary:** High-level overview of cross-functional impact between R&D, Lab Ops, and Sales.
--   **Impact Metrics:** Quantifiable results of engineering automation (e.g., 400h+ saved annually).
+- Interactive curriculum vitae and project timeline
+- Expandable project roadmap (Vortex Configurator V1/V2, VicFlex Bracket Filter, Scalable DAQ)
+- Executive summary of cross-functional impact between R&D, Lab Ops, and Sales
+- Quantifiable impact metrics from engineering automation
 
-## Tech Stack
+## Technology stack
 
-Built with modern web technologies to ensure performance, type safety, and maintainability:
+| Layer | Technology |
+|-------|------------|
+| Framework | React 19 + Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 + CSS Modules (animations) |
 
--   **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
--   **UI Library:** [React 19](https://react.dev/)
--   **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) + CSS Modules (for complex, high-performance animations)
--   **Language:** [TypeScript](https://www.typescriptlang.org/)
-
-## Getting Started
-
-To run the portfolio locally:
+## Getting started
 
 ```bash
-# Install dependencies
 npm install
-
-# Run the development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to explore the portfolio.
+Open http://localhost:3000 to view the portfolio.
+
+### Production build
+
+```bash
+npm run build
+```
+
+Generates an optimized production build for deployment.
 
 ## Navigation
 
--   **Home:** `/` - Welcome screen and navigation hub.
--   **Summary:** `/summary` - Detailed professional timeline and impact analysis.
--   **Presentation:** `/lunchandlearn` - The interactive slide deck.
+- `/` — Welcome screen and navigation hub
+- `/summary` — Professional timeline and impact analysis
+- `/lunchandlearn` — Interactive slide deck
+
+## Repository information
+
+| Field | Value |
+|-------|-------|
+| Version | 0.1.0 |
+| Repository | portfolio |
+| Maintainer | Fire Suppression Engineering — Easton, PA |
+| License | Proprietary — Victaulic Company |
+
+## Engineering disclaimer
+
+This tool is intended to assist qualified engineers and estimators during system configuration and estimation. Final system designs must be reviewed and approved in accordance with applicable codes, standards, and Victaulic engineering guidance.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for version history.
+
+---
+
+(c) 2026 Victaulic Company. All rights reserved.

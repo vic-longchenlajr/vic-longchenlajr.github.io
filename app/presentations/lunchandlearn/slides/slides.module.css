@@ -1,0 +1,425 @@
+/* ============================================
+   LUNCH & LEARN — Custom Slide Styles
+   Styles specific to ProcessLoop and PlatformOrchestration
+   ============================================ */
+
+/* ---- Process Loop ---- */
+
+.processLoopContainer {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+}
+
+.loopLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+}
+
+.circularWrapper {
+    position: relative;
+    width: 440px;
+    height: 440px;
+}
+
+.loopSvg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 440px;
+    height: 440px;
+    overflow: visible;
+}
+
+.svgTrack {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 2;
+    stroke-dasharray: 4 6;
+}
+
+.svgHighlight {
+    fill: none;
+    stroke: var(--brand-orange);
+    stroke-width: 6;
+    stroke-dasharray: 356 1068;
+    stroke-linecap: round;
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+    filter: drop-shadow(0 0 12px rgba(242, 103, 34, 0.5));
+}
+
+.loopNode {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    background: white;
+    border: 3px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 50;
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.nodeActive {
+    border-color: var(--brand-orange);
+    transform: translate(-50%, -50%) scale(1.15);
+    box-shadow: 0 15px 45px rgba(242, 103, 34, 0.25);
+    z-index: 100;
+    animation: activePulse 4s infinite ease-in-out;
+}
+
+@keyframes activePulse {
+    0%, 100% { box-shadow: 0 15px 45px rgba(242, 103, 34, 0.25); }
+    50% { box-shadow: 0 15px 60px rgba(242, 103, 34, 0.4); }
+}
+
+.nodeIcon {
+    font-size: 1.7rem;
+    margin-bottom: 2px;
+}
+
+.nodeLabel {
+    font-size: 0.58rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.nodeActive .nodeLabel {
+    color: var(--brand-orange);
+}
+
+.loopRight {
+    padding-left: 40px;
+    border-left: 2px solid var(--highlight);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.detailPanel {
+    animation: fadeSlideIn 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.detailIndex {
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    color: var(--brand-orange);
+    margin-bottom: 12px;
+}
+
+.detailTitle {
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px 0;
+    line-height: 1.1;
+    color: var(--brand-black);
+}
+
+.detailDesc {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 35px;
+    max-width: 380px;
+}
+
+.detailTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.detailTag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 999px;
+    color: var(--brand-black);
+}
+
+.tagStakeholder {
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+}
+
+.tagValue {
+    background: rgba(0, 80, 255, 0.08);
+    border: 1px solid rgba(0, 80, 255, 0.25);
+    color: var(--brand-blue);
+}
+
+/* ---- Platform Orchestration ---- */
+
+.comparisonContainer {
+    display: grid;
+    grid-template-columns: 1.85fr 1fr;
+    gap: 48px;
+    align-items: center;
+    width: 100%;
+}
+
+.modelSplit {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    height: 100%;
+}
+
+.comparisonRow {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px 24px;
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    position: relative;
+    transition: all 0.5s ease;
+    min-height: 240px;
+    justify-content: center;
+}
+
+.activeRow {
+    border-color: var(--brand-orange);
+    box-shadow: 0 4px 20px rgba(242, 103, 34, 0.1);
+    background: white;
+}
+
+.rowLabel {
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: var(--brand-black);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    position: absolute;
+    top: 16px;
+    left: 20px;
+}
+
+.rowCaption {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: auto;
+    opacity: 0.8;
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
+}
+
+.flowCanvas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.flowRow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.convergence {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.node {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 14px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    opacity: 0;
+    transform: translateX(-8px);
+    white-space: nowrap;
+}
+
+.nodeVisible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.nodeHighlight {
+    border-color: var(--brand-orange);
+    color: var(--brand-black);
+    box-shadow: 0 4px 12px rgba(242, 103, 34, 0.15);
+}
+
+.nodeSmall {
+    padding: 5px 10px;
+    font-size: 0.6rem;
+    font-weight: 600;
+}
+
+.nodeLarge {
+    padding: 16px 28px;
+    font-size: 0.95rem;
+    font-weight: 900;
+}
+
+.nodeOutput {
+    background: rgba(242, 103, 34, 0.05);
+    border-style: dashed;
+    color: var(--brand-orange);
+}
+
+.nodeUnified {
+    border: 2px solid var(--brand-orange);
+    background: white;
+    color: var(--brand-black);
+    box-shadow: 0 0 20px rgba(242, 103, 34, 0.2);
+}
+
+.connector {
+    font-weight: 900;
+    color: var(--border);
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.connectorVisible {
+    opacity: 1;
+}
+
+.hierarchyGrid {
+    display: grid;
+    grid-template-columns: 0.8fr 0.1fr 0.2fr 1fr 0.2fr 1.2fr 0.2fr 1fr 0.2fr 1.2fr;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
+    align-items: center;
+}
+
+.gridCell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+}
+
+.gridConnector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--border);
+    font-size: 0.8rem;
+    font-weight: 900;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.systemNodeGroup {
+    grid-column: 7;
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.projectNodeGroup {
+    grid-column: 9;
+    grid-row: 1 / span 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.outputNodeGroup {
+    grid-column: 11;
+    grid-row: 1 / span 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.capabilityPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.capabilityTitle {
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: var(--brand-black);
+    margin: 0;
+}
+
+.capabilityList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.capabilityList li {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    position: relative;
+    padding-left: 28px;
+    font-weight: 600;
+}
+
+.capabilityList li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--brand-orange);
+    font-weight: 900;
+}
+
+.capabilityCaption {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    opacity: 0.7;
+}

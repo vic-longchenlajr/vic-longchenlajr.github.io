@@ -1,0 +1,423 @@
+{
+    "meta": {
+        "title": "AI User Group — Session 2",
+        "subtitle": "From Guidelines to Workflows",
+        "presenter": "Chenla Long, Jr.",
+        "department": "Fire Suppression Technology",
+        "sidebarTitle": "AI USER GROUP",
+        "sidebarSubtitle": "Session 2 — From Guidelines to Workflows",
+        "theme": "dark"
+    },
+    "slides": [
+        {
+            "id": "hero",
+            "title": "AI User Group — Session 2",
+            "breadcrumb": "WELCOME",
+            "layout": "hero",
+            "hideTakeaway": true,
+            "takeaway": null,
+            "notes": {
+                "intent": "Set the tone — this session shifts from policy to practice.",
+                "summary": "Welcome everyone back. Last session focused on security and guidelines. Today we're getting hands-on with real workflows and practical techniques."
+            },
+            "content": {
+                "heading": "AI USER GROUP — SESSION 2",
+                "tagline": "From Guidelines to Workflows"
+            }
+        },
+        {
+            "id": "recap",
+            "title": "Where We Left Off",
+            "subtitle": "Recap of the inaugural session and what you asked for next.",
+            "breadcrumb": "CONTEXT",
+            "layout": "flow",
+            "takeaway": "The first session established the guardrails — this session puts the tools in your hands.",
+            "notes": {
+                "intent": "Establish continuity from last session and validate the audience's feedback.",
+                "summary": "Quick recap only — don't re-present the content. Emphasize that the group's feedback directly shaped today's agenda."
+            },
+            "content": {
+                "stages": [
+                    {
+                        "title": "WHAT WE COVERED",
+                        "bullets": [
+                            "Frank Cygler on IP protection and legal considerations",
+                            "Sean Johnson on enterprise AI tools and Microsoft event insights",
+                            "IT-approved platforms and data security guidelines"
+                        ]
+                    },
+                    {
+                        "title": "WHAT WE CONCLUDED",
+                        "bullets": [
+                            "Always use enterprise AI tools",
+                            "Be discretionary with information shared",
+                            "Protect proprietary data at all times"
+                        ]
+                    },
+                    {
+                        "title": "WHAT YOU ASKED FOR",
+                        "bullets": [
+                            "Practical use cases over policy slides",
+                            "Show us what AI can do, not just what not to do",
+                            "Real workflows from real people in the room"
+                        ]
+                    },
+                    {
+                        "title": "WHAT TODAY DELIVERS",
+                        "bullets": [
+                            "Live demos from Mike Counts and Sean Langer",
+                            "Prompt techniques that work across every tool",
+                            "A mental model for how these systems actually work"
+                        ]
+                    }
+                ],
+                "caption": "Your feedback shaped this agenda."
+            }
+        },
+        {
+            "id": "know-your-tools",
+            "title": "Know Your Tools",
+            "subtitle": "What's available and when to reach for each.",
+            "breadcrumb": "TOOLS",
+            "layout": "grid",
+            "takeaway": "Different tools have different strengths — pick the right one for the task.",
+            "notes": {
+                "intent": "Orient the audience on the tool landscape so they know what's available and when to reach for each.",
+                "summary": "Quick overview — don't pitch any single tool. The group is already using a mix of these. Highlight that IT has approved enterprise versions of some tools. Mention that consistency within a project matters more than constantly switching between tools."
+            },
+            "content": {
+                "columns": 3,
+                "tiles": [
+                    {
+                        "icon": "🤖",
+                        "title": "ChatGPT",
+                        "description": "Strong at breaking down complex problems, explaining reasoning, and retaining project context across long conversations."
+                    },
+                    {
+                        "icon": "✈️",
+                        "title": "Copilot",
+                        "description": "Best when working inside Microsoft ecosystem apps — Word, Excel, Outlook, Teams. IT-approved enterprise version available."
+                    },
+                    {
+                        "icon": "🧠",
+                        "title": "Claude",
+                        "description": "Excels at nuanced analysis, long-document processing, and technical writing. Claude Code extends it into full development workflows."
+                    },
+                    {
+                        "icon": "📡",
+                        "title": "Grok",
+                        "description": "Access to real-time X/Twitter posts and conversations. Useful for research on trending topics and recent public discourse."
+                    },
+                    {
+                        "icon": "📓",
+                        "title": "NotebookLM",
+                        "description": "Upload documents and ask questions against them. Great for searching through manuals, specs, and technical documentation."
+                    },
+                    {
+                        "icon": "💻",
+                        "title": "Cursor",
+                        "description": "AI-powered code editor. Understands your codebase and helps with scripting, debugging, and building out projects faster."
+                    }
+                ]
+            }
+        },
+        {
+            "id": "force-multiplier",
+            "title": "AI as a Force Multiplier",
+            "subtitle": "Reframing the conversation from replacement to amplification.",
+            "breadcrumb": "FUNDAMENTALS",
+            "layout": "highlight",
+            "takeaway": "AI is a power tool. The craftsperson still drives the work.",
+            "notes": {
+                "intent": "Address the elephant in the room — job displacement anxiety — and reframe AI as augmentation.",
+                "summary": "This came directly from Matthew Byrnes' feedback. Acknowledge the Amazon layoffs and broader concerns honestly, but reframe: the engineers who thrive will be the ones who leverage these tools, not the ones who ignore them or surrender their judgment to them."
+            },
+            "content": {
+                "problemTitle": "The Real Question",
+                "problemDescription": "How do I use AI without it replacing the skills that make me valuable?",
+                "metric": "10x",
+                "metricLabel": "Faster iteration, not fewer engineers",
+                "results": [
+                    "Amplifies your expertise — doesn't substitute for it",
+                    "The person asking the question matters more than the tool answering",
+                    "Move faster and explore approaches you wouldn't have considered"
+                ]
+            }
+        },
+        {
+            "id": "prompt-matters",
+            "title": "The Prompt Matters",
+            "subtitle": "Same question, dramatically different results.",
+            "breadcrumb": "FUNDAMENTALS",
+            "layout": "comparison",
+            "takeaway": "The quality of your output is directly proportional to the quality of your input.",
+            "notes": {
+                "intent": "Make prompt engineering tangible with a before/after that resonates with the engineering audience.",
+                "summary": "Walk through both prompts live if time allows. Emphasize: role context, specificity, referencing standards, and stating what you want the output to look like. These techniques apply regardless of which AI tool you're using."
+            },
+            "content": {
+                "cards": [
+                    {
+                        "badge": "BEFORE",
+                        "title": "VAGUE PROMPT",
+                        "subtitle": "What most people start with.",
+                        "sections": [
+                            {
+                                "label": "The Prompt",
+                                "items": [
+                                    "Tell me about fire sprinkler deflectors"
+                                ]
+                            },
+                            {
+                                "label": "What You Get",
+                                "items": [
+                                    "Generic Wikipedia-level overview",
+                                    "No relevance to your specific problem",
+                                    "Have to ask 5 follow-ups to get useful output"
+                                ]
+                            }
+                        ],
+                        "chips": ["Broad", "Unfocused", "Time-wasting"]
+                    },
+                    {
+                        "badge": "AFTER",
+                        "title": "STRUCTURED PROMPT",
+                        "subtitle": "Same question, broken into components.",
+                        "sections": [
+                            {
+                                "label": "The Prompt",
+                                "items": [
+                                    "Role: fire protection engineer evaluating pendent deflector",
+                                    "Context: EC coverage at 15-ft spacing, tine angle at 40\u00b0",
+                                    "Question: distribution changes if slots widen by 2mm",
+                                    "Standard: reference NFPA 13 criteria"
+                                ]
+                            },
+                            {
+                                "label": "What You Get",
+                                "items": [
+                                    "Domain-specific analysis with relevant standards",
+                                    "Actionable engineering insight",
+                                    "Single-prompt result you can work with"
+                                ]
+                            }
+                        ],
+                        "chips": ["Specific", "Contextual", "Efficient"]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "how-models-work",
+            "title": "How These Models Actually Work",
+            "subtitle": "A 3-minute mental model — no math required.",
+            "breadcrumb": "FUNDAMENTALS",
+            "layout": "flow",
+            "takeaway": "These models predict — they don't understand. Knowing this changes how you interact with them.",
+            "notes": {
+                "intent": "Give the audience a basic mental model of how LLMs work without going too deep into the math.",
+                "summary": "Keep this brief — 3-5 minutes max. The key insight is that these systems are sophisticated pattern matchers, not reasoning engines. This explains why they can be confidently wrong, why prompt quality matters so much, and why your domain expertise is the critical ingredient they lack."
+            },
+            "content": {
+                "stages": [
+                    {
+                        "title": "TRAINING",
+                        "bullets": [
+                            "Fed billions of text documents — books, code, technical papers",
+                            "Learns statistical relationships between words and concepts",
+                            "No human-like understanding, just massive pattern exposure"
+                        ]
+                    },
+                    {
+                        "title": "PATTERN RECOGNITION",
+                        "bullets": [
+                            "Predicts what comes next based on learned patterns",
+                            "Probability distributions, not reasoning or comprehension",
+                            "This is why prompt quality matters so much"
+                        ]
+                    },
+                    {
+                        "title": "GENERATION",
+                        "bullets": [
+                            "Produces coherent, contextual responses",
+                            "Can follow instructions and work through steps",
+                            "Confidence does not equal correctness"
+                        ]
+                    }
+                ],
+                "caption": "Sophisticated pattern matching — not thinking."
+            }
+        },
+        {
+            "id": "when-not-to-trust",
+            "title": "When Not to Trust AI",
+            "subtitle": "Limitations you need to internalize before relying on output.",
+            "breadcrumb": "TOOLS",
+            "layout": "board",
+            "takeaway": "Trust but verify. AI gets you to 80% faster — your expertise handles the last 20%.",
+            "notes": {
+                "intent": "Build credibility by showing maturity — we're not just cheerleading for AI, we're being honest about limitations.",
+                "summary": "This slide lands well with skeptics. Give a concrete example of AI confidently producing a wrong answer — ideally something from your own experience. The point is not to scare people off, it's to calibrate expectations so they use these tools effectively."
+            },
+            "content": {
+                "columns": [
+                    {
+                        "title": "Hallucinations",
+                        "items": [
+                            "AI can fabricate citations, statistics, and technical specs",
+                            "Confident tone does not mean correct content",
+                            "Always verify claims against primary sources"
+                        ]
+                    },
+                    {
+                        "title": "Domain Blind Spots",
+                        "items": [
+                            "Models lack Victaulic-specific institutional knowledge",
+                            "NFPA/UL listing nuances require human judgment",
+                            "Manufacturing constraints aren't in the training data"
+                        ]
+                    },
+                    {
+                        "title": "Good Habits",
+                        "items": [
+                            "Treat AI output as a first draft, not a final answer",
+                            "Cross-reference critical data before acting on it",
+                            "Use AI to accelerate research — then apply your expertise"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "demo-claude",
+            "title": "Live Demo — Claude + Claude Code",
+            "subtitle": "Planning in Claude, implementing with Claude Code.",
+            "breadcrumb": "DEMOS",
+            "layout": "demo",
+            "takeaway": "Plan in Claude, build in Claude Code — two tools, one workflow.",
+            "notes": {
+                "intent": "Placeholder slide to introduce Mike's live demo. Mike drives from here.",
+                "summary": "Introduce Mike briefly, then hand off. He'll show his process of using Claude to plan, then generating prompts for Claude Code to implement. Key point: Claude Code shows edits and requires confirmation before committing — it's collaborative, not autonomous."
+            },
+            "content": {
+                "steps": [
+                    "Plan the approach in Claude",
+                    "Generate a prompt for Claude Code",
+                    "Claude Code shows proposed edits",
+                    "Review and confirm changes"
+                ],
+                "activeStep": 1,
+                "title": "Building with Claude + Claude Code",
+                "description": "Mike Counts will walk through his workflow for planning in Claude and implementing with Claude Code — showing how the two tools work together for faster, more structured development.",
+                "buttonLabel": "Mike's Demo",
+                "icon": "🔧"
+            }
+        },
+        {
+            "id": "demo-cursor-notebooklm",
+            "title": "Live Demo — Cursor + NotebookLM",
+            "subtitle": "Documentation search and AI-assisted scripting.",
+            "breadcrumb": "DEMOS",
+            "layout": "demo",
+            "takeaway": "Upload your manuals, ask questions, and get answers with direct references to the source.",
+            "notes": {
+                "intent": "Placeholder slide to introduce Sean's live demo. Sean drives from here.",
+                "summary": "Introduce Sean briefly, then hand off. His NotebookLM workflow is the most universally applicable demo — anyone who works with technical documentation can use this approach immediately. The Cursor demo shows the coding side for those who script."
+            },
+            "content": {
+                "steps": [
+                    "Upload technical documentation to NotebookLM",
+                    "Ask natural-language questions against your docs",
+                    "Use Cursor for scripting and code generation",
+                    "Integrate AI into your existing development workflow"
+                ],
+                "activeStep": 1,
+                "title": "Documentation Search + AI-Assisted Scripting",
+                "description": "Sean Langer will demonstrate using NotebookLM to search through technical manuals and Cursor to accelerate scripting in Ignition's Perspective module.",
+                "buttonLabel": "Sean's Demo",
+                "icon": "📖"
+            }
+        },
+        {
+            "id": "building-context",
+            "title": "Building Context Over Time",
+            "subtitle": "Why consistency with one model beats tool-hopping.",
+            "breadcrumb": "TECHNIQUES",
+            "layout": "flow",
+            "takeaway": "Context compounds. The longer you invest in one model per project, the more it gives back.",
+            "notes": {
+                "intent": "Share a practical insight most people haven't considered — consistency over tool-hopping.",
+                "summary": "This is a practical tip that applies to everyone. Use a quick example: if you've been working with Claude on a project for two weeks, it has the full history of your decisions, your preferences, and your project structure. Starting over in ChatGPT loses all of that context. The tool you commit to matters less than the fact that you commit."
+            },
+            "content": {
+                "stages": [
+                    {
+                        "title": "WEEK 1",
+                        "bullets": [
+                            "Generic responses — the model doesn't know you yet",
+                            "You're providing full context every time",
+                            "Feels like starting from scratch on each prompt"
+                        ]
+                    },
+                    {
+                        "title": "WEEK 2",
+                        "bullets": [
+                            "Model learns your patterns and preferences",
+                            "References prior decisions and project structure",
+                            "Less repetition, faster iteration"
+                        ]
+                    },
+                    {
+                        "title": "WEEK 4",
+                        "bullets": [
+                            "Anticipates what you need before you ask",
+                            "Maintains full history of your project context",
+                            "Switching tools now would reset all of this"
+                        ]
+                    }
+                ],
+                "caption": "The tool you commit to matters less than the fact that you commit."
+            }
+        },
+        {
+            "id": "whats-next",
+            "title": "What's Next",
+            "subtitle": "Keeping the momentum going.",
+            "breadcrumb": "NEXT STEPS",
+            "layout": "board",
+            "takeaway": "This group only works if you contribute. Share what's working, ask what you're curious about.",
+            "notes": {
+                "intent": "Close with clear next steps and keep momentum going.",
+                "summary": "Encourage people to reply with topic ideas. Tease future sessions: deeper dives by department, SolidWorks AI features once they roll out, show-and-tell format where anyone can bring a 5-minute example. Remind people about the shared resource site that's being built."
+            },
+            "content": {
+                "columns": [
+                    {
+                        "title": "Decided",
+                        "items": [
+                            "Monthly meeting cadence continues",
+                            "Shared resource site for examples and guidelines",
+                            "Open topic pipeline — reply to this email with ideas"
+                        ]
+                    },
+                    {
+                        "title": "In Progress",
+                        "items": [
+                            "Building the shared resource site with Sebastian",
+                            "Collecting demo recordings and templates",
+                            "Scheduling Session 3"
+                        ]
+                    },
+                    {
+                        "title": "Coming Up",
+                        "items": [
+                            "Deeper tool dives by department",
+                            "Show-and-tell format — bring a 5-minute example",
+                            "SolidWorks AI features exploration when available"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

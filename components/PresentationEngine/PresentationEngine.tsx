@@ -26,6 +26,16 @@ export function PresentationEngine({
         }
     }, [slides.length]);
 
+    // Lock body scroll while presentation is mounted
+    useEffect(() => {
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+        };
+    }, []);
+
     // Intersection Observer — track which slide is in view
     useEffect(() => {
         if (!containerRef.current) return;

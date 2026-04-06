@@ -1,3 +1,6 @@
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+
 :root {
   --brand-orange: #f26722;
   --brand-black: #1a1a1a;

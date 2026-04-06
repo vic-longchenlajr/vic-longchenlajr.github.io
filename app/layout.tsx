@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import TopBar from "@/components/TopBar";
+import CommandPalette from "@/components/CommandPalette";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chenla's Software Portfolio",
-  description: "Building scalable engineering systems at Victaulic",
+  title: {
+    default: "FS³ | Home",
+    template: "FS³ | %s",
+  },
+  description:
+    "Internal software tools for Victaulic Fire Suppression Technology",
+  icons: { icon: "/fs3.ico" },
 };
 
 export default function RootLayout({
@@ -28,8 +34,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
+        <TopBar />
         {children}
+        <CommandPalette />
       </body>
     </html>
   );

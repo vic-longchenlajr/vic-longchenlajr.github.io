@@ -2,6 +2,58 @@
 
 All notable changes to this project are documented here.
 
+## v1.0.0 — 2026-04-06
+
+### FS³ Rebrand
+- Pivoted from personal portfolio to **FS³ — Fire Suppression Software Suite**, a team-facing software hub
+- Renamed package from `portfolio` to `fs3`, version bumped to `1.0.0`
+- Updated site metadata: title, description, favicon context
+
+### Landing Page — Cinematic Horizontal Scroll
+- Built 4-panel horizontal scroll engine with step-based navigation (one scroll = one step)
+- **Panel 1 — Particle Hero**: Adapted 21st.dev `ParticleTextEffect` with two-phase animation cycling between "FS³" and stacked "FIRE / SUPPRESSION / SOFTWARE / SUITE" in orange particle palette
+- **Panel 2 — Merged Stats + Suite**: Mission statement with rolling digit counters (6 Tools, 3 Product Lines), floating tool names that organize into categorized rows on scroll, with staggered settle and interactive detail phase
+- **Panel 3 — CTA**: "Jump in" prompt with Ctrl+K keyboard badges
+- Added scroll hint ("Scroll to explore") with fade-out, orange progress bar at bottom
+- Particle canvas pauses when off-screen, resumes when scrolling back
+
+### Navigation — TopBar + Command Palette
+- Replaced dropdown Navbar with minimal 48px dark TopBar (`#111`) persistent on all routes
+- Added FS³ logo with hover dissolve effect expanding to "Fire Suppression Software Suite"
+- Built `CommandPalette` overlay triggered by Ctrl+K or search bar click
+- Command palette features: real-time search, category filter tabs, grouped results, internal/external link handling, keyboard hints footer
+- TopBar fades in on landing page after scrolling past hero
+
+### Tool Registry
+- Created centralized tool registry (`lib/tools.ts`) as single source of truth for all 8 tools
+- Added `type: 'internal' | 'external'` field for navigation behavior
+- Added `alpha` status designation alongside existing `beta` and `active`
+- Status badge colors: amber for Beta, purple for Alpha (distinct from category accents)
+
+### Interior Pages — Dark Theme
+- Restyled Documentation hub with dark cards, breadcrumb navigation, accent bars, "Read ›" affordance
+- Restyled Presentations hub with stacked dark cards, session badges, metadata rows, "View ›" affordance
+- Converted Summary article page to full dark theme (TOC sidebar, evidence lists, section headings)
+- Converted Best Practices article page to full dark theme (all 13 sections: project cards, lifecycle diagram, directory trees, decision tables, tech stack grid, commit types, checklists, callouts, label badges, glossary, README preview)
+- Removed banner headers and orange top accent bars from hub pages
+- Hidden overflow on hub pages to eliminate double scrollbars
+
+### Presentation Engine
+- Adjusted container and slide heights to account for 48px TopBar (`calc(100vh - 48px)`)
+- Added body scroll lock when presentations are mounted to prevent double scrollbars
+- Updated sidebar positioning to align with TopBar instead of old Navbar
+
+### Styling
+- Activated Tailwind CSS v4 (theme + utilities layers, no preflight) for new components
+- Existing pages retain CSS Modules — dual styling system by design
+- Removed unused Tailwind preflight to protect legacy CSS Module styles
+
+### Cleanup
+- Deleted orphaned `/summary` route (duplicated `/documentation/summary`)
+- Deleted old `Navbar.tsx` and `Navbar.module.css`
+- Deleted unused `home.module.css`
+- Removed dead `npm start` script (irrelevant for static export)
+
 ## v0.2.0 — 2026-04-01
 
 ### Presentation Engine

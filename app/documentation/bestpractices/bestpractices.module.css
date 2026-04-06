@@ -1,5 +1,5 @@
 /* ============================================
-   Best Practices Page — 75/25 Layout with TOC
+   Best Practices Page — FS³ Dark Theme
    ============================================ */
 
 /* Page Grid */
@@ -7,6 +7,7 @@
     display: grid;
     grid-template-columns: 1fr 280px;
     min-height: 100vh;
+    background: #000;
 }
 
 /* ---- Main Content ---- */
@@ -18,23 +19,22 @@
 
 /* ---- Page Header ---- */
 .pageHeader {
-    border-top: 8px solid var(--brand-orange);
+    border-top: 4px solid #E87722;
     padding-top: 30px;
     margin-bottom: 50px;
 }
 
 .pageTitle {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--brand-black);
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F0F0F0;
+    letter-spacing: -0.5px;
     margin: 0 0 10px;
 }
 
 .pageSubtitle {
-    font-size: 1.1rem;
-    color: var(--text-muted);
+    font-size: 14px;
+    color: #707070;
     line-height: 1.6;
     margin: 0;
 }
@@ -51,34 +51,32 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--text-muted);
+    color: #707070;
 }
 
 .metaValue {
-    color: var(--brand-orange);
+    color: #E87722;
     margin-left: 6px;
 }
 
 /* ---- Section Blocks ---- */
 .section {
     margin-bottom: 50px;
-    scroll-margin-top: calc(var(--navbar-height) + 20px);
+    scroll-margin-top: 68px;
 }
 
 .sectionTitle {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--brand-black);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    font-size: 22px;
+    font-weight: 600;
+    color: #D4D4D4;
     margin: 0 0 25px;
-    border-left: 8px solid var(--brand-orange);
+    border-left: 4px solid #E87722;
     padding-left: 20px;
 }
 
 .sectionIntro {
-    font-size: 1rem;
-    color: var(--text-main);
+    font-size: 15px;
+    color: #BBB;
     line-height: 1.7;
     margin: 0 0 25px;
 }
@@ -89,27 +87,25 @@
 }
 
 .subsectionTitle {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--brand-black);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    font-size: 18px;
+    font-weight: 600;
+    color: #D4D4D4;
     margin: 0 0 15px;
     padding-bottom: 8px;
-    border-bottom: 2px solid var(--highlight);
+    border-bottom: 1px solid #1A1A1A;
 }
 
 .bodyText {
-    font-size: 0.95rem;
-    color: var(--text-main);
+    font-size: 15px;
+    color: #BBB;
     line-height: 1.7;
     margin: 0 0 12px;
 }
 
 /* ---- TOC Sidebar ---- */
 .tocSidebar {
-    background: var(--bg-sidebar);
-    border-left: 1px solid var(--border);
+    background: #0A0A0A;
+    border-left: 1px solid #222;
     padding: 30px 20px;
     height: 100vh;
     position: sticky;
@@ -122,10 +118,10 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: var(--text-muted);
+    color: #707070;
     margin: 0 0 20px;
     padding-bottom: 12px;
-    border-bottom: 2px solid var(--brand-orange);
+    border-bottom: 2px solid #E87722;
 }
 
 .tocList {
@@ -152,27 +148,27 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: var(--border);
+    background: #222;
     transition: all 0.2s ease;
 }
 
 .tocItem:hover {
-    background: rgba(242, 103, 34, 0.05);
+    background: rgba(232, 119, 34, 0.06);
 }
 
 .tocItemActive::before {
-    background: var(--brand-orange);
-    width: 4px;
+    background: #E87722;
+    width: 3px;
 }
 
 .tocItemActive {
-    background: rgba(242, 103, 34, 0.05);
+    background: rgba(232, 119, 34, 0.06);
 }
 
 .tocLink {
-    font-size: 0.8rem;
+    font-size: 13px;
     font-weight: 600;
-    color: var(--text-muted);
+    color: #707070;
     text-decoration: none;
     display: block;
     line-height: 1.4;
@@ -180,17 +176,17 @@
 }
 
 .tocItemActive .tocLink {
-    color: var(--brand-orange);
+    color: #E87722;
     font-weight: 700;
 }
 
 .tocItem:hover .tocLink {
-    color: var(--brand-orange);
+    color: #999;
 }
 
 .tocDivider {
     height: 1px;
-    background: var(--border);
+    background: #222;
     margin: 10px 0;
 }
 
@@ -198,10 +194,10 @@
 .mobileToc {
     display: none;
     position: sticky;
-    top: var(--navbar-height);
+    top: 48px;
     z-index: 50;
-    background: var(--bg-page);
-    border-bottom: 1px solid var(--border);
+    background: #0A0A0A;
+    border-bottom: 1px solid #222;
     padding: 12px 20px;
 }
 
@@ -211,18 +207,18 @@
     justify-content: space-between;
     width: 100%;
     background: none;
-    border: 1px solid var(--border);
+    border: 1px solid #222;
     padding: 10px 14px;
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--brand-black);
+    color: #D4D4D4;
     cursor: pointer;
 }
 
 .mobileTocToggle:hover {
-    border-color: var(--brand-orange);
+    border-color: #E87722;
 }
 
 .mobileTocArrow {
@@ -239,10 +235,10 @@
     top: 100%;
     left: 12px;
     right: 12px;
-    background: var(--bg-page);
-    border: 1px solid var(--border);
+    background: #111;
+    border: 1px solid #222;
     border-top: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     max-height: 60vh;
     overflow-y: auto;
     z-index: 51;
@@ -259,19 +255,19 @@
     cursor: pointer;
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--text-muted);
+    color: #707070;
     transition: all 0.2s ease;
 }
 
 .mobileTocItem:hover {
-    background: var(--highlight);
-    color: var(--brand-orange);
+    background: #1A1A1A;
+    color: #E87722;
 }
 
 .mobileTocItemActive {
-    color: var(--brand-orange);
+    color: #E87722;
     font-weight: 700;
-    border-left: 4px solid var(--brand-orange);
+    border-left: 4px solid #E87722;
 }
 
 /* ---- Project Inventory Cards ---- */
@@ -282,33 +278,30 @@
 }
 
 .projectCard {
-    background: white;
-    border: 1px solid var(--border);
+    background: #0A0A0A;
+    border: 1px solid #222;
+    border-radius: 8px;
     padding: 24px;
-    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.03);
-    transition: all 0.3s ease;
+    transition: border-color 0.2s ease;
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
 
 .projectCard:hover {
-    border-color: var(--brand-orange);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: #333;
 }
 
 .projectCardName {
     font-size: 1rem;
-    font-weight: 800;
-    color: var(--brand-black);
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+    font-weight: 700;
+    color: #D4D4D4;
     margin: 0;
 }
 
 .projectCardDesc {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: #707070;
     line-height: 1.5;
     margin: 0;
 }
@@ -331,7 +324,7 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--text-muted);
+    color: #707070;
     min-width: 60px;
     padding-top: 3px;
 }
@@ -346,23 +339,24 @@
     font-size: 0.65rem;
     font-weight: 700;
     padding: 3px 8px;
-    background: var(--highlight);
-    color: var(--brand-orange);
-    border: 1px solid rgba(242, 103, 34, 0.2);
+    background: rgba(232, 119, 34, 0.1);
+    color: #E87722;
+    border: 1px solid rgba(232, 119, 34, 0.2);
     text-transform: uppercase;
     letter-spacing: 0.03em;
+    border-radius: 3px;
 }
 
 .tagBlue {
-    background: rgba(0, 163, 224, 0.08);
-    color: var(--brand-blue);
+    background: rgba(0, 163, 224, 0.1);
+    color: #4db8e0;
     border-color: rgba(0, 163, 224, 0.2);
 }
 
 .tagGray {
-    background: var(--bg-sidebar);
-    color: var(--text-muted);
-    border-color: var(--border);
+    background: #111;
+    color: #999;
+    border-color: #222;
 }
 
 /* ---- Lifecycle Diagram ---- */
@@ -381,7 +375,7 @@
 }
 
 .lifecyclePhase:hover .phaseIndicator {
-    background: rgba(242, 103, 34, 0.05);
+    background: rgba(232, 119, 34, 0.04);
 }
 
 .phaseIndicator {
@@ -396,46 +390,44 @@
 .phaseNumber {
     width: 36px;
     height: 36px;
-    border: 3px solid var(--border);
+    border: 2px solid #333;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.75rem;
     font-weight: 900;
-    color: var(--text-muted);
-    background: white;
+    color: #707070;
+    background: #0A0A0A;
     z-index: 1;
     transition: all 0.3s ease;
 }
 
 .phaseNumberActive {
-    border-color: var(--brand-orange);
-    color: var(--brand-orange);
-    background: var(--highlight);
+    border-color: #E87722;
+    color: #E87722;
+    background: rgba(232, 119, 34, 0.1);
 }
 
 .phaseConnector {
-    width: 3px;
+    width: 2px;
     flex: 1;
-    background: var(--border);
+    background: #222;
     margin-top: 4px;
 }
 
 .phaseConnectorActive {
-    background: var(--brand-orange);
+    background: #E87722;
 }
 
 .phaseContent {
     padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #1A1A1A;
 }
 
 .phaseName {
     font-size: 0.9rem;
-    font-weight: 800;
-    color: var(--brand-black);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: #D4D4D4;
     margin: 0 0 4px;
     display: flex;
     align-items: center;
@@ -444,7 +436,7 @@
 
 .phaseExpandIcon {
     font-size: 0.6rem;
-    color: var(--text-muted);
+    color: #555;
     transition: transform 0.2s ease;
 }
 
@@ -454,7 +446,7 @@
 
 .phaseTagline {
     font-size: 0.8rem;
-    color: var(--text-muted);
+    color: #707070;
     font-style: italic;
     margin: 0;
 }
@@ -481,7 +473,7 @@
 
 .phaseDetailItem {
     font-size: 0.85rem;
-    color: var(--text-main);
+    color: #BBB;
     line-height: 1.5;
     padding-left: 16px;
     position: relative;
@@ -494,15 +486,16 @@
     top: 8px;
     width: 6px;
     height: 6px;
-    background: var(--brand-orange);
+    background: #E87722;
 }
 
 .exitCriteria {
-    background: var(--bg-sidebar);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--brand-blue);
+    background: #0A0A0A;
+    border: 1px solid #222;
+    border-left: 3px solid #4db8e0;
     padding: 12px 16px;
     margin-top: 8px;
+    border-radius: 4px;
 }
 
 .exitLabel {
@@ -510,33 +503,35 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--brand-blue);
+    color: #4db8e0;
     margin: 0 0 6px;
 }
 
 .exitText {
     font-size: 0.82rem;
-    color: var(--text-main);
+    color: #BBB;
     line-height: 1.5;
     margin: 0;
 }
 
 /* ---- Directory Tree ---- */
 .directoryTree {
-    background: var(--brand-black);
-    color: #e0e0e0;
+    background: #0A0A0A;
+    color: #CCC;
     padding: 24px 28px;
     font-family: 'Geist Mono', 'Cascadia Code', 'Fira Code', monospace;
     font-size: 0.82rem;
     line-height: 1.8;
     overflow-x: auto;
-    border-left: 4px solid var(--brand-orange);
+    border: 1px solid #222;
+    border-left: 3px solid #E87722;
+    border-radius: 8px;
     margin: 0 0 20px;
     white-space: pre;
 }
 
 .treeComment {
-    color: #666;
+    color: #555;
 }
 
 /* ---- Decision Table ---- */
@@ -547,26 +542,27 @@
 }
 
 .decisionTable th {
-    background: var(--brand-black);
-    color: white;
+    background: #111;
+    color: #D4D4D4;
     font-size: 0.75rem;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     padding: 12px 16px;
     text-align: left;
+    border-bottom: 1px solid #222;
 }
 
 .decisionTable td {
     font-size: 0.85rem;
-    color: var(--text-main);
+    color: #BBB;
     padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #1A1A1A;
     line-height: 1.5;
 }
 
 .decisionTable tr:hover td {
-    background: var(--highlight);
+    background: #0A0A0A;
 }
 
 /* ---- Tech Stack ---- */
@@ -579,10 +575,10 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: var(--brand-black);
+    color: #D4D4D4;
     margin: 0 0 10px;
     padding-bottom: 8px;
-    border-bottom: 2px solid var(--brand-orange);
+    border-bottom: 2px solid #E87722;
 }
 
 .stackGrid {
@@ -596,32 +592,33 @@
     align-items: center;
     gap: 12px;
     padding: 12px 16px;
-    background: white;
-    border: 1px solid var(--border);
-    transition: all 0.2s ease;
+    background: #0A0A0A;
+    border: 1px solid #222;
+    border-radius: 6px;
+    transition: border-color 0.2s ease;
 }
 
 .stackItem:hover {
-    border-color: var(--brand-orange);
+    border-color: #333;
 }
 
 .stackName {
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--brand-black);
+    color: #D4D4D4;
 }
 
 .stackVersion {
     font-size: 0.7rem;
     font-weight: 700;
-    color: var(--brand-orange);
+    color: #E87722;
     font-family: monospace;
     margin-left: auto;
 }
 
 .stackNote {
     font-size: 0.72rem;
-    color: var(--text-muted);
+    color: #707070;
     display: block;
     margin-top: 2px;
 }
@@ -636,15 +633,16 @@
 
 .commitType {
     padding: 10px 14px;
-    background: white;
-    border: 1px solid var(--border);
+    background: #0A0A0A;
+    border: 1px solid #222;
+    border-radius: 6px;
     text-align: center;
 }
 
 .commitTypeLabel {
     font-size: 0.8rem;
     font-weight: 800;
-    color: var(--brand-black);
+    color: #D4D4D4;
     font-family: monospace;
     display: block;
     margin-bottom: 4px;
@@ -652,19 +650,21 @@
 
 .commitTypeDesc {
     font-size: 0.7rem;
-    color: var(--text-muted);
+    color: #707070;
 }
 
 /* ---- Code Block ---- */
 .codeBlock {
-    background: var(--brand-black);
-    color: #e0e0e0;
+    background: #0A0A0A;
+    color: #CCC;
     padding: 20px 24px;
     font-family: 'Geist Mono', 'Cascadia Code', 'Fira Code', monospace;
     font-size: 0.82rem;
     line-height: 1.7;
     overflow-x: auto;
-    border-left: 4px solid var(--brand-orange);
+    border: 1px solid #222;
+    border-left: 3px solid #E87722;
+    border-radius: 8px;
     margin-bottom: 16px;
     white-space: pre;
 }
@@ -674,11 +674,11 @@
 }
 
 .codeKeyword {
-    color: var(--brand-orange);
+    color: #E87722;
 }
 
 .codeString {
-    color: var(--brand-blue);
+    color: #4db8e0;
 }
 
 /* ---- Checklists ---- */
@@ -696,23 +696,24 @@
     align-items: flex-start;
     gap: 12px;
     padding: 10px 14px;
-    background: white;
-    border: 1px solid var(--border);
+    background: #0A0A0A;
+    border: 1px solid #222;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
     user-select: none;
 }
 
 .checklistItem:hover {
-    border-color: var(--brand-orange);
-    background: var(--highlight);
+    border-color: #333;
+    background: #111;
 }
 
 .checkbox {
     width: 18px;
     height: 18px;
     min-width: 18px;
-    border: 2px solid var(--border);
+    border: 2px solid #333;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -720,38 +721,40 @@
     transition: all 0.2s ease;
     font-size: 0.7rem;
     color: transparent;
+    border-radius: 3px;
 }
 
 .checkboxChecked {
-    border-color: var(--brand-orange);
-    background: var(--brand-orange);
+    border-color: #E87722;
+    background: #E87722;
     color: white;
 }
 
 .checklistText {
     font-size: 0.88rem;
-    color: var(--text-main);
+    color: #BBB;
     line-height: 1.5;
 }
 
 .checklistTextChecked {
     text-decoration: line-through;
-    color: var(--text-muted);
+    color: #555;
 }
 
 /* ---- Info Callout ---- */
 .callout {
-    background: var(--highlight);
-    border: 1px solid rgba(242, 103, 34, 0.2);
-    border-left: 4px solid var(--brand-orange);
+    background: rgba(232, 119, 34, 0.06);
+    border: 1px solid rgba(232, 119, 34, 0.15);
+    border-left: 3px solid #E87722;
     padding: 16px 20px;
     margin-bottom: 16px;
+    border-radius: 6px;
 }
 
 .calloutBlue {
     background: rgba(0, 163, 224, 0.06);
-    border-color: rgba(0, 163, 224, 0.2);
-    border-left-color: var(--brand-blue);
+    border-color: rgba(0, 163, 224, 0.15);
+    border-left-color: #4db8e0;
 }
 
 .calloutLabel {
@@ -759,17 +762,17 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--brand-orange);
+    color: #E87722;
     margin: 0 0 6px;
 }
 
 .calloutBlue .calloutLabel {
-    color: var(--brand-blue);
+    color: #4db8e0;
 }
 
 .calloutText {
     font-size: 0.88rem;
-    color: var(--text-main);
+    color: #BBB;
     line-height: 1.6;
     margin: 0;
 }
@@ -786,7 +789,7 @@
 
 .bulletItem {
     font-size: 0.9rem;
-    color: var(--text-main);
+    color: #BBB;
     line-height: 1.6;
     padding-left: 18px;
     position: relative;
@@ -799,7 +802,7 @@
     top: 9px;
     width: 6px;
     height: 6px;
-    background: var(--brand-orange);
+    background: #E87722;
 }
 
 /* ---- Label Table ---- */
@@ -815,8 +818,9 @@
     align-items: center;
     gap: 10px;
     padding: 10px 14px;
-    background: white;
-    border: 1px solid var(--border);
+    background: #0A0A0A;
+    border: 1px solid #222;
+    border-radius: 6px;
 }
 
 .labelBadge {
@@ -826,53 +830,54 @@
     text-transform: uppercase;
     letter-spacing: 0.03em;
     white-space: nowrap;
+    border-radius: 3px;
 }
 
 .labelBadgeBug {
-    background: #fde8e8;
-    color: #c53030;
-    border: 1px solid #feb2b2;
+    background: rgba(220, 50, 50, 0.15);
+    color: #f06060;
+    border: 1px solid rgba(220, 50, 50, 0.3);
 }
 
 .labelBadgeEnhancement {
-    background: #e6fffa;
-    color: #276749;
-    border: 1px solid #9ae6b4;
+    background: rgba(93, 202, 165, 0.12);
+    color: #5DCAA5;
+    border: 1px solid rgba(93, 202, 165, 0.3);
 }
 
 .labelBadgeCalculation {
-    background: rgba(0, 163, 224, 0.08);
-    color: var(--brand-blue);
+    background: rgba(0, 163, 224, 0.1);
+    color: #4db8e0;
     border: 1px solid rgba(0, 163, 224, 0.2);
 }
 
 .labelBadgeData {
-    background: var(--highlight);
-    color: var(--brand-orange);
-    border: 1px solid rgba(242, 103, 34, 0.2);
+    background: rgba(232, 119, 34, 0.1);
+    color: #E87722;
+    border: 1px solid rgba(232, 119, 34, 0.2);
 }
 
 .labelBadgeDocs {
-    background: #f0f0f0;
-    color: #555;
-    border: 1px solid #ddd;
+    background: #111;
+    color: #999;
+    border: 1px solid #222;
 }
 
 .labelBadgeCritical {
-    background: #c53030;
-    color: white;
-    border: 1px solid #c53030;
+    background: rgba(220, 50, 50, 0.2);
+    color: #f06060;
+    border: 1px solid rgba(220, 50, 50, 0.4);
 }
 
 .labelBadgeNormal {
-    background: var(--bg-sidebar);
-    color: var(--text-muted);
-    border: 1px solid var(--border);
+    background: #111;
+    color: #999;
+    border: 1px solid #222;
 }
 
 .labelDesc {
     font-size: 0.8rem;
-    color: var(--text-muted);
+    color: #707070;
 }
 
 /* ---- AI Tools Table ---- */
@@ -888,23 +893,21 @@
     align-items: center;
     gap: 16px;
     padding: 16px 20px;
-    background: white;
-    border: 1px solid var(--border);
-    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.03);
+    background: #0A0A0A;
+    border: 1px solid #222;
+    border-radius: 6px;
 }
 
 .aiToolName {
     font-size: 0.9rem;
-    font-weight: 800;
-    color: var(--brand-black);
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+    font-weight: 700;
+    color: #D4D4D4;
     min-width: 140px;
 }
 
 .aiToolUse {
     font-size: 0.82rem;
-    color: var(--text-muted);
+    color: #707070;
     line-height: 1.5;
 }
 
@@ -919,51 +922,52 @@
     display: flex;
     gap: 10px;
     padding: 8px 12px;
-    background: white;
-    border: 1px solid var(--border);
+    background: #0A0A0A;
+    border: 1px solid #222;
+    border-radius: 4px;
 }
 
 .glossaryTerm {
     font-size: 0.8rem;
     font-weight: 800;
-    color: var(--brand-black);
+    color: #D4D4D4;
     font-family: monospace;
     min-width: 60px;
 }
 
 .glossaryDef {
     font-size: 0.8rem;
-    color: var(--text-muted);
+    color: #707070;
     line-height: 1.4;
 }
 
 /* ---- README Template ---- */
 .readmePreview {
-    background: white;
-    border: 1px solid var(--border);
+    background: #0A0A0A;
+    border: 1px solid #222;
+    border-radius: 8px;
     padding: 30px;
-    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.03);
 }
 
 .readmePreview h3 {
     font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--brand-black);
+    font-weight: 700;
+    color: #D4D4D4;
     margin: 0 0 6px;
     padding-bottom: 10px;
-    border-bottom: 2px solid var(--brand-orange);
+    border-bottom: 2px solid #E87722;
 }
 
 .readmePreview h4 {
     font-size: 1rem;
-    font-weight: 700;
-    color: var(--brand-black);
+    font-weight: 600;
+    color: #D4D4D4;
     margin: 18px 0 8px;
 }
 
 .readmePreview p {
     font-size: 0.9rem;
-    color: var(--text-muted);
+    color: #707070;
     line-height: 1.6;
     margin: 0 0 12px;
 }
@@ -1000,7 +1004,7 @@
     }
 
     .pageTitle {
-        font-size: 1.6rem;
+        font-size: 22px;
     }
 
     .projectGrid {

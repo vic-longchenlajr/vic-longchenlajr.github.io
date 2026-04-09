@@ -28,7 +28,7 @@ export const TOOLS: Tool[] = [
     category: "configuration",
     type: "external",
     url: "https://victaulic-global-process-technology.github.io/vortex-project-builder/",
-    updatedAt: "2026-03-28",
+    updatedAt: "2026-04-06",
   },
   {
     name: "VicFlex Bracket Filter",
@@ -38,28 +38,28 @@ export const TOOLS: Tool[] = [
     category: "configuration",
     type: "external",
     url: "https://victaulic-global-process-technology.github.io/vicflex-bracket-filter/",
-    updatedAt: "2026-03-15",
+    updatedAt: "2026-03-06",
   },
   {
     name: "LP Resource Dashboard",
     description: "Resource planning and allocation",
-    version: "v1.1.3",
+    version: "v1.3.0",
     status: "beta",
     category: "engineering",
     type: "external",
     url: "https://victaulic-global-process-technology.github.io/resource-dashboard/",
-    updatedAt: "2026-03-20",
+    updatedAt: "2026-04-09",
   },
   {
     name: "VicForge",
     description:
       "Engineering & lab management — projects, timesheets, analytics, part codes",
-    version: "v0.2.0",
+    version: "v0.3.0",
     status: "alpha",
     category: "engineering",
     type: "external",
     url: "https://victaulic-global-process-technology.github.io/vicforge/",
-    updatedAt: "2026-04-06",
+    updatedAt: "2026-04-08",
   },
 
   {
@@ -80,7 +80,7 @@ export const TOOLS: Tool[] = [
     category: "engineering",
     type: "external",
     url: "https://victaulic-global-process-technology.github.io/spray-trace/",
-    updatedAt: "2026-04-03",
+    updatedAt: "2026-03-06",
   },
 
   {

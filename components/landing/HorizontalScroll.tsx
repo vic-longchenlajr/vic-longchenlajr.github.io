@@ -36,6 +36,7 @@ export default function HorizontalScroll() {
   const trackRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const hintRef = useRef<HTMLDivElement>(null);
+  const versionRef = useRef<HTMLDivElement>(null);
   const stepRef = useRef(0);
   const snappingRef = useRef(false);
   const cooldownRef = useRef(false);
@@ -71,9 +72,11 @@ export default function HorizontalScroll() {
       topbar.style.pointerEvents = step >= 1 ? "auto" : "none";
     }
 
-    // Hint
+    // Hint + version
     if (hintRef.current)
       hintRef.current.style.opacity = step >= 1 ? "0" : "1";
+    if (versionRef.current)
+      versionRef.current.style.opacity = step >= 1 ? "0" : "1";
 
     // Progress
     if (progressRef.current)
@@ -164,6 +167,19 @@ export default function HorizontalScroll() {
         <ParticleHero paused={particlePaused} />
         <MergedStatsPanel phase={mergedPhase} statsResetKey={statsResetKey} />
         <CTAPanel visible={ctaVisible} />
+      </div>
+
+      {/* Version label */}
+      <div
+        ref={versionRef}
+        className="fixed top-8 right-8 transition-opacity duration-500"
+      >
+        <span
+          className="uppercase font-medium tracking-wider"
+          style={{ fontSize: 10, color: "#555" }}
+        >
+          v{process.env.APP_VERSION}
+        </span>
       </div>
 
       {/* Scroll hint */}

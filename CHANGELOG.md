@@ -1,6 +1,26 @@
 # Changelog
 
+
 All notable changes to this project are documented here.
+
+## v1.0.1 — 2026-04-09
+
+### Release Engine
+- Added local `npm run release` script with version-changelog validation
+- Validates package.json version against CHANGELOG.md before releasing (auto-sync, scaffold, or prompt)
+- Moved tool version sync from CI workflow to local release flow so updates are committed to source
+
+### Version Sync
+- Added `sync-versions.mjs` to fetch live versions from org repos via GitHub API
+- Syncs version and last commit date for all 6 external tools into `lib/tools.ts`
+
+### Landing Page
+- Added version number display (top-right corner, pulled from package.json at build time)
+- Version fades out when scrolling past the hero panel
+
+### Fixes
+- Updated Resource Dashboard URL path
+- Updated external app links in README
 
 ## v1.0.0 — 2026-04-06
 

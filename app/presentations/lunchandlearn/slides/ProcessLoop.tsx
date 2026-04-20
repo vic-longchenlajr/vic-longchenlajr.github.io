@@ -59,7 +59,7 @@ export default function ProcessLoop(_props: SlideComponentProps) {
         const interval = setInterval(() => {
             setActiveIndex((prev) => (prev + 1) % steps.length);
             setCumulativeIndex((prev) => prev + 1);
-        }, 8000);
+        }, 12000);
         return () => clearInterval(interval);
     }, [isHovered]);
 

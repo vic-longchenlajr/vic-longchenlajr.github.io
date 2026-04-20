@@ -71,7 +71,7 @@ FS3 deploys automatically on push to `main` via GitHub Actions. The workflow run
 
 ### Requirements
 
-- `ORG_TOKEN` repository secret: a GitHub PAT with read access to private repos in `Victaulic-Global-Process-Technology`
+- `ORG_TOKEN` repository secret: a GitHub PAT with read access to private repos in `Victaulic-Engineering-Tech-Solutions`
 
 ### Deployment
 
@@ -83,12 +83,12 @@ FS3 deploys automatically on push to `main` via GitHub Actions. The workflow run
 
 | Tool | Org repo | Deploy URL |
 |------|----------|------------|
-| Vortex Project Builder | `vortex-project-builder` | https://victaulic-global-process-technology.github.io/vortex-project-builder/ |
-| VicFlex Bracket Filter | `vicflex-bracket-filter` | https://victaulic-global-process-technology.github.io/vicflex-bracket-filter/ |
-| LP Resource Dashboard | `resource-dashboard` | https://victaulic-global-process-technology.github.io/resource-dashboard/ |
-| VicForge | `vicforge` | https://victaulic-global-process-technology.github.io/vicforge/ |
-| Product Request Pipeline | `product-request-pipeline` | https://victaulic-global-process-technology.github.io/product-request-pipeline/ |
-| SprayTrace | `spray-trace` | https://victaulic-global-process-technology.github.io/spray-trace/ |
+| Vortex Project Builder | `vortex-project-builder` | https://victaulic-engineering-tech-solutions.github.io/vortex-project-builder/ |
+| VicFlex Bracket Filter | `vicflex-bracket-filter` | https://victaulic-engineering-tech-solutions.github.io/vicflex-bracket-filter/ |
+| LP Resource Dashboard | `resource-dashboard` | https://victaulic-engineering-tech-solutions.github.io/resource-dashboard/ |
+| VicForge | `vicforge` | https://victaulic-engineering-tech-solutions.github.io/vicforge/ |
+| Product Request Pipeline | `product-request-pipeline` | https://victaulic-engineering-tech-solutions.github.io/product-request-pipeline/ |
+| SprayTrace | `spray-trace` | https://victaulic-engineering-tech-solutions.github.io/spray-trace/ |
 
 ## Project structure
 

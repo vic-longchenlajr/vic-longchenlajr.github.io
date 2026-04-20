@@ -1,4 +1,5 @@
 import type { SlideDefinition } from '../types';
+import layoutStyles from './layouts.module.css';
 
 interface HeroLayoutProps {
     slide: SlideDefinition;
@@ -8,6 +9,8 @@ interface HeroLayoutProps {
 export const HeroLayout = ({ slide, content }: HeroLayoutProps) => {
     const heading = (content.heading as string) || slide.title;
     const tagline = (content.tagline as string) || slide.subtitle || '';
+    const stat = content.stat as string | undefined;
+    const statLabel = content.statLabel as string | undefined;
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -30,6 +33,12 @@ export const HeroLayout = ({ slide, content }: HeroLayoutProps) => {
                     }}>
                         {tagline}
                     </p>
+                )}
+                {stat && (
+                    <div className={layoutStyles.heroStat}>
+                        <span className={layoutStyles.heroStatValue}>{stat}</span>
+                        {statLabel && <span className={layoutStyles.heroStatLabel}>{statLabel}</span>}
+                    </div>
                 )}
             </div>
         </div>

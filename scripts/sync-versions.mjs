@@ -14,7 +14,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TOOLS_PATH = resolve(__dirname, "../lib/tools.ts");
 
-const ORG = "Victaulic-Global-Process-Technology";
+const ORG = "Victaulic-Engineering-Tech-Solutions";
 
 const TOOL_REPOS = [
   {

@@ -1,6 +1,32 @@
 # Changelog
 
 
+## v1.1.0 — 2026-04-20
+
+### Documentation
+- Added Fire Vault tutorial page (`/documentation/tutorial-fire-vault`) with step-by-step configuration and commissioning guide
+- Added Fire Vault card to the Documentation hub
+
+### Presentation Engine — Layout Enhancements
+- **HeroLayout**: Added anchor stat display (`stat` + `statLabel` fields)
+- **GridLayout**: Added `callout` support for emphasizing a key takeaway beneath the tile grid
+- **HighlightLayout**: Added secondary metric support (`secondaryMetric` + `secondaryMetricLabel`)
+- **MetricsLayout**: Added milestone `status` field with color-coded indicators (shipped, current, planned, exploratory)
+- **BoardLayout**: Board items now accept object format with `title` + `description` (in addition to plain strings)
+- Added CSS for all new layout features (hero stat bar, grid callout, highlight secondary, milestone status dots, board item descriptions)
+
+### Lunch & Learn Presentation
+- Rewrote speaker notes with delivery coaching cues and audience engagement prompts
+- Replaced generic bullet points with specific Victaulic workflow examples across all flow stages
+- Added anchor stat ("400+ hours eliminated") to hero slide
+- Updated milestone statuses and added secondary metrics to highlight slides
+- Increased PlatformOrchestration stage 4 pause and added unified output caption
+- Increased ProcessLoop auto-advance interval from 8s to 12s for readability
+
+### Org Migration
+- Updated all external tool URLs from `victaulic-global-process-technology` to `victaulic-engineering-tech-solutions` across tool registry, projects page, README, and version sync script
+
+
 All notable changes to this project are documented here.
 
 ## v1.0.1 — 2026-04-09

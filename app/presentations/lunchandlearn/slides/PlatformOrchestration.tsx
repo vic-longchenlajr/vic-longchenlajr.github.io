@@ -8,7 +8,7 @@ export default function PlatformOrchestration(_props: SlideComponentProps) {
     const [stage, setStage] = useState(0);
 
     useEffect(() => {
-        const duration = stage === 4 ? 3000 : stage === 10 ? 12000 : 1500;
+        const duration = stage === 4 ? 4000 : stage === 10 ? 12000 : 1500;
         const timeout = setTimeout(() => {
             setStage((prev) => (prev + 1) % 11);
         }, duration);
@@ -100,7 +100,7 @@ export default function PlatformOrchestration(_props: SlideComponentProps) {
                             <div className={`${styles.node} ${styles.nodeLarge} ${styles.nodeUnified} ${isVisible(9) ? styles.nodeVisible : ''}`}>UNIFIED OUTPUT</div>
                         </div>
                     </div>
-                    <div className={styles.rowCaption}>&quot;&quot;</div>
+                    <div className={styles.rowCaption}>&quot;One project. One BOM. One documentation set.&quot;</div>
                 </div>
             </div>
 

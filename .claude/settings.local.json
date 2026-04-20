@@ -1,7 +1,20 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx next build:*)"
+      "Bash(npx next build:*)",
+      "Bash(rm *)",
+      "Bash(node ./node_modules/.bin/tsc --noEmit)",
+      "Bash(node ./node_modules/typescript/bin/tsc --noEmit)",
+      "Bash(awk '{print $NF}')",
+      "Bash(node ./node_modules/.bin/next build)",
+      "Bash(npx.cmd next *)",
+      "Bash(where node *)",
+      "Bash(where npm *)",
+      "Bash(where npx *)",
+      "Bash(\"C:\\\\Users\\\\Admin\\\\AppData\\\\Roaming\\\\fnm\\\\node-versions\\\\v23.9.0\\\\installation\\\\npx.cmd\" next *)",
+      "Bash(export PATH=\"$HOME/AppData/Roaming/fnm/node-versions/v23.9.0/installation:$PATH\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3099/presentations/lunchandlearn)",
+      "Bash(curl *)"
     ]
   }
 }

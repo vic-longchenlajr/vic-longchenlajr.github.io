@@ -10,11 +10,19 @@ interface KPI {
 interface Milestone {
     label: string;
     date: string;
+    status?: 'shipped' | 'current' | 'planned' | 'exploratory';
 }
 
 interface MetricsLayoutProps {
     content: Record<string, unknown>;
 }
+
+const statusClass: Record<string, string> = {
+    shipped: layoutStyles.milestoneShipped,
+    current: layoutStyles.milestoneCurrent,
+    planned: layoutStyles.milestonePlanned,
+    exploratory: layoutStyles.milestoneExploratory,
+};
 
 export const MetricsLayout = ({ content }: MetricsLayoutProps) => {
     const kpis = (content.kpis as KPI[]) || [];
@@ -35,9 +43,15 @@ export const MetricsLayout = ({ content }: MetricsLayoutProps) => {
             {milestones.length > 0 && (
                 <div className={layoutStyles.milestoneContainer}>
                     {milestones.map((m, i) => (
-                        <div key={i} className={layoutStyles.milestone}>
+                        <div
+                            key={i}
+                            className={`${layoutStyles.milestone} ${m.status ? statusClass[m.status] || '' : ''}`}
+                        >
                             <div className={layoutStyles.milestoneLabel}>{m.label}</div>
                             <div className={layoutStyles.milestoneDate}>{m.date}</div>
+                            {m.status && (
+                                <div className={layoutStyles.milestoneStatus}>{m.status}</div>
+                            )}
                         </div>
                     ))}
                 </div>

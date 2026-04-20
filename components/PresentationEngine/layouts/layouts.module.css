@@ -425,7 +425,45 @@
     margin-top: auto;
 }
 
+/* ---- Hero Layout (Anchor Stat) ---- */
+
+.heroStat {
+    margin-top: 40px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 14px;
+    border-left: 4px solid var(--brand-orange);
+    padding: 16px 24px;
+    background: rgba(242, 103, 34, 0.08);
+    border-radius: 0 6px 6px 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heroStatValue {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--brand-orange);
+    line-height: 1;
+}
+
+.heroStatLabel {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.3;
+}
+
 /* ---- Grid Layout (Principle Tiles) ---- */
+
+.gridWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
 
 .gridContainer {
     display: grid;
@@ -466,6 +504,25 @@
     font-size: 0.8rem;
     color: var(--text-muted);
     margin: 0;
+}
+
+/* ---- Grid Callout ---- */
+
+.gridCallout {
+    border-left: 4px solid var(--brand-orange);
+    padding: 24px 32px;
+    background: white;
+    border-radius: 0 6px 6px 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.gridCallout p {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--brand-black);
+    margin: 0;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
 }
 
 /* ---- Highlight Layout (Micro Automation) ---- */
@@ -511,6 +568,26 @@
     text-transform: uppercase;
     color: var(--text-muted);
     margin-top: 8px;
+}
+
+.highlightSecondary {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.highlightSecondaryMetric {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--brand-orange);
+}
+
+.highlightSecondaryLabel {
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 4px;
 }
 
 .highlightResult ul {
@@ -614,6 +691,34 @@
     color: var(--text-muted);
 }
 
+.milestoneStatus {
+    font-size: 0.55rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+    color: var(--text-muted);
+}
+
+.milestoneShipped::before {
+    background: #10b981;
+}
+
+.milestoneCurrent::before {
+    background: var(--brand-orange);
+    box-shadow: 0 0 8px rgba(242, 103, 34, 0.4);
+}
+
+.milestonePlanned::before {
+    background: transparent;
+    border: 2px solid var(--brand-orange);
+}
+
+.milestoneExploratory::before {
+    background: transparent;
+    border: 2px dashed var(--text-muted);
+}
+
 /* ---- Board Layout (Backlog / Kanban) ---- */
 
 .boardGrid {
@@ -653,6 +758,14 @@
 
 .boardItemText {
     font-weight: 800;
+}
+
+.boardItemDesc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    line-height: 1.5;
+    font-weight: 500;
 }
 
 /* ---- Demo Layout ---- */

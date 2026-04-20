@@ -9,6 +9,8 @@ export const HighlightLayout = ({ content }: HighlightLayoutProps) => {
     const problemDesc = (content.problemDescription as string) || '';
     const metric = (content.metric as string) || '';
     const metricLabel = (content.metricLabel as string) || '';
+    const secondaryMetric = content.secondaryMetric as string | undefined;
+    const secondaryMetricLabel = content.secondaryMetricLabel as string | undefined;
     const results = (content.results as string[]) || [];
 
     return (
@@ -20,6 +22,14 @@ export const HighlightLayout = ({ content }: HighlightLayoutProps) => {
             <div className={layoutStyles.highlightImpact}>
                 <div className={layoutStyles.highlightMetric}>{metric}</div>
                 <div className={layoutStyles.highlightMetricLabel}>{metricLabel}</div>
+                {secondaryMetric && (
+                    <div className={layoutStyles.highlightSecondary}>
+                        <div className={layoutStyles.highlightSecondaryMetric}>{secondaryMetric}</div>
+                        {secondaryMetricLabel && (
+                            <div className={layoutStyles.highlightSecondaryLabel}>{secondaryMetricLabel}</div>
+                        )}
+                    </div>
+                )}
             </div>
             <div className={layoutStyles.highlightResult}>
                 <ul>

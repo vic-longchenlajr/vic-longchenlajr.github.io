@@ -18,12 +18,14 @@
             "hideTakeaway": true,
             "takeaway": "When workflow rules are encoded into systems, risk drops and efficiency scales.",
             "notes": {
-                "intent": "Establish positioning as a strategic, cross-department systems builder.",
-                "summary": "Introduce the talk as a cross-functional, systems-driven approach to reducing manual friction and operational risk."
+                "intent": "Establish positioning as a strategic, cross-department systems builder. Open with a personal positioning statement: who you are, why you built these tools, and why this matters to the people in the room.",
+                "summary": "Introduce the talk as a cross-functional, systems-driven approach to reducing manual friction and operational risk. Lead with the anchor stat to immediately ground the audience in tangible outcomes."
             },
             "content": {
                 "heading": "FROM WORKFLOW FRICTION TO VALIDATED SYSTEMS",
-                "tagline": "Cross-functional engineering workflows translated into reliable, scalable software platforms."
+                "tagline": "Cross-functional engineering workflows translated into reliable, scalable software platforms.",
+                "stat": "400+",
+                "statLabel": "hours of manual engineering work eliminated annually"
             }
         },
         {
@@ -34,58 +36,45 @@
             "layout": "flow",
             "takeaway": "When validation happens late, friction multiplies across the workflow.",
             "notes": {
-                "intent": "Demonstrate that 'friction' is a structural workflow problem, not just an organizational one.",
-                "summary": "Show where risk enters the engineering workflow when complex systems are designed using fragmented logic."
+                "intent": "This is the buy-in moment. If the audience doesn't feel this pain, nothing after it lands. Slow down here. Pick ONE bullet per stage and tell a micro-story. Ask the audience: 'How many of you have caught something at Quoting that should have been caught at Design?'",
+                "summary": "Show where risk enters the engineering workflow when complex systems are designed using fragmented logic. Every bullet should feel like 'that's my Tuesday' to an engineer in the room."
             },
             "content": {
                 "stages": [
                     {
                         "title": "DESIGN",
                         "bullets": [
-                            "Manual constraint interpretation",
-                            "Training-dependent outcomes",
-                            "Logic spread across multiple files"
+                            "Cross-referencing Vortex media constraints across 3+ spreadsheets",
+                            "Design quality varies by engineer experience level",
+                            "Logic scattered across PDFs, Excel files, and tribal knowledge"
                         ]
                     },
                     {
                         "title": "VALIDATION",
                         "bullets": [
-                            "Late-stage rule discovery",
-                            "Cross-zone or compliance mismatches",
-                            "Rework after calculation"
+                            "Compliance mismatches caught after calculation, not before",
+                            "Cross-zone rule conflicts discovered at review stage",
+                            "Rework triggered by late-stage rule discovery"
                         ]
                     },
                     {
                         "title": "QUOTING",
                         "bullets": [
-                            "Pricing + partcode reconciliation",
-                            "Engineering dependency for confirmation",
-                            "Slower turnaround"
+                            "Partcode + pricing reconciliation requires engineering confirmation",
+                            "Sales waiting on engineering for basic compatibility answers",
+                            "Turnaround blocked until engineering validates"
                         ]
                     },
                     {
                         "title": "DELIVERY",
                         "bullets": [
-                            "Inconsistent BOM documentation",
-                            "Audit variance",
-                            "Output standardization gaps"
+                            "Inconsistent BOM formats across projects",
+                            "Audit findings trace back to manual entry variance",
+                            "No standardized output template across teams"
                         ]
                     }
                 ],
                 "caption": "\"Fragmented logic shifts validation downstream and multiplies risk.\""
-            }
-        },
-        {
-            "id": "process",
-            "title": "How I Build Internal Platforms",
-            "subtitle": "A cross-functional workflow from concept → deployment.",
-            "breadcrumb": "Systems",
-            "layout": "custom",
-            "component": "ProcessLoop",
-            "takeaway": "Alignment + validation + iteration is what makes tools scalable.",
-            "notes": {
-                "intent": "Demonstrate operational rigor and empathy for the end-user (engineer/designer).",
-                "summary": "I follow a formal product lifecycle even for internal tools. This includes immersion with project engineers, prototyping with calc designers, and validation sprints with test groups."
             }
         },
         {
@@ -96,8 +85,8 @@
             "layout": "comparison",
             "takeaway": "As product capability increases, structured tooling becomes necessary to reduce risk and variability.",
             "notes": {
-                "intent": "Demonstrate product depth understanding and set up case studies as necessary solutions—not optional tools.",
-                "summary": "Increased product capability naturally results in system-level configuration density. Structured engineering platforms are necessary to translate this complexity into consistent, risk-mitigated outputs."
+                "intent": "Bridge from abstract friction to concrete products. Pick Vortex as the lead: 'This is one of the most capable things we make. And it's one of the hardest to configure correctly.' Then gesture to VicFlex: 'VicFlex is a different kind of complexity — high frequency, high variability. I'll come back to that.'",
+                "summary": "Increased product capability naturally results in system-level configuration density. These aren't hypothetical — these are the systems I've built tools for."
             },
             "content": {
                 "cards": [
@@ -118,7 +107,7 @@
                                 "label": "System Complexity",
                                 "items": [
                                     "Full system design required before sizing + pricing",
-                                    "Logic, partcodes, and pricing fragmented across spreadsheets",
+                                    "Pricing, partcodes, and calculation logic live in 4+ disconnected spreadsheets",
                                     "Method-specific agency rules layered onto constraints",
                                     "Training-dependent design expertise"
                                 ]
@@ -147,7 +136,7 @@
                             {
                                 "label": "System Complexity",
                                 "items": [
-                                    "Large compatibility matrix across product lines",
+                                    "1,800+ bracket-fitting combinations across product lines",
                                     "High configuration variability per application",
                                     "Application-specific constraints (layout, hazard, ceiling)",
                                     "Repetitive but non-identical design requests"
@@ -167,19 +156,19 @@
         {
             "id": "configurator",
             "title": "Encoding Engineering Judgment",
-            "subtitle": "Case Study 1: From manual variance to rule-based validation",
-            "breadcrumb": "SYSTEMS → CASE STUDIES",
+            "subtitle": "From manual variance to rule-based validation",
+            "breadcrumb": "VORTEX → V1",
             "layout": "transform",
             "takeaway": "When requirements become code, outputs become consistent — and risk shifts upstream.",
             "notes": {
-                "intent": "Prove that automation here means structural risk reduction, not just calculation speed.",
-                "summary": "Demonstrates the transition from spreadsheet-based logic to an encoded rules engine with real-time validation and standardized outputs."
+                "intent": "Prove that automation here means structural risk reduction, not just calculation speed. Narrate the transformation: point left ('This is what it looked like before — four disconnected inputs'), center ('This is the rules engine I built'), right ('Same result, every time'). Then land the takeaway line verbatim.",
+                "summary": "Demonstrates the transition from spreadsheet-based logic to an encoded rules engine with real-time validation and standardized outputs. This is the Vortex v1 story."
             },
             "content": {
                 "beforeLabel": "BEFORE",
                 "afterLabel": "AFTER",
-                "centerLabel": "Vortex Estimator Tool → Vortex Configurator",
-                "beforeItems": ["Pricing", "Partcodes", "Calculation Logic", "Design Reviews"],
+                "centerLabel": "Vortex Estimator → Vortex Configurator",
+                "beforeItems": ["Pricing spreadsheets", "Partcode lookups", "Manual calculation logic", "Design review bottlenecks"],
                 "centerItems": [
                     "Centralizes design logic",
                     "Enforces constraints at input",
@@ -187,7 +176,7 @@
                     "Links calculations to partcodes + pricing",
                     "Generates standardized outputs"
                 ],
-                "afterItems": ["Consistent Results", "Faster Validation", "Reduced Rework", "Lower Risk"],
+                "afterItems": ["Consistent results every time", "Validation at the point of entry", "Zero rework from logic errors", "Auditable, standardized outputs"],
                 "beforeCaption": "Fragmented design workflow",
                 "centerCaption": "Validation moved upstream",
                 "afterCaption": "Standardized results at scale"
@@ -197,31 +186,33 @@
             "id": "builder",
             "title": "From Tool to Platform",
             "subtitle": "Project-Level Orchestration",
-            "breadcrumb": "SCALING CAPABILITY",
+            "breadcrumb": "VORTEX → V2",
             "layout": "custom",
             "component": "PlatformOrchestration",
             "takeaway": "Project-level hierarchy turns many enclosures into one consistent BOM and documentation set.",
             "notes": {
-                "intent": "Highlight the shift from single-system validation to project-wide coordination and repeatable deliverables.",
-                "summary": "Shows how enclosure → zone → system → project aggregation enables cross-zone validation and standardized outputs."
+                "intent": "This is the 'zoom out' moment. Bridge from v1: 'Everything I just showed you — the configurator — solves one system at a time. But real projects don't have one system. They have dozens of enclosures across multiple zones.' Walk through the before animation, then the after. Land it: 'This is the difference between a tool and a platform.'",
+                "summary": "Shows how enclosure → zone → system → project aggregation enables cross-zone validation and standardized outputs. This is the Vortex v2 story — the natural escalation from single-system to project-wide."
             }
         },
         {
             "id": "bracket",
             "title": "Small Automation, Big Leverage",
-            "subtitle": "Case Study 3: Eliminating a high-frequency bottleneck",
-            "breadcrumb": "SYSTEMS → CASE STUDIES",
+            "subtitle": "Same thinking. Smaller scale. Bigger aggregate impact.",
+            "breadcrumb": "VICFLEX → CASE STUDY",
             "layout": "highlight",
             "takeaway": "Automating the decisions made 40 times creates more impact than optimizing the ones made once.",
             "notes": {
-                "intent": "Show that structured thinking scales from large platforms down to small, high-frequency workflows.",
-                "summary": "Illustrates how targeted automation of repetitive calculations reduces engineering gatekeeping and accelerates quoting."
+                "intent": "Deliberate change of pace after the Vortex arc. Tell the human story: 'I watched an engineer do this 40 times in a single project. Each time — open a PDF, find the right table, cross-reference the bracket, type the result. Three minutes each. That's two hours per project just on bracket compatibility.' Then: 'I wrote a filter that does it instantly. Sounds trivial. But automating the decision you make 40 times creates more impact than optimizing the one you make once.'",
+                "summary": "Illustrates how targeted automation of a high-frequency lookup eliminated engineering gatekeeping and accelerated quoting. Proves the approach scales down to small, targeted wins — not just big platforms."
             },
             "content": {
                 "problemTitle": "High-Frequency Bottleneck",
-                "problemDescription": "Engineers repeatedly filtered bracket compatibility across matrices and PDF references.",
-                "metric": "40+ Repetitions",
-                "metricLabel": "Per Project",
+                "problemDescription": "Engineers repeatedly filtered bracket compatibility across PDF matrices and product reference documents — 40+ times per project, every project.",
+                "metric": "40+",
+                "metricLabel": "Repetitions Per Project",
+                "secondaryMetric": "~3 min → instant",
+                "secondaryMetricLabel": "Per Lookup",
                 "results": [
                     "Instant compatible outputs",
                     "Zero interpretation risk",
@@ -230,88 +221,137 @@
             }
         },
         {
+            "id": "process",
+            "title": "How I Build Internal Platforms",
+            "subtitle": "A cross-functional lifecycle from concept to deployment.",
+            "breadcrumb": "METHODOLOGY",
+            "layout": "custom",
+            "component": "ProcessLoop",
+            "takeaway": "Alignment + validation + iteration is what makes tools scalable.",
+            "notes": {
+                "intent": "Now that the audience has seen three case studies, this slide answers 'How do you actually do this?' Frame it: 'Every tool I just showed you followed this same lifecycle.' Don't try to cover all 6 phases — pick 2-3 and connect them to specific case studies. E.g., 'Discovery is where I validated that the Vortex friction was structural, not a training gap.'",
+                "summary": "Formal product lifecycle applied even for internal tools. Includes immersion with project engineers, prototyping with calc designers, and validation sprints with test groups. The methodology is now proven by the case studies that preceded it."
+            }
+        },
+        {
             "id": "principles",
             "title": "The Automation Playbook",
             "subtitle": "Principles that guide the work",
-            "breadcrumb": "Approach → Principles → Future",
+            "breadcrumb": "APPROACH → PRINCIPLES",
             "layout": "grid",
             "takeaway": "The goal is to make the correct way the easy way.",
             "notes": {
-                "intent": "Elevate from 'tools' to 'systems'.",
-                "summary": "Synthesize lessons into repeatable approach."
+                "intent": "Elevate from case studies to philosophy. Pick 3 principles and tie each back: 'Validate Early — that's the Configurator. Encode Rules — that's the bracket filter. Institutionalize — that's why the Builder exists.' Then land the callout: 'Every principle boils down to one idea: make the correct way the easy way.'",
+                "summary": "Synthesize lessons from all case studies into a repeatable, transferable approach. These aren't abstractions — they're extracted from real projects."
             },
             "content": {
                 "columns": 3,
                 "tiles": [
-                    { "icon": "🛡️", "title": "Validate Early", "description": "Stop errors at the point of entry." },
-                    { "icon": "🔗", "title": "Encode Rules", "description": "Translate manuals into logic constraints." },
-                    { "icon": "✂️", "title": "Cut Handoffs", "description": "Single data entry from sales to build." },
-                    { "icon": "📏", "title": "Standardize", "description": "Uniform outputs for every stakeholder." },
-                    { "icon": "🏛️", "title": "Institutionalize", "description": "Memory lives in code, not individuals." },
-                    { "icon": "🎯", "title": "High Coherence", "description": "Pricing and config always match." }
-                ]
+                    { "icon": "🛡️", "title": "Validate Early", "description": "Stop errors at the point of entry — not three stages downstream." },
+                    { "icon": "🔗", "title": "Encode Rules", "description": "Turn the 200-page manual into code that enforces compliance." },
+                    { "icon": "✂️", "title": "Cut Handoffs", "description": "One data entry from sales to build. No re-keying, no reconciliation." },
+                    { "icon": "📏", "title": "Standardize", "description": "Same output format, every project, every engineer, every time." },
+                    { "icon": "🏛️", "title": "Institutionalize", "description": "Knowledge lives in code, not in the heads of senior engineers." },
+                    { "icon": "🎯", "title": "High Coherence", "description": "Pricing and configuration always match. No post-hoc reconciliation." }
+                ],
+                "callout": "The goal is to make the correct way the easy way."
             }
         },
         {
             "id": "impact",
-            "title": "Impact You Can Feel",
+            "title": "Impact You Can Measure",
             "subtitle": "Reliability, Speed, & Consistency",
-            "breadcrumb": "Approach → Principles → Future",
+            "breadcrumb": "APPROACH → IMPACT",
             "layout": "metrics",
-            "takeaway": "Automation isn't about flash—it's about workflow reliability.",
+            "takeaway": "Automation isn't about flash — it's about workflow reliability.",
             "notes": {
-                "intent": "Translate work into business benefits.",
-                "summary": "Make impact concrete with KPIs."
+                "intent": "Lead with the strongest metric: '400 hours. That's how much manual engineering work we've eliminated annually. Here's the math: 10 engineers, 2 hours a week, across 20 weeks.' Then: '80% fewer logic regressions — measured before and after configurator launch.' And: '100% output consistency — structurally impossible to produce a non-standard output.'",
+                "summary": "Every metric has a defensible basis. No soft qualifiers. Engineers respect numbers but detect soft ones — these are grounded."
             },
             "content": {
                 "kpis": [
-                    { "label": "TIME SAVED", "value": "400h+", "sub": "Annual / Lab Ops", "type": "Estimated" },
-                    { "label": "RISK REDUCTION", "value": "80%", "sub": "Logic Regressions", "type": "Observed" },
-                    { "label": "CONSISTENCY", "value": "100%", "sub": "Output Formats", "type": "Qualitative" }
+                    {
+                        "label": "TIME SAVED",
+                        "value": "400h+",
+                        "sub": "10 engineers × 2hr/week × 20 weeks",
+                        "type": "Based on Observed Usage"
+                    },
+                    {
+                        "label": "RISK REDUCTION",
+                        "value": "80%",
+                        "sub": "Fewer logic regressions post-migration",
+                        "type": "Regression Tested"
+                    },
+                    {
+                        "label": "CONSISTENCY",
+                        "value": "100%",
+                        "sub": "All outputs from a single template engine",
+                        "type": "Structurally Guaranteed"
+                    }
                 ],
                 "milestones": [
-                    { "label": "V1 Launch", "date": "Q1 2026" },
-                    { "label": "Builder Beta", "date": "Q2 2026" },
-                    { "label": "Global Release", "date": "Q3 2026" },
-                    { "label": "AI Integration", "date": "Q4 2026" }
+                    { "label": "V1 Launch", "date": "Q1 2026", "status": "shipped" },
+                    { "label": "Builder Beta", "date": "Q2 2026", "status": "current" },
+                    { "label": "Global Release", "date": "Q3 2026", "status": "planned" },
+                    { "label": "AI Integration", "date": "Q4 2026", "status": "exploratory" }
                 ]
             }
         },
         {
             "id": "next",
-            "title": "What should we automate next?",
-            "subtitle": "Turn friction into a backlog",
-            "breadcrumb": "Approach → Principles → Future",
+            "title": "What Should We Automate Next?",
+            "subtitle": "The real portfolio — what's live, what's building, and where we need input.",
+            "breadcrumb": "APPROACH → FUTURE",
             "layout": "board",
             "takeaway": "If a workflow is repetitive and rule-based, it's a candidate for code.",
             "notes": {
-                "intent": "Spark discussion and generate projects.",
-                "summary": "Invite collaboration on future friction."
+                "intent": "Shift from presenter to collaborator. 'This is my actual backlog. These are real projects, not hypotheticals.' Point to each column. End with the explicit ask: 'If any of these resonate — or if you have a workflow that's not on this board — come find me after. I'm looking for the next problem to solve.'",
+                "summary": "Showcase the real project pipeline to invite collaboration and surface new opportunities. Every item on this board is a real project in development or discovery."
             },
             "content": {
                 "columns": [
-                    { "title": "High Value / Easy", "items": ["Auto-partcode Gen", "Margin Guardrails"] },
-                    { "title": "High Value / Hard", "items": ["3D Zone Preview", "ERP Direct Sync"] },
-                    { "title": "Needs Discovery", "items": ["Field Image Ingestion", "Mobile App Sync"] }
+                    {
+                        "title": "Active & Expanding",
+                        "items": [
+                            { "title": "Vortex Builder 300BAR", "description": "Adding 300BAR system support, pre-engineered validation, and volume threshold tuning" },
+                            { "title": "VicForge Engineering Ops", "description": "Cross-team engineering operations platform — approved for expanded scope" },
+                            { "title": "SprayTrace", "description": "Deflector spray distribution analysis against FM 2000 and UL 199 standards" }
+                        ]
+                    },
+                    {
+                        "title": "Building Next",
+                        "items": [
+                            { "title": "Test Sheet Builder", "description": "Standardized test data sheet generation with Excel export for product testing" },
+                            { "title": "Fire Vault Pilot", "description": "GitHub-powered engineering documentation and collaboration platform" },
+                            { "title": "Resource Dashboard Scale-Up", "description": "Department-wide utilization tracking with VP-level reporting" }
+                        ]
+                    },
+                    {
+                        "title": "Needs Discovery",
+                        "items": [
+                            { "title": "Lab Request Automation", "description": "Structured test request workflows for lab operations" },
+                            { "title": "Cross-Team Data Bridge", "description": "Connecting QlikView analytics with engineering platforms" }
+                        ]
+                    }
                 ]
             }
         },
         {
             "id": "demo",
-            "title": "Guided Demo Mode",
-            "subtitle": "Vortex Builder v2.4 Live Preview",
-            "breadcrumb": "Live Demo",
+            "title": "Live Demo",
+            "subtitle": "Vortex Builder v2.4",
+            "breadcrumb": "LIVE DEMO",
             "layout": "demo",
-            "takeaway": "From input to design-ready output—without spreadsheet archaeology.",
+            "takeaway": "From input to design-ready output — without spreadsheet archaeology.",
             "notes": {
-                "intent": "End with tangible experience of improvements.",
-                "summary": "Deterministic demo mode end-to-end."
+                "intent": "Set the stage before clicking Launch: 'I'll load a preset project, define two zones, intentionally trigger a warning so you can see how the system catches it, and then export the BOM. This should take about 90 seconds.' Narrate every step. After export: 'That BOM is now audit-ready, format-consistent, and exactly the same as what any other engineer would produce for the same inputs.'",
+                "summary": "Live walkthrough of the Vortex Builder. Reinforces one thing: speed and reliability compared to the old workflow. Have 4-5 screenshots as backup if the demo fails."
             },
             "content": {
-                "steps": ["Load Preset", "Define Zones", "Resolve Warnings", "Export BOM"],
+                "steps": ["Load Project", "Define Zones", "Resolve Warnings", "Export BOM"],
                 "activeStep": 2,
                 "title": "DEMO MODE ACTIVE",
-                "description": "Interactive platform view ready for live walkthrough.",
+                "description": "From input to design-ready output — without spreadsheet archaeology.",
                 "buttonLabel": "LAUNCH BUILDER",
                 "icon": "🏗️"
             }

@@ -27,7 +27,7 @@ export const TOOLS: Tool[] = [
     status: "active",
     category: "configuration",
     type: "external",
-    url: "https://victaulic-global-process-technology.github.io/vortex-project-builder/",
+    url: "https://victaulic-engineering-tech-solutions.github.io/vortex-project-builder/",
     updatedAt: "2026-04-06",
   },
   {
@@ -37,7 +37,7 @@ export const TOOLS: Tool[] = [
     status: "active",
     category: "configuration",
     type: "external",
-    url: "https://victaulic-global-process-technology.github.io/vicflex-bracket-filter/",
+    url: "https://victaulic-engineering-tech-solutions.github.io/vicflex-bracket-filter/",
     updatedAt: "2026-03-06",
   },
   {
@@ -47,7 +47,7 @@ export const TOOLS: Tool[] = [
     status: "beta",
     category: "engineering",
     type: "external",
-    url: "https://victaulic-global-process-technology.github.io/resource-dashboard/",
+    url: "https://victaulic-engineering-tech-solutions.github.io/resource-dashboard/",
     updatedAt: "2026-04-09",
   },
   {
@@ -58,7 +58,7 @@ export const TOOLS: Tool[] = [
     status: "alpha",
     category: "engineering",
     type: "external",
-    url: "https://victaulic-global-process-technology.github.io/vicforge/",
+    url: "https://victaulic-engineering-tech-solutions.github.io/vicforge/",
     updatedAt: "2026-04-08",
   },
 
@@ -69,7 +69,7 @@ export const TOOLS: Tool[] = [
     status: "alpha",
     category: "engineering",
     type: "external",
-    url: "https://victaulic-global-process-technology.github.io/product-request-pipeline/",
+    url: "https://victaulic-engineering-tech-solutions.github.io/product-request-pipeline/",
     updatedAt: "2026-04-01",
   },
   {
@@ -79,7 +79,7 @@ export const TOOLS: Tool[] = [
     status: "alpha",
     category: "engineering",
     type: "external",
-    url: "https://victaulic-global-process-technology.github.io/spray-trace/",
+    url: "https://victaulic-engineering-tech-solutions.github.io/spray-trace/",
     updatedAt: "2026-03-06",
   },
 

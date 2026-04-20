@@ -30,7 +30,7 @@ const projects: Project[] = [
         solution:
             'Built a structured request pipeline tool that provides centralized tracking, status visibility, and workflow management for product engineering orders.',
         role: 'Engineer 1',
-        appUrl: 'https://victaulic-global-process-technology.github.io/product-request-pipeline/',
+        appUrl: 'https://victaulic-engineering-tech-solutions.github.io/product-request-pipeline/',
     },
     {
         id: 'vortex-v2',
@@ -45,7 +45,7 @@ const projects: Project[] = [
         solution:
             'Evolved the estimator into a project-based platform supporting multiple engineered and pre-engineered systems with independent configuration and BOMs—while preserving usability under significantly increased complexity.',
         role: 'Engineer 1',
-        appUrl: 'https://victaulic-global-process-technology.github.io/vortex-project-builder/',
+        appUrl: 'https://victaulic-engineering-tech-solutions.github.io/vortex-project-builder/',
     },
     {
         id: 'vortex-v1',
@@ -73,7 +73,7 @@ const projects: Project[] = [
         solution:
             'Built a live resource dashboard that ingests LiquidPlanner timesheet data and surfaces utilization metrics, NPD vs. Sustaining allocation, and capacity planning insights across multiple stakeholder views — from director-level operations to VP-level strategic planning.',
         role: 'Engineer 1',
-        appUrl: 'https://victaulic-global-process-technology.github.io/resource-dashboard/',
+        appUrl: 'https://victaulic-engineering-tech-solutions.github.io/resource-dashboard/',
     },
     {
         id: 'spray-trace',
@@ -87,7 +87,7 @@ const projects: Project[] = [
         solution:
             'Built a structured iteration-tracking tool with heatmap visualizations and standards-based evaluation — giving engineers a searchable history of every deflector design and its test results in one place.',
         role: 'Engineer 1',
-        appUrl: 'https://victaulic-global-process-technology.github.io/spray-trace/',
+        appUrl: 'https://victaulic-engineering-tech-solutions.github.io/spray-trace/',
     },
     {
         id: 'vicflex',
@@ -101,7 +101,7 @@ const projects: Project[] = [
         solution:
             'Delivered an internal sales tool with validated compatible options, constraints, distance ranges, and visuals—reducing engineering interruptions and improving response time.',
         role: 'Engineer 1',
-        appUrl: 'https://victaulic-global-process-technology.github.io/vicflex-bracket-filter/',
+        appUrl: 'https://victaulic-engineering-tech-solutions.github.io/vicflex-bracket-filter/',
     },
     {
         id: 'daq',

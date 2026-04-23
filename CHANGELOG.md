@@ -1,7 +1,7 @@
 # Changelog
 
 
-## 2026-04-23
+## v1.2.0 - 2026-04-23
 
 ### Documentation — Personal Vault Guide
 - Added new documentation page at `/documentation/guide-personal-vault` — full 9-section guide covering Introduction, Core Idea, Vault Architecture, CLAUDE.md Schema, Daily Workflows, Building Your Own, Adoption Levels, Customization Guide, and Tips from Practice

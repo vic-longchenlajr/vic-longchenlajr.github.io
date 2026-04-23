@@ -1,6 +1,33 @@
 # Changelog
 
 
+## 2026-04-23
+
+### Documentation — Personal Vault Guide
+- Added new documentation page at `/documentation/guide-personal-vault` — full 9-section guide covering Introduction, Core Idea, Vault Architecture, CLAUDE.md Schema, Daily Workflows, Building Your Own, Adoption Levels, Customization Guide, and Tips from Practice
+- Page follows the Fire Vault tutorial pattern: scroll-spy TOC sidebar, mobile TOC toggle, `IntersectionObserver` active section tracking, `registerSection` callback ref
+- Added purple (#a78bfa) accent system to distinguish from the orange Fire Vault tutorial — includes blockquote, callout, download card, and pill-style download button CSS variants
+- Added Obsidian download callout (purple "Recommended" variant) with direct link to Obsidian v1.12.7 Windows installer
+- Added download card component in "Building Your Own" section with starter CLAUDE.md template download (saves as `CLAUDE.md`)
+- Added Personal Vault card (purple accent, "Guide" label) to the Documentation hub
+
+### Downloads
+- Created `public/downloads/` directory to consolidate downloadable assets
+- Added `public/downloads/starter-claude-md.md` — complete vault schema template with auto-initialize workflow
+- Relocated `public/audit-prompt.md` to `public/downloads/audit-prompt.md`
+- Updated Fire Vault tutorial audit prompt download path to `downloads/audit-prompt.md`
+
+### Presentations
+- Updated Lunch & Learn card title to "From Problem to Platform: Building Customer-Facing Tools in Engineering"
+- Changed Lunch & Learn card affordance to "Coming Soon" and updated date to June 2026
+- Commented out AI User Group Session 2 card (not yet ready for external visibility)
+- Added Lunch & Learn presentation outline draft (`app/presentations/lunchandlearn/outline.md`) — 9-section talk structure with timing estimates and open decisions for early June 2026
+
+### Internal
+- Added Claude prompt files (`.claude/prompts/`) for reproducible page builds
+- Updated Claude local settings with additional build-related bash permissions
+
+
 ## v1.1.0 — 2026-04-20
 
 ### Documentation

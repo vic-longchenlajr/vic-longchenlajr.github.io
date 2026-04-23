@@ -14,7 +14,11 @@
       "Bash(\"C:\\\\Users\\\\Admin\\\\AppData\\\\Roaming\\\\fnm\\\\node-versions\\\\v23.9.0\\\\installation\\\\npx.cmd\" next *)",
       "Bash(export PATH=\"$HOME/AppData/Roaming/fnm/node-versions/v23.9.0/installation:$PATH\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3099/presentations/lunchandlearn)",
-      "Bash(curl *)"
+      "Bash(curl *)",
+      "Bash(export PATH=\"/c/Program Files/nodejs:$PATH\")",
+      "Bash(export PATH=\"/c/Users/Admin/AppData/Roaming/fnm/node-versions/v23.9.0/installation:$PATH\")",
+      "Bash(/c/Users/Admin/AppData/Roaming/fnm/node-versions/v23.9.0/installation/npx next *)",
+      "Bash(node node_modules/next/dist/bin/next build)"
     ]
   }
 }

@@ -16,10 +16,12 @@ const SECTIONS = [
 ];
 
 const DOWNLOADS = {
-    claude: 'https://claude.ai/redirect/claudedotcom.v1.0839cf8b-0f5d-47fb-b16f-33e54960ec44/api/desktop/win32/x64/setup/latest/redirect',
-    git: 'https://github.com/git-for-windows/git/releases/download/v2.53.0.windows.3/Git-2.53.0.3-64-bit.exe',
-    obsidian: 'https://github.com/obsidianmd/obsidian-releases/releases/download/v1.12.7/Obsidian-1.12.7.exe',
-    auditPrompt: '/audit-prompt.md',
+  claude:
+    "https://claude.ai/redirect/claudedotcom.v1.0839cf8b-0f5d-47fb-b16f-33e54960ec44/api/desktop/win32/x64/setup/latest/redirect",
+  git: "https://github.com/git-for-windows/git/releases/download/v2.53.0.windows.3/Git-2.53.0.3-64-bit.exe",
+  obsidian:
+    "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.12.7/Obsidian-1.12.7.exe",
+  auditPrompt: "downloads/audit-prompt.md",
 };
 
 export default function TutorialFireVaultPage() {

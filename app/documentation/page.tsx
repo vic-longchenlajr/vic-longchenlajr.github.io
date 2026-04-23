@@ -48,6 +48,15 @@ export default function DocumentationPage() {
                         <p className={styles.cardDesc}>Step-by-step guide for Fire Vault system configuration and commissioning.</p>
                         <span className={styles.cardAffordance}>Read ›</span>
                     </Link>
+                    <Link href="/documentation/guide-personal-vault" className={styles.card}>
+                        <div className={styles.cardLabelRow}>
+                            <span className={styles.cardAccent} style={{ background: '#a78bfa' }} />
+                            <span className={styles.cardLabel} style={{ color: '#a78bfa' }}>Guide</span>
+                        </div>
+                        <h2 className={styles.cardTitle}>Personal Vault</h2>
+                        <p className={styles.cardDesc}>Build a personal knowledge system with Obsidian and Claude Code.</p>
+                        <span className={styles.cardAffordance}>Read ›</span>
+                    </Link>
                 </div>
             </main>
         </div>

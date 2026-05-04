@@ -21,7 +21,7 @@ const DOWNLOADS = {
   git: "https://github.com/git-for-windows/git/releases/download/v2.53.0.windows.3/Git-2.53.0.3-64-bit.exe",
   obsidian:
     "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.12.7/Obsidian-1.12.7.exe",
-  auditPrompt: "downloads/audit-prompt.md",
+  auditPrompt: "/downloads/audit-prompt.md",
 };
 
 export default function TutorialFireVaultPage() {
@@ -93,8 +93,8 @@ export default function TutorialFireVaultPage() {
                     </p>
                     <div className={styles.pageMeta}>
                         <span className={styles.metaItem}>Author <span className={styles.metaValue}>Chenla Long, Jr</span></span>
-                        <span className={styles.metaItem}>Status <span className={styles.metaValue}>Draft</span></span>
-                        <span className={styles.metaItem}>Last Updated <span className={styles.metaValue}>April 2026</span></span>
+                        <span className={styles.metaItem}>Status <span className={styles.metaValue}>Pilot Ready</span></span>
+                        <span className={styles.metaItem}>Last Updated <span className={styles.metaValue}>May 2026</span></span>
                     </div>
                 </header>
 
@@ -184,7 +184,7 @@ export default function TutorialFireVaultPage() {
                                 </tr>
                                 <tr>
                                     <td>Obsidian</td>
-                                    <td>Where you browse and read your vault — a viewer for your files, status, and prompts</td>
+                                    <td>Where you write journal entries and read your results — your window into the vault</td>
                                     <td><a href={DOWNLOADS.obsidian} className={styles.downloadLink} target="_blank" rel="noopener noreferrer">Download for Windows</a></td>
                                 </tr>
                             </tbody>
@@ -195,9 +195,12 @@ export default function TutorialFireVaultPage() {
                         <div className={styles.calloutLabel}>How These Fit Together</div>
                         <p className={styles.calloutText}>
                             <strong>Claude</strong> is where you do your work — you talk to it, it processes your check-ins and
-                            updates your vault. <strong>Obsidian</strong> is where you read the results — browse your
-                            project status, prompts, and meeting outcomes. <strong>Git</strong> just needs to be installed — Claude
-                            handles all the syncing automatically. You will never need to run a Git command.
+                            updates your vault. <strong>Obsidian</strong> is where you write journal entries and read the results —
+                            some days you write everything out first, other days you just open Claude and answer its prompts.
+                            Either way works. Your <code>ops/briefing.md</code> gives you a current-state snapshot any time —
+                            open it in Obsidian without starting a Claude session to see where your projects stand.{' '}
+                            <strong>Git</strong> just needs to be installed — Claude handles all the syncing
+                            automatically. You will never need to run a Git command.
                         </p>
                     </div>
 
@@ -243,9 +246,11 @@ export default function TutorialFireVaultPage() {
                             When the conversation is done, send the full output back to Chenla. You can use
                             Claude on the web at{' '}
                             <a href="https://claude.ai" className={styles.downloadLink} target="_blank" rel="noopener noreferrer">claude.ai</a>{' '}
-                            for this step — no software install required yet.
+                            for this step — no software install required yet. 
                         </p>
                         <p className={styles.bodyText}>
+                            Chenla will send you the prompt directly. If you need it again or are setting
+                            yourself up independently, you can download it here:{' '}
                             <a href={DOWNLOADS.auditPrompt} className={styles.downloadLink} target="_blank" rel="noopener noreferrer">Download the Workflow Audit Prompt</a>
                         </p>
                     </div>
@@ -257,17 +262,17 @@ export default function TutorialFireVaultPage() {
                             <code className={styles.inlineCode}>CLAUDE.md</code> and places it in your directory
                             in the vault. This file tells Claude how you work: your check-in cadence, what
                             format you prefer, which prompts to ask you, and how to process your entries.
-                            Chenla will let you know when it is ready.
+                            Expect it within one business day. Chenla will reach out when it is ready.
                         </p>
                     </div>
 
                     <div className={styles.subsection}>
                         <h3 className={styles.subsectionTitle}>Step 3: Review Your CLAUDE.md</h3>
                         <p className={styles.bodyText}>
-                            Read your generated <code className={styles.inlineCode}>CLAUDE.md</code> and flag anything that
-                            does not match how you actually work. This is a living document — it will be
-                            refined over time as you use the system. If something feels off later, just tell
-                            Claude and it will adjust.
+                            Open your <code className={styles.inlineCode}>CLAUDE.md</code> in Obsidian and read through it.
+                            Reply to Chenla with anything that does not match how you actually work — wrong cadence,
+                            missing projects, prompts that feel off. This is a living document and will be refined
+                            as you use the system. Getting it close on day one just means less tuning later.
                         </p>
                     </div>
 
@@ -317,17 +322,28 @@ export default function TutorialFireVaultPage() {
                         <ol className={styles.numberedList}>
                             <li className={styles.numberedItem}><a href={DOWNLOADS.obsidian} className={styles.downloadLink} target="_blank" rel="noopener noreferrer">Download Obsidian for Windows</a></li>
                             <li className={styles.numberedItem}>Run the installer and follow the prompts</li>
-                            <li className={styles.numberedItem}>When Obsidian opens, select &ldquo;Open folder as vault&rdquo; — you will point it to the FIRE_VAULT directory after cloning (next step)</li>
                         </ol>
                     </div>
 
                     <div className={styles.subsection}>
                         <h3 className={styles.subsectionTitle}>Step 4: Get the Fire Vault Repository</h3>
                         <p className={styles.bodyText}>
-                            Chenla will help you get a copy of the Fire Vault repository on your machine during
-                            your onboarding session. Once it&apos;s set up, open Obsidian and select the{' '}
-                            <code className={styles.inlineCode}>FIRE_VAULT</code> folder as your vault. You should
-                            see the team directory structure in the sidebar.
+                            Chenla will help you clone the Fire Vault repository to your machine during your
+                            onboarding session. It will be placed in your{' '}
+                            <code className={styles.inlineCode}>Documents\FIRE_VAULT</code> folder.
+                        </p>
+                    </div>
+
+                    <div className={styles.subsection}>
+                        <h3 className={styles.subsectionTitle}>Step 5: Open the Vault in Obsidian</h3>
+                        <ol className={styles.numberedList}>
+                            <li className={styles.numberedItem}>Open Obsidian</li>
+                            <li className={styles.numberedItem}>Click <strong>Open folder as vault</strong></li>
+                            <li className={styles.numberedItem}>Navigate to <code className={styles.inlineCode}>Documents\FIRE_VAULT</code> and select it</li>
+                            <li className={styles.numberedItem}>You should see the team directory structure in the left sidebar — your personal folder, the shared <code className={styles.inlineCode}>_ops</code> and <code className={styles.inlineCode}>_projects</code> folders, and your teammates&apos; directories</li>
+                        </ol>
+                        <p className={styles.bodyText}>
+                            Obsidian only needs to be pointed at the vault once. It will remember this location every time you open it.
                         </p>
                     </div>
 
@@ -363,14 +379,18 @@ export default function TutorialFireVaultPage() {
                             <code>│&nbsp;&nbsp;&nbsp;├── status.md&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Personal project status</code><br />
                             <code>│&nbsp;&nbsp;&nbsp;├── journal/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Daily journal entries</code><br />
                             <code>│&nbsp;&nbsp;&nbsp;├── meetings/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Meeting notes</code><br />
-                            <code>│&nbsp;&nbsp;&nbsp;└── rollups/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Personal summaries</code><br />
+                            <code>│&nbsp;&nbsp;&nbsp;├── rollups/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Personal summaries</code><br />
+                            <code>│&nbsp;&nbsp;&nbsp;└── ops/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Personal operational views</code><br />
+                            <code>│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── briefing.md&nbsp;# Current status snapshot</code><br />
+                            <code>│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── prompts.md&nbsp;&nbsp;# Today&apos;s check-in questions</code><br />
                             <code>├── bsloan/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Brian Sloan</code><br />
                             <code>├── rballard/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Robert Ballard</code><br />
                             <code>├── &lt;username&gt;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Your personal directory</code><br />
                             <code>│&nbsp;&nbsp;&nbsp;├── status.md</code><br />
                             <code>│&nbsp;&nbsp;&nbsp;├── journal/</code><br />
                             <code>│&nbsp;&nbsp;&nbsp;├── meetings/</code><br />
-                            <code>│&nbsp;&nbsp;&nbsp;└── rollups/</code><br />
+                            <code>│&nbsp;&nbsp;&nbsp;├── rollups/</code><br />
+                            <code>│&nbsp;&nbsp;&nbsp;└── ops/</code><br />
                             <code>└── ...</code>
                         </div>
                     </div>
@@ -393,10 +413,11 @@ export default function TutorialFireVaultPage() {
                             When you check in, the following happens automatically:
                         </p>
                         <ol className={styles.numberedList}>
-                            <li className={styles.numberedItem}>You write in your journal — meeting notes, plans, or an end-of-day summary</li>
-                            <li className={styles.numberedItem}>Claude reads your entry and extracts tasks, decisions, and updates</li>
+                            <li className={styles.numberedItem}>You write in your journal or respond to Claude&apos;s prompts conversationally</li>
+                            <li className={styles.numberedItem}>Claude reads your input and extracts tasks, decisions, and updates</li>
                             <li className={styles.numberedItem}>Task movements are routed to the correct project status files</li>
-                            <li className={styles.numberedItem}>Your daily briefing and prompts are regenerated</li>
+                            <li className={styles.numberedItem}>Your status, rollup, and ops files are updated — briefing and prompts regenerated</li>
+                            <li className={styles.numberedItem}>Any meetings you mentioned get template files pre-created in your meetings folder</li>
                             <li className={styles.numberedItem}>Changes are committed and synced to the shared repository</li>
                         </ol>
                         <p className={styles.bodyText}>
@@ -416,8 +437,8 @@ export default function TutorialFireVaultPage() {
                     <div className={styles.subsection}>
                         <h3 className={styles.subsectionTitle}>Running INIT</h3>
                         <p className={styles.bodyText}>
-                            Open Claude Code in your personal directory within the FIRE_VAULT repository.
-                            Tell Claude to initialize your vault:
+                            During your onboarding session, Chenla will open Claude Code in your personal
+                            directory within the FIRE_VAULT repository. Tell Claude to initialize your vault:
                         </p>
                         <div className={styles.commandBlock}>
                             <div className={styles.commandHeader}>
@@ -438,7 +459,12 @@ export default function TutorialFireVaultPage() {
                             work with, and what you are currently waiting on. From that conversation, it creates
                             your <code className={styles.inlineCode}>status.md</code> file populated with real
                             project data and sets up your directory structure. This is a one-time setup step
-                            that takes about 5 to 10 minutes. After INIT, your vault is ready for your first check-in.
+                            that takes about 5 to 10 minutes.
+                        </p>
+                        <p className={styles.bodyText}>
+                            At the end of INIT, Claude automatically places a <strong>Fire Vault</strong> shortcut
+                            on your desktop. From now on, double-clicking it is all you need to do to open your
+                            vault — no terminal navigation required.
                         </p>
                     </div>
 
@@ -465,7 +491,7 @@ export default function TutorialFireVaultPage() {
                         </div>
                         <p className={styles.bodyText}>
                             Claude will read your entry, extract tasks and updates, route them to the
-                            correct project status files, and regenerate your briefing. Here is an example
+                            correct project status files, and update your rollup. Here is an example
                             of what the interaction looks like:
                         </p>
                         <div className={styles.codeBlock}>
@@ -494,6 +520,8 @@ export default function TutorialFireVaultPage() {
                             <li className={styles.bulletItem}><code className={styles.inlineCode}>status.md</code> — your project status, now populated with the tasks and updates you mentioned</li>
                             <li className={styles.bulletItem}><code className={styles.inlineCode}>rollups/</code> — contains your first daily rollup with a summary of your check-in and time allocation</li>
                             <li className={styles.bulletItem}><code className={styles.inlineCode}>journal/</code> — your raw journal entry with Claude&apos;s processing appended below the separator</li>
+                            <li className={styles.bulletItem}><code className={styles.inlineCode}>ops/briefing.md</code> — your current project snapshot, readable in Obsidian any time without opening Claude</li>
+                            <li className={styles.bulletItem}><code className={styles.inlineCode}>ops/prompts.md</code> — your personalized check-in questions for tomorrow, pre-generated at end-of-day</li>
                         </ul>
                         <p className={styles.bodyText}>
                             Click on <code className={styles.inlineCode}>status.md</code> to see your current
@@ -531,9 +559,10 @@ export default function TutorialFireVaultPage() {
                         <h3 className={styles.subsectionTitle}>Morning Check-in</h3>
                         <p className={styles.bodyText}>
                             Write your plan for the day in the morning section of your journal. What are you
-                            working on? Any meetings? What is carrying from yesterday? Claude reads your
-                            previous journal and project status to generate personalized prompts that surface
-                            priorities, stale items, and things you might have forgotten.
+                            working on? Any meetings? What is carrying from yesterday? Your prompts for today
+                            were pre-generated at the end of yesterday — open <code className={styles.inlineCode}>ops/prompts.md</code> in
+                            Obsidian to see them before you start. If you wrote in your journal already, Claude
+                            reads it and picks up where you left off. If not, it walks you through your day conversationally.
                         </p>
                         <div className={styles.commandBlock}>
                             <div className={styles.commandHeader}>
@@ -577,8 +606,9 @@ export default function TutorialFireVaultPage() {
                         <h3 className={styles.subsectionTitle}>End-of-Day Check-in</h3>
                         <p className={styles.bodyText}>
                             Write what actually happened. Claude compares your morning plan against your
-                            actual outcomes, archives completed tasks, flags items that need to carry forward,
-                            and generates tomorrow&apos;s journal and prompts.
+                            actual outcomes, archives completed tasks, and flags items that need to carry forward.
+                            It also creates tomorrow&apos;s journal with your carryover list already filled in, so
+                            your starting point is ready in Obsidian the next morning.
                         </p>
                         <div className={styles.commandBlock}>
                             <div className={styles.commandHeader}>
@@ -599,8 +629,10 @@ export default function TutorialFireVaultPage() {
                     <div className={styles.subsection}>
                         <h3 className={styles.subsectionTitle}>Meeting Notes</h3>
                         <p className={styles.bodyText}>
-                            When you take meeting notes, write them in your journal or in a dedicated meeting
-                            file. Tell Claude to process a specific meeting when you are done:
+                            When you mention a meeting during any check-in, Claude automatically
+                            creates a template file in your meetings folder with the agenda pre-filled from
+                            context. Open it in Obsidian and write your notes during or after the meeting.
+                            When you are done, tell Claude to process it:
                         </p>
                         <div className={styles.commandBlock}>
                             <div className={styles.commandHeader}>
@@ -629,12 +661,10 @@ export default function TutorialFireVaultPage() {
                         </p>
                         <div className={styles.commandBlock}>
                             <div className={styles.commandHeader}>
-                                <span className={styles.commandIcon}>Claude Command</span>
+                                <span className={styles.commandIcon}>Example Questions</span>
                             </div>
                             <div className={styles.commandBody}>
-                                <p className={styles.commandPrimary}>query</p>
                                 <p className={styles.commandAliases}>
-                                    <span className={styles.commandAliasLabel}>Examples: </span>
                                     <span className={styles.commandAlias}>&ldquo;What is blocked right now?&rdquo;</span>,{' '}
                                     <span className={styles.commandAlias}>&ldquo;What did I work on last week?&rdquo;</span>,{' '}
                                     <span className={styles.commandAlias}>&ldquo;What is the status of Vortex?&rdquo;</span>,{' '}
@@ -704,9 +734,9 @@ export default function TutorialFireVaultPage() {
                                     <td>File &rarr; Open Vault &rarr; select the FIRE_VAULT directory</td>
                                 </tr>
                                 <tr>
-                                    <td>Claude does not process my journal</td>
-                                    <td>Missing separator line</td>
-                                    <td>Ensure the LLM processing separator exists below your writing</td>
+                                    <td>Desktop shortcut is missing or broken</td>
+                                    <td>Shortcut was moved or deleted</td>
+                                    <td>Open your vault once with Chenla&apos;s help, then tell Claude &ldquo;create my desktop shortcut&rdquo;</td>
                                 </tr>
                                 <tr>
                                     <td>Check-in prompts feel generic</td>

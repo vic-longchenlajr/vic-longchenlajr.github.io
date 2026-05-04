@@ -1,6 +1,29 @@
 # Changelog
 
 
+## v1.3.0 — 2026-05-04
+
+### Documentation — Fire Vault Tutorial (Pilot-Ready)
+- Promoted Fire Vault tutorial status from **Draft → Pilot Ready**, updated "Last Updated" to May 2026
+- Added `ops/` directory (briefing.md, prompts.md) to the personal vault directory structure section
+- Updated data flow description to reflect ops regeneration and meeting template pre-generation
+- Updated Prerequisites callout: `ops/briefing.md` described as passive daily view
+- Onboarding section: specified one-business-day turnaround, added concrete action for Step 3, added network block note, contextualized download link
+- Installation: added new **Step 5** for pointing Obsidian at the `FIRE_VAULT` directory
+- Getting Started: INIT step now notes it creates a desktop shortcut; Verification step lists `ops/` files as expected output
+- Daily Workflow: added morning `prompts.md` note, EOD next-workday journal note, and meeting template generation from any check-in
+- Troubleshooting: removed separator row, added shortcut recreation row
+- Alignment fixes: removed inaccurate briefing/prompts regeneration claims; reframed query instructions as conversational
+- Fixed `audit-prompt.md` download URL (missing leading slash caused 404)
+
+### Tool Registry — Version Sync
+- **Vortex Project Builder**: v2.2.0 → v2.3.1 (updated 2026-04-23)
+- **VicFlex Bracket Filter**: v1.1.0 → v1.2.1 (updated 2026-04-14)
+- **LP Resource Dashboard**: v1.3.0 → v1.3.2 (updated 2026-04-17)
+- **VicForge**: v0.3.0 → v0.6.0 (updated 2026-04-23)
+- **Product Request Pipeline**: v0.1.0 → v0.2.1
+
+
 ## v1.2.0 - 2026-04-23
 
 ### Documentation — Personal Vault Guide

@@ -20,7 +20,15 @@
       "Bash(/c/Users/Admin/AppData/Roaming/fnm/node-versions/v23.9.0/installation/npx next *)",
       "Bash(node node_modules/next/dist/bin/next build)",
       "Bash(rtk git *)",
-      "Bash(rtk read *)"
+      "Bash(rtk read *)",
+      "Bash(node *)",
+      "Bash(rtk grep *)",
+      "Bash(rtk tsc *)",
+      "Bash(rtk next *)",
+      "Bash(rtk find *)",
+      "Bash(rtk ls *)",
+      "Bash(rtk wc *)",
+      "Bash(xargs -I {} basename {})"
     ]
   }
 }

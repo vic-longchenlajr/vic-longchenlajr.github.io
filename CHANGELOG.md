@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v1.4.0 — 2026-05-06
+
+### Light/dark mode system
+- Added `ThemeProvider` context with `useCallback` + `useRef` for stale-closure safety; reads `data-theme` from DOM on mount to sync with anti-FOUC script; persists preference to `localStorage`
+- Added anti-FOUC inline script to `layout.tsx` with `suppressHydrationWarning` on `<html>` to eliminate flash on load
+- Added sun/moon icon toggle button to TopBar (top-right); new `topbar.module.css` with `--shadow-nav` token and smooth theme transitions
+- Added `globals.css` dark-default + `[data-theme="light"]` CSS overrides; shadow token system (`--shadow-sm`, `--shadow-md`, `--shadow-nav`) for both themes; body transition; restored legacy presentation vars (`--bg-page`, `--bg-sidebar`, `--highlight`)
+- Made `MergedStatsPanel` theme-responsive: `ORG_RGB` swaps between light gray (dark mode) and near-black (light mode); separator and hover states use CSS vars instead of hardcoded hex values
+- Converted `CommandPalette`, `CTAPanel`, and `HorizontalScroll` from hardcoded hex colors to CSS vars
+
+### Documentation — theme integration
+- Updated all documentation CSS modules (bestpractices, summary, guide-personal-vault, tutorial-fire-vault) with page container and TOC sidebar transitions and `--shadow-sm/md` token usage on cards
+- Fixed breadcrumb SVG stroke in `documentation/page.tsx` to use CSS var instead of hardcoded color
+
+### Fire Vault tutorial — tab navigation
+- Added `ArchitectureTab`, `PmnTab`, and `UsageTab` as standalone components extracted from the tutorial page
+- Implemented full tab navigation system with slide-in/out animations across all three tab views
+
+
 ## v1.3.0 — 2026-05-04
 
 ### Documentation — Fire Vault Tutorial (Pilot-Ready)

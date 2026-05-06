@@ -1,64 +1,95 @@
 @import "tailwindcss/theme" layer(theme);
 @import "tailwindcss/utilities" layer(utilities);
 
+/* ─── Layout constants (theme-independent) ─────────────────────────── */
 :root {
-  --brand-orange: #f26722;
-  --brand-black: #1a1a1a;
-  --brand-blue: #00a3e0;
-  --text-main: #1a1a1a;
-  --text-muted: #555555;
-  --bg-page: #ffffff;
-  --bg-sidebar: #f8f8f8;
-  --highlight: #fff0e6;
-  --border: #dddddd;
+  --brand-orange:  #E87722;
+  --brand-black:   #1A1A1A;
+  --brand-blue:    #00A3E0;
 
-  --navbar-height: 70px;
+  --navbar-height:  48px;
+  --sidebar-width:  250px;
+  --sidebar-gap:    40px;
+  --sidebar-space:  calc(var(--sidebar-width) + (var(--sidebar-gap) * 2));
 
-  --sidebar-width: 250px;
-  /* match .sidebarTracker */
-  --sidebar-gap: 40px;
-  /* match right: 30px */
-  --sidebar-space: calc(var(--sidebar-width) + (var(--sidebar-gap) * 2));
+  /* ── Dark theme defaults ───────────────────────────────────────────── */
+  --bg-base:         #0D0D0D;
+  --bg-surface:      #111111;
+  --bg-raised:       #181818;
+  --bg-hover:        #222222;
 
+  --text-primary:    #F0F0F0;
+  --text-secondary:  #D4D4D4;
+  --text-body:       #C4C4C4;
+  --text-muted:      #909090;
+  --text-faint:      #686868;
+
+  --border-subtle:   #1E1E1E;
+  --border-default:  #2A2A2A;
+  --border-strong:   #3A3A3A;
+
+  --nav-bg:          #111111;
+  --nav-border:      #2A2A2A;
+  --nav-search-bg:   #1C1C1C;
+
+  --accent:          #E87722;
+  --accent-hover:    #F09044;
+  --accent-soft:     rgba(232, 119, 34, 0.10);
+
+  /* ── Elevation / shadow ───────────────────────────────────────────── */
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.30), 0 1px 4px rgba(0,0,0,0.20);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.40), 0 2px 4px rgba(0,0,0,0.24);
+  --shadow-nav: 0 1px 0 var(--nav-border);
+
+  /* ── Legacy vars — used by presentation CSS (theme-exempt) ─────────── */
+  --bg-page:    #ffffff;
+  --bg-sidebar: #1a1a1a;
+  --highlight:  #E87722;
 }
 
+/* ── Light theme overrides ─────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-base:         #F6F3EF;
+  --bg-surface:      #FFFFFF;
+  --bg-raised:       #F0EBE4;
+  --bg-hover:        #E9E2D8;
+
+  --text-primary:    #1C1917;
+  --text-secondary:  #292524;
+  --text-body:       #44403C;
+  --text-muted:      #6B6560;
+  --text-faint:      #9C9489;
+
+  --border-subtle:   #EAE3DC;
+  --border-default:  #DDD7CE;
+  --border-strong:   #C9C1B8;
+
+  --nav-bg:          #FFFFFF;
+  --nav-border:      #E0D9D1;
+  --nav-search-bg:   #F6F3EF;
+
+  --accent:          #E87722;
+  --accent-hover:    #D4600A;
+  --accent-soft:     rgba(232, 119, 34, 0.08);
+
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.05);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-nav: 0 1px 0 var(--nav-border), 0 1px 8px rgba(0,0,0,0.06);
+}
+
+/* ── Base styles ───────────────────────────────────────────────────── */
 body {
   font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
-  color: var(--text-main);
-  background-color: var(--bg-page);
+  color: var(--text-primary);
+  background-color: var(--bg-base);
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .container {
   max-width: 1240px;
   margin: 0 auto;
   padding: 20px 40px;
-}
-
-header {
-  margin-bottom: 50px;
-  border-top: 8px solid var(--brand-orange);
-  padding-top: 30px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid var(--border);
-}
-
-h1 {
-  font-size: 2.8rem;
-  color: var(--brand-black);
-  margin: 0;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-}
-
-.value-statement {
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: var(--brand-blue);
-  margin-top: 12px;
-  line-height: 1.4;
-  max-width: 800px;
 }

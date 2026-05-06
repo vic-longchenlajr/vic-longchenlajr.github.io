@@ -1,5 +1,5 @@
 /* ============================================
-   Summary Page — FS³ Dark Theme
+   Summary Page — FS³
    ============================================ */
 
 /* Page Grid */
@@ -7,7 +7,8 @@
     display: grid;
     grid-template-columns: 1fr 280px;
     min-height: 100vh;
-    background: #000;
+    background: var(--bg-base);
+    transition: background-color 0.2s ease;
 }
 
 /* ---- Main Content ---- */
@@ -19,7 +20,7 @@
 
 /* ---- Page Header ---- */
 .pageHeader {
-    border-top: 4px solid #E87722;
+    border-top: 4px solid var(--accent);
     padding-top: 30px;
     margin-bottom: 50px;
 }
@@ -27,14 +28,14 @@
 .pageTitle {
     font-size: 28px;
     font-weight: 700;
-    color: #F0F0F0;
+    color: var(--text-primary);
     letter-spacing: -0.5px;
     margin: 0 0 10px;
 }
 
 .pageSubtitle {
     font-size: 14px;
-    color: #707070;
+    color: var(--text-faint);
     line-height: 1.6;
     margin: 0;
 }
@@ -51,11 +52,11 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #707070;
+    color: var(--text-faint);
 }
 
 .metaValue {
-    color: #E87722;
+    color: var(--accent);
     margin-left: 6px;
 }
 
@@ -68,15 +69,15 @@
 .sectionTitle {
     font-size: 22px;
     font-weight: 600;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     margin: 0 0 25px;
-    border-left: 4px solid #E87722;
+    border-left: 4px solid var(--accent);
     padding-left: 20px;
 }
 
 .sectionIntro {
     font-size: 15px;
-    color: #BBB;
+    color: var(--text-body);
     line-height: 1.7;
     margin: 0 0 25px;
 }
@@ -89,15 +90,15 @@
 .subsectionTitle {
     font-size: 18px;
     font-weight: 600;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     margin: 0 0 15px;
     padding-bottom: 8px;
-    border-bottom: 1px solid #1A1A1A;
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .bodyText {
     font-size: 15px;
-    color: #BBB;
+    color: var(--text-body);
     line-height: 1.7;
     margin: 0 0 12px;
 }
@@ -128,12 +129,12 @@
     top: 0;
     bottom: 0;
     width: 3px;
-    background: #222;
+    background: var(--border-default);
     transition: background 0.2s ease;
 }
 
 .evidenceItem:hover::before {
-    background: #E87722;
+    background: var(--accent);
 }
 
 .evidenceLink {
@@ -147,29 +148,30 @@
 .evidenceTitle {
     font-size: 0.88rem;
     font-weight: 700;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     transition: color 0.2s ease;
 }
 
 .evidenceItem:hover .evidenceTitle {
-    color: #E87722;
+    color: var(--accent);
 }
 
 .evidenceDesc {
     font-size: 0.82rem;
-    color: #707070;
+    color: var(--text-faint);
     line-height: 1.5;
 }
 
 /* ---- TOC Sidebar ---- */
 .tocSidebar {
-    background: #0A0A0A;
-    border-left: 1px solid #222;
+    background: var(--bg-surface);
+    border-left: 1px solid var(--border-default);
     padding: 30px 20px;
     height: 100vh;
     position: sticky;
     top: 0;
     overflow-y: auto;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .tocHeader {
@@ -177,10 +179,10 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: #707070;
+    color: var(--text-faint);
     margin: 0 0 20px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #E87722;
+    border-bottom: 2px solid var(--accent);
 }
 
 .tocList {
@@ -207,27 +209,27 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: #222;
+    background: var(--border-default);
     transition: all 0.2s ease;
 }
 
 .tocItem:hover {
-    background: rgba(232, 119, 34, 0.06);
+    background: var(--accent-soft);
 }
 
 .tocItemActive::before {
-    background: #E87722;
+    background: var(--accent);
     width: 3px;
 }
 
 .tocItemActive {
-    background: rgba(232, 119, 34, 0.06);
+    background: var(--accent-soft);
 }
 
 .tocLink {
     font-size: 13px;
     font-weight: 600;
-    color: #707070;
+    color: var(--text-faint);
     text-decoration: none;
     display: block;
     line-height: 1.4;
@@ -235,12 +237,12 @@
 }
 
 .tocItemActive .tocLink {
-    color: #E87722;
+    color: var(--accent);
     font-weight: 700;
 }
 
 .tocItem:hover .tocLink {
-    color: #999;
+    color: var(--text-muted);
 }
 
 /* ---- Mobile TOC ---- */
@@ -249,8 +251,8 @@
     position: sticky;
     top: 48px;
     z-index: 50;
-    background: #0A0A0A;
-    border-bottom: 1px solid #222;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-default);
     padding: 12px 20px;
 }
 
@@ -260,18 +262,18 @@
     justify-content: space-between;
     width: 100%;
     background: none;
-    border: 1px solid #222;
+    border: 1px solid var(--border-default);
     padding: 10px 14px;
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     cursor: pointer;
 }
 
 .mobileTocToggle:hover {
-    border-color: #E87722;
+    border-color: var(--accent);
 }
 
 .mobileTocArrow {
@@ -288,10 +290,10 @@
     top: 100%;
     left: 12px;
     right: 12px;
-    background: #111;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-top: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     max-height: 60vh;
     overflow-y: auto;
     z-index: 51;
@@ -308,19 +310,19 @@
     cursor: pointer;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #707070;
+    color: var(--text-faint);
     transition: all 0.2s ease;
 }
 
 .mobileTocItem:hover {
-    background: #1A1A1A;
-    color: #E87722;
+    background: var(--bg-hover);
+    color: var(--accent);
 }
 
 .mobileTocItemActive {
-    color: #E87722;
+    color: var(--accent);
     font-weight: 700;
-    border-left: 4px solid #E87722;
+    border-left: 4px solid var(--accent);
 }
 
 /* ---- Responsive ---- */

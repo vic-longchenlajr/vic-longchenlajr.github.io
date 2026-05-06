@@ -1,5 +1,5 @@
 /* ============================================
-   Best Practices Page — FS³ Dark Theme
+   Best Practices Page — FS³
    ============================================ */
 
 /* Page Grid */
@@ -7,7 +7,8 @@
     display: grid;
     grid-template-columns: 1fr 280px;
     min-height: 100vh;
-    background: #000;
+    background: var(--bg-base);
+    transition: background-color 0.2s ease;
 }
 
 /* ---- Main Content ---- */
@@ -19,7 +20,7 @@
 
 /* ---- Page Header ---- */
 .pageHeader {
-    border-top: 4px solid #E87722;
+    border-top: 4px solid var(--accent);
     padding-top: 30px;
     margin-bottom: 50px;
 }
@@ -27,14 +28,14 @@
 .pageTitle {
     font-size: 28px;
     font-weight: 700;
-    color: #F0F0F0;
+    color: var(--text-primary);
     letter-spacing: -0.5px;
     margin: 0 0 10px;
 }
 
 .pageSubtitle {
     font-size: 14px;
-    color: #707070;
+    color: var(--text-faint);
     line-height: 1.6;
     margin: 0;
 }
@@ -51,11 +52,11 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #707070;
+    color: var(--text-faint);
 }
 
 .metaValue {
-    color: #E87722;
+    color: var(--accent);
     margin-left: 6px;
 }
 
@@ -68,15 +69,15 @@
 .sectionTitle {
     font-size: 22px;
     font-weight: 600;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     margin: 0 0 25px;
-    border-left: 4px solid #E87722;
+    border-left: 4px solid var(--accent);
     padding-left: 20px;
 }
 
 .sectionIntro {
     font-size: 15px;
-    color: #BBB;
+    color: var(--text-body);
     line-height: 1.7;
     margin: 0 0 25px;
 }
@@ -89,28 +90,29 @@
 .subsectionTitle {
     font-size: 18px;
     font-weight: 600;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     margin: 0 0 15px;
     padding-bottom: 8px;
-    border-bottom: 1px solid #1A1A1A;
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .bodyText {
     font-size: 15px;
-    color: #BBB;
+    color: var(--text-body);
     line-height: 1.7;
     margin: 0 0 12px;
 }
 
 /* ---- TOC Sidebar ---- */
 .tocSidebar {
-    background: #0A0A0A;
-    border-left: 1px solid #222;
+    background: var(--bg-surface);
+    border-left: 1px solid var(--border-default);
     padding: 30px 20px;
     height: 100vh;
     position: sticky;
     top: 0;
     overflow-y: auto;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .tocHeader {
@@ -118,10 +120,10 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: #707070;
+    color: var(--text-faint);
     margin: 0 0 20px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #E87722;
+    border-bottom: 2px solid var(--accent);
 }
 
 .tocList {
@@ -148,27 +150,27 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: #222;
+    background: var(--border-default);
     transition: all 0.2s ease;
 }
 
 .tocItem:hover {
-    background: rgba(232, 119, 34, 0.06);
+    background: var(--accent-soft);
 }
 
 .tocItemActive::before {
-    background: #E87722;
+    background: var(--accent);
     width: 3px;
 }
 
 .tocItemActive {
-    background: rgba(232, 119, 34, 0.06);
+    background: var(--accent-soft);
 }
 
 .tocLink {
     font-size: 13px;
     font-weight: 600;
-    color: #707070;
+    color: var(--text-faint);
     text-decoration: none;
     display: block;
     line-height: 1.4;
@@ -176,17 +178,17 @@
 }
 
 .tocItemActive .tocLink {
-    color: #E87722;
+    color: var(--accent);
     font-weight: 700;
 }
 
 .tocItem:hover .tocLink {
-    color: #999;
+    color: var(--text-muted);
 }
 
 .tocDivider {
     height: 1px;
-    background: #222;
+    background: var(--border-default);
     margin: 10px 0;
 }
 
@@ -196,8 +198,8 @@
     position: sticky;
     top: 48px;
     z-index: 50;
-    background: #0A0A0A;
-    border-bottom: 1px solid #222;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-default);
     padding: 12px 20px;
 }
 
@@ -207,18 +209,18 @@
     justify-content: space-between;
     width: 100%;
     background: none;
-    border: 1px solid #222;
+    border: 1px solid var(--border-default);
     padding: 10px 14px;
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     cursor: pointer;
 }
 
 .mobileTocToggle:hover {
-    border-color: #E87722;
+    border-color: var(--accent);
 }
 
 .mobileTocArrow {
@@ -235,10 +237,10 @@
     top: 100%;
     left: 12px;
     right: 12px;
-    background: #111;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-top: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     max-height: 60vh;
     overflow-y: auto;
     z-index: 51;
@@ -255,19 +257,19 @@
     cursor: pointer;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #707070;
+    color: var(--text-faint);
     transition: all 0.2s ease;
 }
 
 .mobileTocItem:hover {
-    background: #1A1A1A;
-    color: #E87722;
+    background: var(--bg-hover);
+    color: var(--accent);
 }
 
 .mobileTocItemActive {
-    color: #E87722;
+    color: var(--accent);
     font-weight: 700;
-    border-left: 4px solid #E87722;
+    border-left: 4px solid var(--accent);
 }
 
 /* ---- Project Inventory Cards ---- */
@@ -278,30 +280,32 @@
 }
 
 .projectCard {
-    background: #0A0A0A;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-radius: 8px;
     padding: 24px;
-    transition: border-color 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
 
 .projectCard:hover {
-    border-color: #333;
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
 }
 
 .projectCardName {
     font-size: 1rem;
     font-weight: 700;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     margin: 0;
 }
 
 .projectCardDesc {
     font-size: 0.85rem;
-    color: #707070;
+    color: var(--text-faint);
     line-height: 1.5;
     margin: 0;
 }
@@ -324,7 +328,7 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: #707070;
+    color: var(--text-faint);
     min-width: 60px;
     padding-top: 3px;
 }
@@ -340,7 +344,7 @@
     font-weight: 700;
     padding: 3px 8px;
     background: rgba(232, 119, 34, 0.1);
-    color: #E87722;
+    color: var(--accent);
     border: 1px solid rgba(232, 119, 34, 0.2);
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -354,9 +358,9 @@
 }
 
 .tagGray {
-    background: #111;
-    color: #999;
-    border-color: #222;
+    background: var(--bg-raised);
+    color: var(--text-muted);
+    border-color: var(--border-default);
 }
 
 /* ---- Lifecycle Diagram ---- */
@@ -375,7 +379,7 @@
 }
 
 .lifecyclePhase:hover .phaseIndicator {
-    background: rgba(232, 119, 34, 0.04);
+    background: var(--accent-soft);
 }
 
 .phaseIndicator {
@@ -390,44 +394,44 @@
 .phaseNumber {
     width: 36px;
     height: 36px;
-    border: 2px solid #333;
+    border: 2px solid var(--border-strong);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.75rem;
     font-weight: 900;
-    color: #707070;
-    background: #0A0A0A;
+    color: var(--text-faint);
+    background: var(--bg-surface);
     z-index: 1;
     transition: all 0.3s ease;
 }
 
 .phaseNumberActive {
-    border-color: #E87722;
-    color: #E87722;
-    background: rgba(232, 119, 34, 0.1);
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
 }
 
 .phaseConnector {
     width: 2px;
     flex: 1;
-    background: #222;
+    background: var(--border-default);
     margin-top: 4px;
 }
 
 .phaseConnectorActive {
-    background: #E87722;
+    background: var(--accent);
 }
 
 .phaseContent {
     padding: 16px 20px;
-    border-bottom: 1px solid #1A1A1A;
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .phaseName {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     margin: 0 0 4px;
     display: flex;
     align-items: center;
@@ -436,7 +440,7 @@
 
 .phaseExpandIcon {
     font-size: 0.6rem;
-    color: #555;
+    color: var(--text-faint);
     transition: transform 0.2s ease;
 }
 
@@ -446,7 +450,7 @@
 
 .phaseTagline {
     font-size: 0.8rem;
-    color: #707070;
+    color: var(--text-faint);
     font-style: italic;
     margin: 0;
 }
@@ -473,7 +477,7 @@
 
 .phaseDetailItem {
     font-size: 0.85rem;
-    color: #BBB;
+    color: var(--text-body);
     line-height: 1.5;
     padding-left: 16px;
     position: relative;
@@ -486,12 +490,12 @@
     top: 8px;
     width: 6px;
     height: 6px;
-    background: #E87722;
+    background: var(--accent);
 }
 
 .exitCriteria {
-    background: #0A0A0A;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-left: 3px solid #4db8e0;
     padding: 12px 16px;
     margin-top: 8px;
@@ -509,29 +513,29 @@
 
 .exitText {
     font-size: 0.82rem;
-    color: #BBB;
+    color: var(--text-body);
     line-height: 1.5;
     margin: 0;
 }
 
 /* ---- Directory Tree ---- */
 .directoryTree {
-    background: #0A0A0A;
-    color: #CCC;
+    background: var(--bg-surface);
+    color: var(--text-body);
     padding: 24px 28px;
     font-family: 'Geist Mono', 'Cascadia Code', 'Fira Code', monospace;
     font-size: 0.82rem;
     line-height: 1.8;
     overflow-x: auto;
-    border: 1px solid #222;
-    border-left: 3px solid #E87722;
+    border: 1px solid var(--border-default);
+    border-left: 3px solid var(--accent);
     border-radius: 8px;
     margin: 0 0 20px;
     white-space: pre;
 }
 
 .treeComment {
-    color: #555;
+    color: var(--text-faint);
 }
 
 /* ---- Decision Table ---- */
@@ -542,27 +546,27 @@
 }
 
 .decisionTable th {
-    background: #111;
-    color: #D4D4D4;
+    background: var(--bg-raised);
+    color: var(--text-secondary);
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     padding: 12px 16px;
     text-align: left;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--border-default);
 }
 
 .decisionTable td {
     font-size: 0.85rem;
-    color: #BBB;
+    color: var(--text-body);
     padding: 12px 16px;
-    border-bottom: 1px solid #1A1A1A;
+    border-bottom: 1px solid var(--border-subtle);
     line-height: 1.5;
 }
 
 .decisionTable tr:hover td {
-    background: #0A0A0A;
+    background: var(--bg-surface);
 }
 
 /* ---- Tech Stack ---- */
@@ -575,10 +579,10 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     margin: 0 0 10px;
     padding-bottom: 8px;
-    border-bottom: 2px solid #E87722;
+    border-bottom: 2px solid var(--accent);
 }
 
 .stackGrid {
@@ -592,33 +596,33 @@
     align-items: center;
     gap: 12px;
     padding: 12px 16px;
-    background: #0A0A0A;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-radius: 6px;
     transition: border-color 0.2s ease;
 }
 
 .stackItem:hover {
-    border-color: #333;
+    border-color: var(--border-strong);
 }
 
 .stackName {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #D4D4D4;
+    color: var(--text-secondary);
 }
 
 .stackVersion {
     font-size: 0.7rem;
     font-weight: 700;
-    color: #E87722;
+    color: var(--accent);
     font-family: monospace;
     margin-left: auto;
 }
 
 .stackNote {
     font-size: 0.72rem;
-    color: #707070;
+    color: var(--text-faint);
     display: block;
     margin-top: 2px;
 }
@@ -633,8 +637,8 @@
 
 .commitType {
     padding: 10px 14px;
-    background: #0A0A0A;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-radius: 6px;
     text-align: center;
 }
@@ -642,7 +646,7 @@
 .commitTypeLabel {
     font-size: 0.8rem;
     font-weight: 800;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     font-family: monospace;
     display: block;
     margin-bottom: 4px;
@@ -650,20 +654,20 @@
 
 .commitTypeDesc {
     font-size: 0.7rem;
-    color: #707070;
+    color: var(--text-faint);
 }
 
 /* ---- Code Block ---- */
 .codeBlock {
-    background: #0A0A0A;
-    color: #CCC;
+    background: var(--bg-surface);
+    color: var(--text-body);
     padding: 20px 24px;
     font-family: 'Geist Mono', 'Cascadia Code', 'Fira Code', monospace;
     font-size: 0.82rem;
     line-height: 1.7;
     overflow-x: auto;
-    border: 1px solid #222;
-    border-left: 3px solid #E87722;
+    border: 1px solid var(--border-default);
+    border-left: 3px solid var(--accent);
     border-radius: 8px;
     margin-bottom: 16px;
     white-space: pre;
@@ -674,7 +678,7 @@
 }
 
 .codeKeyword {
-    color: #E87722;
+    color: var(--accent);
 }
 
 .codeString {
@@ -696,8 +700,8 @@
     align-items: flex-start;
     gap: 12px;
     padding: 10px 14px;
-    background: #0A0A0A;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -705,15 +709,15 @@
 }
 
 .checklistItem:hover {
-    border-color: #333;
-    background: #111;
+    border-color: var(--border-strong);
+    background: var(--bg-raised);
 }
 
 .checkbox {
     width: 18px;
     height: 18px;
     min-width: 18px;
-    border: 2px solid #333;
+    border: 2px solid var(--border-strong);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -725,27 +729,27 @@
 }
 
 .checkboxChecked {
-    border-color: #E87722;
-    background: #E87722;
+    border-color: var(--accent);
+    background: var(--accent);
     color: white;
 }
 
 .checklistText {
     font-size: 0.88rem;
-    color: #BBB;
+    color: var(--text-body);
     line-height: 1.5;
 }
 
 .checklistTextChecked {
     text-decoration: line-through;
-    color: #555;
+    color: var(--text-faint);
 }
 
 /* ---- Info Callout ---- */
 .callout {
-    background: rgba(232, 119, 34, 0.06);
+    background: var(--accent-soft);
     border: 1px solid rgba(232, 119, 34, 0.15);
-    border-left: 3px solid #E87722;
+    border-left: 3px solid var(--accent);
     padding: 16px 20px;
     margin-bottom: 16px;
     border-radius: 6px;
@@ -762,7 +766,7 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: #E87722;
+    color: var(--accent);
     margin: 0 0 6px;
 }
 
@@ -772,7 +776,7 @@
 
 .calloutText {
     font-size: 0.88rem;
-    color: #BBB;
+    color: var(--text-body);
     line-height: 1.6;
     margin: 0;
 }
@@ -789,7 +793,7 @@
 
 .bulletItem {
     font-size: 0.9rem;
-    color: #BBB;
+    color: var(--text-body);
     line-height: 1.6;
     padding-left: 18px;
     position: relative;
@@ -802,7 +806,7 @@
     top: 9px;
     width: 6px;
     height: 6px;
-    background: #E87722;
+    background: var(--accent);
 }
 
 /* ---- Label Table ---- */
@@ -818,8 +822,8 @@
     align-items: center;
     gap: 10px;
     padding: 10px 14px;
-    background: #0A0A0A;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-radius: 6px;
 }
 
@@ -853,14 +857,14 @@
 
 .labelBadgeData {
     background: rgba(232, 119, 34, 0.1);
-    color: #E87722;
+    color: var(--accent);
     border: 1px solid rgba(232, 119, 34, 0.2);
 }
 
 .labelBadgeDocs {
-    background: #111;
-    color: #999;
-    border: 1px solid #222;
+    background: var(--bg-raised);
+    color: var(--text-muted);
+    border: 1px solid var(--border-default);
 }
 
 .labelBadgeCritical {
@@ -870,14 +874,14 @@
 }
 
 .labelBadgeNormal {
-    background: #111;
-    color: #999;
-    border: 1px solid #222;
+    background: var(--bg-raised);
+    color: var(--text-muted);
+    border: 1px solid var(--border-default);
 }
 
 .labelDesc {
     font-size: 0.8rem;
-    color: #707070;
+    color: var(--text-faint);
 }
 
 /* ---- AI Tools Table ---- */
@@ -893,21 +897,21 @@
     align-items: center;
     gap: 16px;
     padding: 16px 20px;
-    background: #0A0A0A;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-radius: 6px;
 }
 
 .aiToolName {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     min-width: 140px;
 }
 
 .aiToolUse {
     font-size: 0.82rem;
-    color: #707070;
+    color: var(--text-faint);
     line-height: 1.5;
 }
 
@@ -922,29 +926,29 @@
     display: flex;
     gap: 10px;
     padding: 8px 12px;
-    background: #0A0A0A;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-radius: 4px;
 }
 
 .glossaryTerm {
     font-size: 0.8rem;
     font-weight: 800;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     font-family: monospace;
     min-width: 60px;
 }
 
 .glossaryDef {
     font-size: 0.8rem;
-    color: #707070;
+    color: var(--text-faint);
     line-height: 1.4;
 }
 
 /* ---- README Template ---- */
 .readmePreview {
-    background: #0A0A0A;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-radius: 8px;
     padding: 30px;
 }
@@ -952,22 +956,22 @@
 .readmePreview h3 {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     margin: 0 0 6px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #E87722;
+    border-bottom: 2px solid var(--accent);
 }
 
 .readmePreview h4 {
     font-size: 1rem;
     font-weight: 600;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     margin: 18px 0 8px;
 }
 
 .readmePreview p {
     font-size: 0.9rem;
-    color: #707070;
+    color: var(--text-faint);
     line-height: 1.6;
     margin: 0 0 12px;
 }

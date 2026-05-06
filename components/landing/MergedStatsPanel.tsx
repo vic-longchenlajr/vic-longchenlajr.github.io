@@ -21,7 +21,11 @@ const ACCENT_RGB: Record<CategoryKey, [number, number, number]> = {
   configuration: [133, 183, 235],
   resources: [93, 202, 165],
 };
-const ORG_RGB: [number, number, number] = [212, 212, 212];
+// ORG_RGB is read per-tick from the DOM so it responds to theme changes
+function getOrgRgb(): [number, number, number] {
+  const isDark = typeof document === 'undefined' || document.documentElement.dataset.theme !== 'light';
+  return isDark ? [212, 212, 212] : [41, 37, 36];
+}
 
 /* ── Helpers ───────────────────────────────────────────────────── */
 function lerp(a: number, b: number, t: number) {
@@ -117,7 +121,7 @@ function StatCounter({
           />
         ))}
       </div>
-      <div className="font-medium" style={{ fontSize: 14, color: "#888" }}>
+      <div className="font-medium" style={{ fontSize: 14, color: "var(--text-muted)" }}>
         {label}
       </div>
     </div>
@@ -317,12 +321,13 @@ export default function MergedStatsPanel({ phase, statsResetKey }: Props) {
         const fs = lerp(f.fontSize, 14, org);
         const op = lerp(f.baseOpacity, 1.0, org);
 
-        // Color (accent → white in last 30% of organize)
+        // Color (accent → organized color in last 30% of organize)
         const colorT = Math.max(0, Math.min(1, (org - 0.7) / 0.3));
         const accent = ACCENT_RGB[TOOLS[i].category as CategoryKey];
-        const r = lerp(accent[0], ORG_RGB[0], colorT);
-        const g = lerp(accent[1], ORG_RGB[1], colorT);
-        const b = lerp(accent[2], ORG_RGB[2], colorT);
+        const orgRgb = getOrgRgb();
+        const r = lerp(accent[0], orgRgb[0], colorT);
+        const g = lerp(accent[1], orgRgb[1], colorT);
+        const b = lerp(accent[2], orgRgb[2], colorT);
 
         el.style.transform = `translate(${cx}px, ${cy}px)`;
         el.style.fontSize = `${fs}px`;
@@ -378,7 +383,7 @@ export default function MergedStatsPanel({ phase, statsResetKey }: Props) {
     <div
       ref={panelRef}
       className="relative h-screen"
-      style={{ width: "100vw", background: "#000" }}
+      style={{ width: "100vw", background: "var(--bg-base)" }}
     >
       {/* ── Mission statement ───────────────────────────────────── */}
       <div
@@ -397,7 +402,7 @@ export default function MergedStatsPanel({ phase, statsResetKey }: Props) {
             />
             <div
               className="self-stretch"
-              style={{ width: 1, minHeight: 32, background: "#222" }}
+              style={{ width: 1, minHeight: 32, background: "var(--border-default)" }}
             />
             <StatCounter
               key={`lines-${statsResetKey}`}
@@ -410,14 +415,14 @@ export default function MergedStatsPanel({ phase, statsResetKey }: Props) {
           <div className="mt-8">
             <h2
               className="font-bold"
-              style={{ fontSize: 18, color: "#D4D4D4", lineHeight: 1.4 }}
+              style={{ fontSize: 18, color: "var(--text-secondary)", lineHeight: 1.4 }}
             >
               Custom-built software tools for Victaulic Fire Suppression
               Technology
             </h2>
             <p
               className="mt-2"
-              style={{ fontSize: 14, color: "#777", lineHeight: 1.6 }}
+              style={{ fontSize: 14, color: "var(--text-faint)", lineHeight: 1.6 }}
             >
               Engineered internally to close the gaps between how we work and
               how we should work.
@@ -445,7 +450,7 @@ export default function MergedStatsPanel({ phase, statsResetKey }: Props) {
             cursor: "pointer",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+            e.currentTarget.style.background = "var(--bg-hover)";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = "transparent";
@@ -487,7 +492,7 @@ export default function MergedStatsPanel({ phase, statsResetKey }: Props) {
               descRefs.current[i] = el;
             }}
             className="text-[11px] ml-1 shrink-0"
-            style={{ color: "#555", opacity: 0 }}
+            style={{ color: "var(--text-faint)", opacity: 0 }}
           >
             {tool.description}
           </span>
@@ -552,7 +557,7 @@ export default function MergedStatsPanel({ phase, statsResetKey }: Props) {
           style={{
             width: 500,
             height: 1,
-            background: "#1A1A1A",
+            background: "var(--border-subtle)",
             opacity: 0,
             pointerEvents: "none",
           }}

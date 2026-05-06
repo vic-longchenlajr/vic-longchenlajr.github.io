@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import TopBar from "@/components/TopBar";
 import CommandPalette from "@/components/CommandPalette";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,13 +31,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <head>
+        {/* Anti-FOUC: apply saved theme before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('fs3-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TopBar />
-        {children}
-        <CommandPalette />
+        <ThemeProvider>
+          <TopBar />
+          {children}
+          <CommandPalette />
+        </ThemeProvider>
       </body>
     </html>
   );

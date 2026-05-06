@@ -157,7 +157,7 @@ export default function HorizontalScroll() {
     <div
       ref={containerRef}
       className="fixed inset-0 overflow-hidden"
-      style={{ background: "#000" }}
+      style={{ background: "var(--bg-base)" }}
     >
       <div
         ref={trackRef}
@@ -176,7 +176,7 @@ export default function HorizontalScroll() {
       >
         <span
           className="uppercase font-medium tracking-wider"
-          style={{ fontSize: 10, color: "#555" }}
+          style={{ fontSize: 10, color: "var(--text-faint)" }}
         >
           v{process.env.APP_VERSION}
         </span>
@@ -189,7 +189,7 @@ export default function HorizontalScroll() {
       >
         <span
           className="uppercase font-medium tracking-wider"
-          style={{ fontSize: 10, color: "#555" }}
+          style={{ fontSize: 10, color: "var(--text-faint)" }}
         >
           Scroll to explore
         </span>
@@ -198,7 +198,8 @@ export default function HorizontalScroll() {
           height="14"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#555"
+          stroke="currentColor"
+          style={{ color: "var(--text-faint)" }}
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -210,7 +211,7 @@ export default function HorizontalScroll() {
       {/* Progress bar */}
       <div
         className="fixed bottom-0 left-0 right-0"
-        style={{ height: 2, background: "#111" }}
+        style={{ height: 2, background: "var(--bg-surface)" }}
       >
         <div
           ref={progressRef}

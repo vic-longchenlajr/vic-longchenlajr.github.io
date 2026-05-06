@@ -1,11 +1,12 @@
 /* ============================================
-   Presentations Hub — FS³ Dark Theme
+   Presentations Hub — FS³
    ============================================ */
 
 .page {
     height: calc(100vh - 48px);
     overflow: hidden;
-    background: #000;
+    background: var(--bg-base);
+    transition: background-color 0.2s ease;
 }
 
 .mainContent {
@@ -24,32 +25,32 @@
 
 .breadcrumbLink {
     font-size: 12px;
-    color: #707070;
+    color: var(--text-faint);
     text-decoration: none;
     transition: color 0.2s;
 }
 
 .breadcrumbLink:hover {
-    color: #E87722;
+    color: var(--accent);
 }
 
 .breadcrumbCurrent {
     font-size: 12px;
-    color: #999;
+    color: var(--text-muted);
 }
 
 /* ---- Title ---- */
 .pageTitle {
     font-size: 28px;
     font-weight: 700;
-    color: #F0F0F0;
+    color: var(--text-primary);
     letter-spacing: -0.5px;
     margin: 0 0 8px;
 }
 
 .pageSubtitle {
     font-size: 14px;
-    color: #707070;
+    color: var(--text-faint);
     line-height: 1.5;
     margin: 0 0 36px;
     max-width: 600px;
@@ -63,8 +64,8 @@
 }
 
 .card {
-    background: #0A0A0A;
-    border: 1px solid #222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-radius: 10px;
     padding: 24px;
     text-decoration: none;
@@ -74,11 +75,13 @@
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    transition: border-color 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .card:hover {
-    border-color: #333;
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
 }
 
 .cardBody {
@@ -108,9 +111,9 @@
 
 .sessionBadge {
     font-size: 10px;
-    color: #999;
-    background: #1A1A1A;
-    border: 1px solid #2A2A2A;
+    color: var(--text-muted);
+    background: var(--bg-raised);
+    border: 1px solid var(--border-default);
     border-radius: 3px;
     padding: 1px 7px;
 }
@@ -118,13 +121,13 @@
 .cardTitle {
     font-size: 18px;
     font-weight: 600;
-    color: #D4D4D4;
+    color: var(--text-secondary);
     margin: 0 0 8px;
 }
 
 .cardDesc {
     font-size: 13px;
-    color: #555;
+    color: var(--text-faint);
     line-height: 1.5;
     margin: 0;
     max-width: 560px;
@@ -132,13 +135,13 @@
 
 .cardMeta {
     font-size: 11px;
-    color: #707070;
+    color: var(--text-faint);
     margin-top: 10px;
 }
 
 .cardAffordance {
     font-size: 11px;
-    color: #707070;
+    color: var(--text-faint);
     flex-shrink: 0;
 }
 

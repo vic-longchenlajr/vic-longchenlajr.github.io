@@ -1,0 +1,128 @@
+/* ============================================
+   TopBar — FS³
+   ============================================ */
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: var(--shadow-nav);
+    transition: opacity 0.3s, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navLanding {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ── Logo ─────────────────────────────────── */
+.logo {
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    height: 24px;
+    min-width: 32px;
+    position: relative;
+    display: block;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.logoCollapsed,
+.logoExpanded {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    color: var(--accent);
+}
+
+.logoCollapsed {
+    font-size: 17px;
+}
+
+.logoExpanded {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+/* ── Search trigger ───────────────────────── */
+.searchBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: var(--nav-search-bg);
+    border: 1px solid var(--border-default);
+    color: var(--text-faint);
+    min-width: 220px;
+    transition: border-color 0.2s;
+}
+
+.searchBtn:hover {
+    border-color: var(--border-strong);
+}
+
+.searchLabel {
+    font-size: 13px;
+    flex: 1;
+    text-align: left;
+    color: var(--text-faint);
+}
+
+.kbdGroup {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.kbd {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-geist-mono, monospace);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    color: var(--text-faint);
+}
+
+/* ── Theme toggle ─────────────────────────── */
+.themeToggle {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border-default);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.themeToggle:hover {
+    border-color: var(--border-strong);
+    color: var(--text-secondary);
+    background: var(--bg-hover);
+}
+
+/* ── Body spacer ──────────────────────────── */
+.spacer {
+    height: 48px;
+}

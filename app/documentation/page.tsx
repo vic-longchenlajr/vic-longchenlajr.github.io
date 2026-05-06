@@ -10,7 +10,7 @@ export default function DocumentationPage() {
             <main className={styles.mainContent}>
                 <nav className={styles.breadcrumb}>
                     <Link href="/" className={styles.breadcrumbLink}>FS³</Link>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" strokeWidth="2" style={{ stroke: "var(--text-faint)" }}><polyline points="9 18 15 12 9 6" /></svg>
                     <span className={styles.breadcrumbCurrent}>Documentation</span>
                 </nav>
 

@@ -99,12 +99,12 @@ export default function CommandPalette() {
     >
       <div
         className="w-full max-w-[580px] rounded-[10px] border overflow-hidden"
-        style={{ background: "#181818", borderColor: "#333" }}
+        style={{ background: "var(--bg-raised)", borderColor: "var(--border-strong)" }}
       >
         {/* ── Search row ───────────────────────────────────────── */}
         <div
           className="flex items-center gap-3 px-4 py-3 border-b"
-          style={{ borderColor: "#333" }}
+          style={{ borderColor: "var(--border-strong)" }}
         >
           {/* Search icon */}
           <svg
@@ -126,14 +126,14 @@ export default function CommandPalette() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search tools..."
             className="flex-1 bg-transparent text-sm outline-none"
-            style={{ color: "#F0F0F0" }}
+            style={{ color: "var(--text-primary)" }}
           />
           <kbd
             className="text-xs px-2 py-0.5 rounded"
             style={{
-              color: "#666",
-              background: "#111",
-              border: "1px solid #333",
+              color: "var(--text-faint)",
+              background: "var(--bg-surface)",
+              border: "1px solid var(--border-strong)",
             }}
           >
             esc
@@ -143,7 +143,7 @@ export default function CommandPalette() {
         {/* ── Category tabs ────────────────────────────────────── */}
         <div
           className="flex gap-1 px-4 py-2 border-b"
-          style={{ borderColor: "#333" }}
+          style={{ borderColor: "var(--border-strong)" }}
         >
           {tabs.map((tab) => {
             const isActive = activeTab === tab.key;
@@ -157,9 +157,9 @@ export default function CommandPalette() {
                 onClick={() => setActiveTab(tab.key)}
                 className="text-[11px] px-3 py-1 rounded-md font-medium transition-colors"
                 style={{
-                  color: isActive ? accent : "#707070",
+                  color: isActive ? accent : "var(--text-faint)",
                   background: isActive ? `${accent}15` : "transparent",
-                  border: `1px solid ${isActive ? accent + "40" : "#2A2A2A"}`,
+                  border: `1px solid ${isActive ? accent + "40" : "var(--border-default)"}`,
                 }}
               >
                 {tab.label}
@@ -171,10 +171,10 @@ export default function CommandPalette() {
         {/* ── Results ──────────────────────────────────────────── */}
         <div
           className="max-h-[50vh] overflow-y-auto"
-          style={{ scrollbarWidth: "thin", scrollbarColor: "#333 transparent" }}
+          style={{ scrollbarWidth: "thin", scrollbarColor: "var(--border-strong) transparent" }}
         >
           {filtered.length === 0 && (
-            <div className="px-4 py-8 text-center text-sm" style={{ color: "#555" }}>
+            <div className="px-4 py-8 text-center text-sm" style={{ color: "var(--text-faint)" }}>
               No tools match your search.
             </div>
           )}
@@ -198,7 +198,7 @@ export default function CommandPalette() {
                       className="flex items-center gap-3 px-4 py-2.5 cursor-pointer transition-colors group"
                       style={{ borderLeft: "3px solid transparent" }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "#2A2A2A";
+                        e.currentTarget.style.background = "var(--bg-hover)";
                         e.currentTarget.style.borderLeftColor = accent;
                       }}
                       onMouseLeave={(e) => {
@@ -210,13 +210,13 @@ export default function CommandPalette() {
                         <div className="flex items-center gap-2">
                           <span
                             className="text-sm font-medium truncate"
-                            style={{ color: "#F0F0F0" }}
+                            style={{ color: "var(--text-primary)" }}
                           >
                             {tool.name}
                           </span>
                           <span
                             className="text-[11px] font-mono shrink-0"
-                            style={{ color: "#999" }}
+                            style={{ color: "var(--text-muted)" }}
                           >
                             {tool.version}
                           </span>
@@ -239,7 +239,7 @@ export default function CommandPalette() {
                         </div>
                         <div
                           className="text-xs truncate mt-0.5"
-                          style={{ color: "#707070" }}
+                          style={{ color: "var(--text-faint)" }}
                         >
                           {tool.description}
                         </div>
@@ -250,11 +250,11 @@ export default function CommandPalette() {
                           height="14"
                           viewBox="0 0 24 24"
                           fill="none"
-                          stroke="#707070"
+                          stroke="currentColor"
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          style={{ opacity: 0.4, flexShrink: 0 }}
+                          style={{ color: "var(--text-faint)", opacity: 0.6, flexShrink: 0 }}
                         >
                           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                           <polyline points="15 3 21 3 21 9" />
@@ -295,16 +295,16 @@ export default function CommandPalette() {
         {/* ── Footer ───────────────────────────────────────────── */}
         <div
           className="flex items-center justify-between px-4 py-2 text-[11px] border-t"
-          style={{ background: "#111", borderColor: "#333", color: "#555" }}
+          style={{ background: "var(--bg-surface)", borderColor: "var(--border-strong)", color: "var(--text-faint)" }}
         >
           <div className="flex items-center gap-3">
             <span>
               <kbd
                 className="px-1.5 py-0.5 rounded text-[10px] mr-1"
                 style={{
-                  background: "#181818",
-                  border: "1px solid #333",
-                  color: "#666",
+                  background: "var(--bg-raised)",
+                  border: "1px solid var(--border-strong)",
+                  color: "var(--text-faint)",
                 }}
               >
                 esc

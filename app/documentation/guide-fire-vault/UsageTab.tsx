@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import styles from './tutorial-fire-vault.module.css';
+import styles from './guide-fire-vault.module.css';
 
 type RoleId = 'engineers' | 'managers' | 'directors';
 
@@ -14,26 +14,53 @@ export default function UsageTab({ registerSection }: Props) {
 
     return (
         <>
-            {/* ---- Overview ---- */}
-            <section id="usage-overview" ref={registerSection('usage-overview')} className={styles.section}>
-                <h2 className={styles.sectionTitle}>Overview</h2>
+            {/* ---- Quick Commands ---- */}
+            <section id="usage-commands" ref={registerSection('usage-commands')} className={styles.section}>
+                <h2 className={styles.sectionTitle}>Quick Commands</h2>
                 <p className={styles.sectionIntro}>
-                    Fire Vault is your team&apos;s shared brain. Write naturally — describe your day, your
-                    meetings, your test results, your blockers. The system handles everything else:
-                    organizing your notes, tracking open tasks, surfacing what&apos;s been waiting too
-                    long, and keeping the team informed.
+                    Open the vault and say one of these. Everything else is plain English — no syntax required.
                 </p>
-                <p className={styles.bodyText}>
-                    You don&apos;t need to learn commands or syntax. Just open Claude Code and say
-                    what&apos;s on your mind. This is the starting point for everyone:
-                </p>
-                <div className={styles.sayThis}>
-                    <div className={styles.sayThisLabel}>Say this</div>
-                    <div className={styles.sayThisBubble}>checkin</div>
-                </div>
-                <p className={styles.bodyText} style={{ marginTop: 16 }}>
-                    Find your role below for the full picture.
-                </p>
+                <table className={styles.troubleshootingTable}>
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>What it does</th>
+                            <th>Also works</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code className={styles.inlineCode}>checkin</code></td>
+                            <td>Start a check-in — Claude picks the right type based on time of day</td>
+                            <td>&ldquo;check in&rdquo;</td>
+                        </tr>
+                        <tr>
+                            <td><code className={styles.inlineCode}>morning</code></td>
+                            <td>Morning check-in — reviews carryover, sets the day&apos;s plan</td>
+                            <td>&ldquo;checkin morning&rdquo;, &ldquo;morning check-in&rdquo;</td>
+                        </tr>
+                        <tr>
+                            <td><code className={styles.inlineCode}>eod</code></td>
+                            <td>End-of-day wrap-up — captures outcomes, pre-builds tomorrow</td>
+                            <td>&ldquo;end of day&rdquo;, &ldquo;checkin eod&rdquo;</td>
+                        </tr>
+                        <tr>
+                            <td><code className={styles.inlineCode}>checkin midday</code></td>
+                            <td>Quick midday update — captures anything that changed since morning</td>
+                            <td>&ldquo;midday&rdquo;, &ldquo;midday check-in&rdquo;</td>
+                        </tr>
+                        <tr>
+                            <td><code className={styles.inlineCode}>checkin meeting [name]</code></td>
+                            <td>Process a meeting&apos;s notes — extracts decisions and action items</td>
+                            <td>&ldquo;process the [name] meeting&rdquo;</td>
+                        </tr>
+                        <tr>
+                            <td><code className={styles.inlineCode}>init</code></td>
+                            <td>One-time setup — creates your status file and directory structure</td>
+                            <td>&ldquo;initialize my vault&rdquo;, &ldquo;set up my vault&rdquo;</td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
 
             {/* ---- By Role ---- */}
@@ -203,14 +230,16 @@ export default function UsageTab({ registerSection }: Props) {
                         <div className={styles.subsection}>
                             <h3 className={styles.subsectionTitle}>Reading your team briefing</h3>
                             <p className={styles.bodyText}>
-                                Open Obsidian and look at <strong>_ops/briefing.md</strong>. That file is a live,
+                                Open Obsidian and look at <strong>_ops/briefing.md</strong>. That file is a
                                 consolidated view of every active project and every person on the team — who&apos;s
-                                working on what, what&apos;s blocked, what&apos;s been waiting too long. It updates
-                                automatically every time anyone checks in. You don&apos;t need to open Claude to read it.
+                                working on what, what&apos;s blocked, what&apos;s been waiting too long. It&apos;s
+                                regenerated by a team sync, which Chenla runs after checkins. You don&apos;t need to
+                                open Claude to read it.
                             </p>
                             <div className={styles.roleTip}>
-                                <strong>No action required.</strong> The team briefing refreshes itself. Open the file
-                                before your 1:1s, your weekly reviews, or whenever you need to know where things stand.
+                                <strong>No action required.</strong> Open it before your 1:1s, weekly reviews, or
+                                whenever you need to know where things stand. It&apos;s current as of the last sync —
+                                if it looks stale, ask Chenla to run one.
                             </div>
                         </div>
 
@@ -244,8 +273,9 @@ export default function UsageTab({ registerSection }: Props) {
                             <p className={styles.bodyText}>
                                 Open Obsidian and look at <strong>_ops/briefing.md</strong>. That&apos;s the current state
                                 of the entire team — every active project, consolidated blockers, items waiting on
-                                external input, who&apos;s doing what. It&apos;s regenerated automatically whenever anyone
-                                checks in. You don&apos;t need to open Claude Code to read it.
+                                external input, who&apos;s doing what. It&apos;s regenerated by a team sync run after
+                                checkins — current as of the last sync. You don&apos;t need to open Claude Code to
+                                read it.
                             </p>
                         </div>
 

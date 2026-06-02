@@ -39,13 +39,13 @@ export default function DocumentationPage() {
                         <p className={styles.cardDesc}>Software development procedures and standards.</p>
                         <span className={styles.cardAffordance}>Read ›</span>
                     </Link>
-                    <Link href="/documentation/tutorial-fire-vault" className={styles.card}>
+                    <Link href="/documentation/guide-fire-vault" className={styles.card}>
                         <div className={styles.cardLabelRow}>
                             <span className={styles.cardAccent} style={{ background: '#4db8e0' }} />
-                            <span className={styles.cardLabel} style={{ color: '#4db8e0' }}>Tutorial</span>
+                            <span className={styles.cardLabel} style={{ color: '#4db8e0' }}>GUIDE</span>
                         </div>
                         <h2 className={styles.cardTitle}>Fire Vault</h2>
-                        <p className={styles.cardDesc}>Step-by-step guide for Fire Vault system configuration and commissioning.</p>
+                        <p className={styles.cardDesc}>Comprehensive user guide for the Fire Vault, a workflow automation system powered by Claude Code processed journal entries.</p>
                         <span className={styles.cardAffordance}>Read ›</span>
                     </Link>
                     <Link href="/documentation/guide-personal-vault" className={styles.card}>

@@ -1,6 +1,12 @@
 # Changelog
 
 
+## v1.4.1 — 2026-06-02
+
+### Changes
+- 
+
+
 ## v1.4.0 — 2026-05-06
 
 ### Light/dark mode system

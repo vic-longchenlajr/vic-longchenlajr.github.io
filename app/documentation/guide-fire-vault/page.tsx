@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import styles from './tutorial-fire-vault.module.css';
+import styles from './guide-fire-vault.module.css';
 import ArchitectureTab from './ArchitectureTab';
 import PmnTab from './PmnTab';
 import UsageTab from './UsageTab';
@@ -21,21 +21,17 @@ const TAB_SECTIONS: Record<TabId, { id: string; label: string }[]> = {
         { id: 'prerequisites', label: 'Prerequisites' },
         { id: 'onboarding', label: 'Onboarding' },
         { id: 'installation', label: 'Installation' },
-        { id: 'architecture', label: 'System Architecture' },
         { id: 'getting-started', label: 'Getting Started' },
-        { id: 'daily-workflow', label: 'Daily Workflow' },
         { id: 'troubleshooting', label: 'Troubleshooting' },
-        { id: 'reference', label: 'Reference' },
     ],
     usage: [
-        { id: 'usage-overview', label: 'Overview' },
+        { id: 'usage-commands', label: 'Quick Commands' },
         { id: 'usage-role', label: 'By Role' },
         { id: 'usage-customize', label: 'Making it Yours' },
     ],
     architecture: [
         { id: 'arch-layers', label: 'The Three Layers' },
         { id: 'arch-data-flow', label: 'Data Flow' },
-        { id: 'arch-governance', label: 'Privacy & Governance' },
         { id: 'arch-phase2', label: 'Phase 2' },
     ],
     'persistent-memory': [
@@ -316,8 +312,8 @@ export default function GuideFireVaultPage() {
                                 <div className={styles.subsection}>
                                     <h3 className={styles.subsectionTitle}>Step 1: Workflow Audit</h3>
                                     <p className={styles.bodyText}>
-                                        Chenla will send you a prompt to paste into a Claude session. This starts a guided
-                                        conversation about how you work today — your daily rhythm, how you track tasks,
+                                        Chenla will run the audit with you directly in a Claude Code session. This starts a
+                                        guided conversation about how you work today — your daily rhythm, how you track tasks,
                                         meeting habits, communication preferences, and what you would want the system to
                                         do for you. It takes about 15 to 20 minutes.
                                     </p>
@@ -327,26 +323,19 @@ export default function GuideFireVaultPage() {
                                         system can meet you where you are — not the other way around.
                                     </p>
                                     <p className={styles.bodyText}>
-                                        When the conversation is done, send the full output back to Chenla. You can use
-                                        Claude on the web at{' '}
-                                        <a href="https://claude.ai" className={styles.downloadLink} target="_blank" rel="noopener noreferrer">claude.ai</a>{' '}
-                                        for this step — no software install required yet.
-                                    </p>
-                                    <p className={styles.bodyText}>
-                                        Chenla will send you the prompt directly. If you need it again or are setting
-                                        yourself up independently, you can download it here:{' '}
-                                        <a href={DOWNLOADS.auditPrompt} className={styles.downloadLink} target="_blank" rel="noopener noreferrer">Download the Workflow Audit Prompt</a>
+                                        At the end of the session, Claude automatically generates your configuration files
+                                        and saves them directly to the vault — nothing to send.
                                     </p>
                                 </div>
 
                                 <div className={styles.subsection}>
-                                    <h3 className={styles.subsectionTitle}>Step 2: Wait for Your CLAUDE.md</h3>
+                                    <h3 className={styles.subsectionTitle}>Step 2: Chenla Reviews Your Draft</h3>
                                     <p className={styles.bodyText}>
-                                        After receiving your audit output, Chenla generates your personal{' '}
-                                        <code className={styles.inlineCode}>CLAUDE.md</code> and places it in your directory
-                                        in the vault. This file tells Claude how you work: your check-in cadence, what
-                                        format you prefer, which prompts to ask you, and how to process your entries.
-                                        Expect it within one business day. Chenla will reach out when it is ready.
+                                        Your personal <code className={styles.inlineCode}>CLAUDE.md</code> is generated
+                                        during the audit session itself. It tells Claude how you work: your check-in cadence,
+                                        what format you prefer, which prompts to ask you, and how to process your entries.
+                                        Chenla reviews the draft and confirms it looks right — turnaround is typically
+                                        same-day. You will hear back once it is ready.
                                     </p>
                                 </div>
 
@@ -367,6 +356,18 @@ export default function GuideFireVaultPage() {
                                         your directory. It controls your entire experience — your check-in rhythm, your
                                         prompts, how your input is processed. If the system is not working the way you want,
                                         the fix is almost always in your <code className={styles.inlineCode}>CLAUDE.md</code>.
+                                    </p>
+                                </div>
+
+                                <div className={styles.callout}>
+                                    <div className={styles.calloutLabel}>Why the order matters</div>
+                                    <p className={styles.calloutText}>
+                                        The system enforces this sequence. If you open Claude Code and try to check in before
+                                        your personal <code className={styles.inlineCode}>CLAUDE.md</code> exists, it stops
+                                        immediately and redirects you to contact Chenla — there is no generic fallback.
+                                        The workflow audit and CLAUDE.md setup are not optional prerequisites; they are
+                                        enforced by the system itself. This is by design: unconfigured output would silently
+                                        corrupt the team data.
                                     </p>
                                 </div>
                             </section>
@@ -440,22 +441,6 @@ export default function GuideFireVaultPage() {
                                 </div>
                             </section>
 
-                            {/* ---- System Architecture ---- */}
-                            <section id="architecture" ref={registerSection('architecture')} className={styles.section}>
-                                <h2 className={styles.sectionTitle}>System Architecture</h2>
-                                <p className={styles.sectionIntro}>
-                                    The Fire Vault runs across three layers: your local machine, the Anthropic API,
-                                    and the corporate GitHub organization. Directory structure, data flow, privacy
-                                    controls, and governance are covered in the Architecture tab.
-                                </p>
-                                <button
-                                    className={styles.tabPointerBtn}
-                                    onClick={() => switchTab('architecture')}
-                                >
-                                    View Architecture tab →
-                                </button>
-                            </section>
-
                             {/* ---- Getting Started ---- */}
                             <section id="getting-started" ref={registerSection('getting-started')} className={styles.section}>
                                 <h2 className={styles.sectionTitle}>Getting Started</h2>
@@ -485,16 +470,19 @@ export default function GuideFireVaultPage() {
                                         </div>
                                     </div>
                                     <p className={styles.bodyText}>
-                                        Claude will have a short conversation with you about your active projects, who you
-                                        work with, and what you are currently waiting on. From that conversation, it creates
-                                        your <code className={styles.inlineCode}>status.md</code> file populated with real
-                                        project data and sets up your directory structure. This is a one-time setup step
-                                        that takes about 5 to 10 minutes.
+                                        Claude will have a short conversation with you covering your active projects, where
+                                        you keep project files on your machine, who you collaborate with, your recurring
+                                        meetings, and what you are currently waiting on from others. From that conversation,
+                                        it creates your <code className={styles.inlineCode}>status.md</code> file populated
+                                        with real project data and sets up your directory structure. This is a one-time
+                                        setup step that takes about 5 to 10 minutes.
                                     </p>
                                     <p className={styles.bodyText}>
-                                        At the end of INIT, Claude automatically places a <strong>Fire Vault</strong> shortcut
-                                        on your desktop. From now on, double-clicking it is all you need to do to open your
-                                        vault — no terminal navigation required.
+                                        At the end of INIT, Claude places a <strong>Fire Vault</strong> shortcut on your
+                                        desktop, then walks you through exactly how your check-ins will work — your cadence,
+                                        what it will ask you, and what to expect — based on your personal{' '}
+                                        <code className={styles.inlineCode}>CLAUDE.md</code>. From that point,
+                                        double-clicking the shortcut is all you need to do to open your vault each day.
                                     </p>
                                 </div>
 
@@ -551,7 +539,7 @@ export default function GuideFireVaultPage() {
                                         <li className={styles.bulletItem}><code className={styles.inlineCode}>rollups/</code> — contains your first daily rollup with a summary of your check-in and time allocation</li>
                                         <li className={styles.bulletItem}><code className={styles.inlineCode}>journal/</code> — your raw journal entry with Claude&apos;s processing appended below the separator</li>
                                         <li className={styles.bulletItem}><code className={styles.inlineCode}>ops/briefing.md</code> — your current project snapshot, readable in Obsidian any time without opening Claude</li>
-                                        <li className={styles.bulletItem}><code className={styles.inlineCode}>ops/prompts.md</code> — your personalized check-in questions for tomorrow, pre-generated at end-of-day</li>
+                                        <li className={styles.bulletItem}><code className={styles.inlineCode}>ops/prompts.md</code> — your personalized check-in questions for tomorrow, pre-generated at end-of-day and morning check-in</li>
                                     </ul>
                                     <p className={styles.bodyText}>
                                         Click on <code className={styles.inlineCode}>status.md</code> to see your current
@@ -559,173 +547,6 @@ export default function GuideFireVaultPage() {
                                         reported. If everything looks right, you are live. The system improves the more you
                                         use it. After one week of check-ins, you will have a queryable database of everything
                                         you worked on.
-                                    </p>
-                                </div>
-                            </section>
-
-                            {/* ---- Daily Workflow ---- */}
-                            <section id="daily-workflow" ref={registerSection('daily-workflow')} className={styles.section}>
-                                <h2 className={styles.sectionTitle}>Daily Workflow</h2>
-                                <p className={styles.sectionIntro}>
-                                    The vault is designed around flexible check-ins. Your personal{' '}
-                                    <code className={styles.inlineCode}>CLAUDE.md</code> defines your rhythm — some
-                                    people check in once a day at end-of-day, others check in morning and evening, others
-                                    add a midday update. The options below are the full menu, not the expectation. Your
-                                    configuration determines what works for you.
-                                </p>
-
-                                <div className={styles.callout}>
-                                    <div className={styles.calloutLabel}>Daily Rollups</div>
-                                    <p className={styles.calloutText}>
-                                        Each check-in produces a <strong>daily rollup</strong> — a structured summary of what you
-                                        completed, what is in progress, what is blocked, and what is planned for tomorrow. This is
-                                        the team-visible output of your check-in. It includes a <strong>time allocation
-                                        breakdown</strong> formatted for direct transfer to LiquidPlanner, so your LP timesheet
-                                        entry becomes a copy-paste instead of a reconstruction from memory.
-                                    </p>
-                                </div>
-
-                                <div className={styles.subsection}>
-                                    <h3 className={styles.subsectionTitle}>Morning Check-in</h3>
-                                    <p className={styles.bodyText}>
-                                        Write your plan for the day in the morning section of your journal. What are you
-                                        working on? Any meetings? What is carrying from yesterday? Your prompts for today
-                                        were pre-generated at the end of yesterday — open <code className={styles.inlineCode}>ops/prompts.md</code> in
-                                        Obsidian to see them before you start. If you wrote in your journal already, Claude
-                                        reads it and picks up where you left off. If not, it walks you through your day conversationally.
-                                    </p>
-                                    <div className={styles.commandBlock}>
-                                        <div className={styles.commandHeader}>
-                                            <span className={styles.commandIcon}>Claude Command</span>
-                                        </div>
-                                        <div className={styles.commandBody}>
-                                            <p className={styles.commandPrimary}>checkin morning</p>
-                                            <p className={styles.commandAliases}>
-                                                <span className={styles.commandAliasLabel}>Also works: </span>
-                                                <span className={styles.commandAlias}>&ldquo;morning checkin&rdquo;</span>,{' '}
-                                                <span className={styles.commandAlias}>&ldquo;morning check-in&rdquo;</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className={styles.subsection}>
-                                    <h3 className={styles.subsectionTitle}>Midday Check-in (Optional)</h3>
-                                    <p className={styles.bodyText}>
-                                        If your morning plan changed — new information came in, a meeting produced
-                                        action items, a bug surfaced — write it in the midday section. Claude will
-                                        update your project status files with any new tasks or information.
-                                    </p>
-                                    <div className={styles.commandBlock}>
-                                        <div className={styles.commandHeader}>
-                                            <span className={styles.commandIcon}>Claude Command</span>
-                                        </div>
-                                        <div className={styles.commandBody}>
-                                            <p className={styles.commandPrimary}>checkin midday</p>
-                                            <p className={styles.commandAliases}>
-                                                <span className={styles.commandAliasLabel}>Also works: </span>
-                                                <span className={styles.commandAlias}>&ldquo;midday checkin&rdquo;</span>,{' '}
-                                                <span className={styles.commandAlias}>&ldquo;midday check-in&rdquo;</span>,{' '}
-                                                <span className={styles.commandAlias}>&ldquo;check in midday&rdquo;</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className={styles.subsection}>
-                                    <h3 className={styles.subsectionTitle}>End-of-Day Check-in</h3>
-                                    <p className={styles.bodyText}>
-                                        Write what actually happened. Claude compares your morning plan against your
-                                        actual outcomes, archives completed tasks, and flags items that need to carry forward.
-                                        It also creates tomorrow&apos;s journal with your carryover list already filled in, so
-                                        your starting point is ready in Obsidian the next morning.
-                                    </p>
-                                    <div className={styles.commandBlock}>
-                                        <div className={styles.commandHeader}>
-                                            <span className={styles.commandIcon}>Claude Command</span>
-                                        </div>
-                                        <div className={styles.commandBody}>
-                                            <p className={styles.commandPrimary}>checkin eod</p>
-                                            <p className={styles.commandAliases}>
-                                                <span className={styles.commandAliasLabel}>Also works: </span>
-                                                <span className={styles.commandAlias}>&ldquo;end of day checkin&rdquo;</span>,{' '}
-                                                <span className={styles.commandAlias}>&ldquo;eod check-in&rdquo;</span>,{' '}
-                                                <span className={styles.commandAlias}>&ldquo;check in end of day&rdquo;</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className={styles.subsection}>
-                                    <h3 className={styles.subsectionTitle}>Meeting Notes</h3>
-                                    <p className={styles.bodyText}>
-                                        When you mention a meeting during any check-in, Claude automatically
-                                        creates a template file in your meetings folder with the agenda pre-filled from
-                                        context. Open it in Obsidian and write your notes during or after the meeting.
-                                        When you are done, tell Claude to process it:
-                                    </p>
-                                    <div className={styles.commandBlock}>
-                                        <div className={styles.commandHeader}>
-                                            <span className={styles.commandIcon}>Claude Command</span>
-                                        </div>
-                                        <div className={styles.commandBody}>
-                                            <p className={styles.commandPrimary}>checkin meeting [name]</p>
-                                            <p className={styles.commandAliases}>
-                                                <span className={styles.commandAliasLabel}>Also works: </span>
-                                                <span className={styles.commandAlias}>&ldquo;process the meeting notes&rdquo;</span>,{' '}
-                                                <span className={styles.commandAlias}>&ldquo;process the [name] meeting&rdquo;</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p className={styles.bodyText}>
-                                        Claude extracts decisions, action items, and follow-ups, then routes them
-                                        to the correct project status files. You do not need to manually file anything.
-                                    </p>
-                                </div>
-
-                                <div className={styles.subsection}>
-                                    <h3 className={styles.subsectionTitle}>Querying Your Vault</h3>
-                                    <p className={styles.bodyText}>
-                                        At any time, you can ask Claude questions about your projects in plain English.
-                                        There is no special command — just ask:
-                                    </p>
-                                    <div className={styles.commandBlock}>
-                                        <div className={styles.commandHeader}>
-                                            <span className={styles.commandIcon}>Example Questions</span>
-                                        </div>
-                                        <div className={styles.commandBody}>
-                                            <p className={styles.commandAliases}>
-                                                <span className={styles.commandAlias}>&ldquo;What is blocked right now?&rdquo;</span>,{' '}
-                                                <span className={styles.commandAlias}>&ldquo;What did I work on last week?&rdquo;</span>,{' '}
-                                                <span className={styles.commandAlias}>&ldquo;What is the status of Vortex?&rdquo;</span>,{' '}
-                                                <span className={styles.commandAlias}>&ldquo;What action items came out of the last team meeting?&rdquo;</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <p className={styles.bodyText}>
-                                        Claude reads your vault and synthesizes an answer with references to the
-                                        relevant pages.
-                                    </p>
-                                </div>
-
-                                <div className={styles.subsection}>
-                                    <h3 className={styles.subsectionTitle}>Missed Check-ins</h3>
-                                    <p className={styles.bodyText}>
-                                        If you miss a day, that is fine. The next time you check in, Claude will
-                                        acknowledge the gap and pick up where you left off. No guilt, no friction. If
-                                        you miss a morning check-in, the end-of-day prompts will adjust to cover both.
-                                        The system is designed for real schedules, not perfect ones.
-                                    </p>
-                                </div>
-
-                                <div className={styles.callout}>
-                                    <div className={styles.calloutLabel}>Flexibility</div>
-                                    <p className={styles.calloutText}>
-                                        There is no forced cadence. Your check-in rhythm is configured in your personal{' '}
-                                        <code className={styles.inlineCode}>CLAUDE.md</code> based on your workflow audit. Some
-                                        people check in once with an end-of-day summary. Others do morning and evening. The
-                                        system adapts to you — not the other way around. If your rhythm needs to change, just
-                                        tell Claude and your configuration will be updated.
                                     </p>
                                 </div>
                             </section>
@@ -789,55 +610,6 @@ export default function GuideFireVaultPage() {
                                         Chenla Long (chenla.long@victaulic.com). For Claude licensing and IT
                                         access, contact Sebastian Czajka.
                                     </p>
-                                </div>
-                            </section>
-
-                            {/* ---- Reference ---- */}
-                            <section id="reference" ref={registerSection('reference')} className={styles.section}>
-                                <h2 className={styles.sectionTitle}>Reference</h2>
-                                <p className={styles.sectionIntro}>
-                                    Downloads, links, and contacts.
-                                </p>
-
-                                <div className={styles.subsection}>
-                                    <h3 className={styles.subsectionTitle}>Software Downloads</h3>
-                                    <ul className={styles.bulletList}>
-                                        <li className={styles.bulletItem}><a href={DOWNLOADS.claude} className={styles.downloadLink} target="_blank" rel="noopener noreferrer">Claude for Windows</a></li>
-                                        <li className={styles.bulletItem}><a href={DOWNLOADS.git} className={styles.downloadLink} target="_blank" rel="noopener noreferrer">Git for Windows (v2.53.0)</a></li>
-                                        <li className={styles.bulletItem}><a href={DOWNLOADS.obsidian} className={styles.downloadLink} target="_blank" rel="noopener noreferrer">Obsidian for Windows (v1.12.7)</a></li>
-                                    </ul>
-                                </div>
-
-                                <div className={styles.subsection}>
-                                    <h3 className={styles.subsectionTitle}>Resources</h3>
-                                    <ul className={styles.bulletList}>
-                                        <li className={styles.bulletItem}><a href={DOWNLOADS.auditPrompt} className={styles.downloadLink} target="_blank" rel="noopener noreferrer">Workflow Audit Prompt</a> — used during the onboarding step</li>
-                                    </ul>
-                                </div>
-
-                                <div className={styles.subsection}>
-                                    <h3 className={styles.subsectionTitle}>Key Contacts</h3>
-                                    <table className={styles.troubleshootingTable}>
-                                        <thead>
-                                            <tr>
-                                                <th>Contact</th>
-                                                <th>Role</th>
-                                                <th>For</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Chenla Long, Jr</td>
-                                                <td>System Administrator</td>
-                                                <td>Vault setup, CLAUDE.md, troubleshooting, GitHub access</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sebastian Czajka</td>
-                                                <td>AI Operations Analyst, IT</td>
-                                                <td>Claude licensing, network access, IT approvals</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
                             </section>
                         </>

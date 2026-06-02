@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './tutorial-fire-vault.module.css';
+import styles from './guide-fire-vault.module.css';
 
 interface Props {
     registerSection: (id: string) => (el: HTMLElement | null) => void;
@@ -129,6 +129,25 @@ export default function ArchitectureTab({ registerSection }: Props) {
                         </div>
                     </div>
                 </div>
+
+                <div className={styles.govGrid}>
+                    <div className={`${styles.govCard} ${styles.govCardPrivacy}`}>
+                        <div className={styles.calloutLabel}>Privacy Guarantee</div>
+                        <p className={styles.calloutText}>
+                            Raw journal notes never leave the local machine.{' '}
+                            <code className={styles.inlineCode}>*/journal/**</code> is excluded from
+                            git at the repository level — a technical control, not just policy.
+                        </p>
+                    </div>
+                    <div className={`${styles.govCard} ${styles.govCardAudit}`}>
+                        <div className={styles.calloutLabel}>Governance</div>
+                        <p className={styles.calloutText}>
+                            Every check-in produces a structured commit in the corporate GitHub org.
+                            Full activity log per person, per date — visible to IT at any time
+                            without additional tooling.
+                        </p>
+                    </div>
+                </div>
             </section>
 
             {/* ---- Data Flow ---- */}
@@ -175,33 +194,6 @@ export default function ArchitectureTab({ registerSection }: Props) {
                                 Team visibility — status, blockers, action items queryable anytime
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ---- Privacy & Governance ---- */}
-            <section id="arch-governance" ref={registerSection('arch-governance')} className={styles.section}>
-                <h2 className={styles.sectionTitle}>Privacy &amp; Governance</h2>
-                <p className={styles.sectionIntro}>
-                    Two guarantees that underpin the system — one technical, one operational.
-                </p>
-
-                <div className={styles.govGrid}>
-                    <div className={`${styles.govCard} ${styles.govCardPrivacy}`}>
-                        <div className={styles.calloutLabel}>Privacy Guarantee</div>
-                        <p className={styles.calloutText}>
-                            Raw journal notes never leave the local machine.{' '}
-                            <code className={styles.inlineCode}>*/journal/**</code> is excluded from
-                            git at the repository level — a technical control, not just policy.
-                        </p>
-                    </div>
-                    <div className={`${styles.govCard} ${styles.govCardAudit}`}>
-                        <div className={styles.calloutLabel}>Governance</div>
-                        <p className={styles.calloutText}>
-                            Every check-in produces a structured commit in the corporate GitHub org.
-                            Full activity log per person, per date — visible to IT at any time
-                            without additional tooling.
-                        </p>
                     </div>
                 </div>
             </section>

@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './tutorial-fire-vault.module.css';
+import styles from './guide-fire-vault.module.css';
 
 interface Props {
     registerSection: (id: string) => (el: HTMLElement | null) => void;

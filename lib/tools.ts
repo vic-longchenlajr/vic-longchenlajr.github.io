@@ -23,12 +23,12 @@ export const TOOLS: Tool[] = [
     name: "Vortex Project Builder",
     description:
       "Multi-system configuration, real-time pricing & BOM generation",
-    version: "v2.3.1",
+    version: "v2.3.3",
     status: "active",
     category: "configuration",
     type: "external",
     url: "https://victaulic-engineering-tech-solutions.github.io/vortex-project-builder/",
-    updatedAt: "2026-04-23",
+    updatedAt: "2026-05-18",
   },
   {
     name: "VicFlex Bracket Filter",
@@ -43,23 +43,23 @@ export const TOOLS: Tool[] = [
   {
     name: "LP Resource Dashboard",
     description: "Resource planning and allocation",
-    version: "v1.3.2",
+    version: "v1.3.3",
     status: "beta",
     category: "engineering",
     type: "external",
     url: "https://victaulic-engineering-tech-solutions.github.io/resource-dashboard/",
-    updatedAt: "2026-04-17",
+    updatedAt: "2026-05-05",
   },
   {
     name: "VicForge",
     description:
       "Engineering & lab management — projects, timesheets, analytics, part codes",
-    version: "v0.6.0",
+    version: "v0.14.0",
     status: "alpha",
     category: "engineering",
     type: "external",
     url: "https://victaulic-engineering-tech-solutions.github.io/vicforge/",
-    updatedAt: "2026-04-23",
+    updatedAt: "2026-05-28",
   },
 
   {

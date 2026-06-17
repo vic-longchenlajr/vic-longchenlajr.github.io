@@ -1,119 +1,108 @@
 'use client';
 
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './slides.module.css';
 import type { SlideComponentProps } from '@/components/PresentationEngine';
 
-export default function PlatformOrchestration(_props: SlideComponentProps) {
+interface PanelItem {
+    k: string;
+    v: string;
+}
+
+// Eight-stage loop: a fast "before" recap (the scatter), then the two structural
+// moves — restructure (converge into one model) and encode — revealed in order.
+const TOTAL_STAGES = 8;
+
+export default function PlatformOrchestration({ content }: SlideComponentProps) {
     const [stage, setStage] = useState(0);
 
     useEffect(() => {
-        const duration = stage === 4 ? 4000 : stage === 10 ? 12000 : 1500;
+        const duration = stage === TOTAL_STAGES - 1 ? 9000 : stage === 0 ? 800 : 1300;
         const timeout = setTimeout(() => {
-            setStage((prev) => (prev + 1) % 11);
+            setStage((prev) => (prev + 1) % TOTAL_STAGES);
         }, duration);
         return () => clearTimeout(timeout);
     }, [stage]);
 
     const isVisible = (s: number) => stage >= s;
-    const isAfterActive = stage >= 5;
+
+    const sources = (content?.sources as string[]) || [
+        'Media constraints', 'Pricing', 'Partcodes', 'Agency rules', 'Sizing'
+    ];
+    const beforeLabel = (content?.beforeLabel as string) || 'The Fragmented Method';
+    const beforeCaption = (content?.beforeCaption as string) || 'Logic scattered across 4+ documents. No single source of truth.';
+    const afterLabel = (content?.afterLabel as string) || 'The Restructured Method';
+    const afterCaption = (content?.afterCaption as string) || 'Consolidate the logic. Restructure the method. Then encode it — once.';
+    const modelNode = (content?.modelNode as string) || 'One Canonical Model';
+    const encodeNode = (content?.encodeNode as string) || 'Encoded in Software';
+    const outputNode = (content?.outputNode as string) || 'Validated Output';
+    const manualNode = (content?.manualNode as string) || 'Manual Design';
+    const beforeOutputNode = (content?.beforeOutputNode as string) || 'Inconsistent Output';
+    const panelTitle = (content?.panelTitle as string) || 'THE STRUCTURAL CHANGE';
+    const panelItems = (content?.panelItems as PanelItem[]) || [];
+    const panelCaption = (content?.panelCaption as string) || '';
+
+    const beforeActive = stage >= 1 && stage < 3;
+    const afterActive = stage >= 3;
 
     return (
         <div className={styles.comparisonContainer}>
             <div className={styles.modelSplit}>
-                {/* TOP ROW: BEFORE */}
-                <div className={`${styles.comparisonRow} ${stage >= 1 && stage < 5 ? styles.activeRow : ''}`}>
-                    <div className={styles.rowLabel}>Independent System Calculations</div>
+                {/* TOP ROW: BEFORE — fast recap of the scatter */}
+                <div className={`${styles.comparisonRow} ${beforeActive ? styles.activeRow : ''}`}>
+                    <div className={styles.rowLabel}>{beforeLabel}</div>
                     <div className={styles.flowCanvas}>
                         <div className={styles.flowRow}>
-                            <div className={styles.convergence} style={{ flexDirection: 'row', gap: '4px' }}>
-                                <div className={`${styles.node} ${styles.nodeSmall} ${isVisible(1) ? styles.nodeVisible : ''}`}>Zone A</div>
-                                <div className={`${styles.node} ${styles.nodeSmall} ${isVisible(1) ? styles.nodeVisible : ''}`}>Zone B</div>
+                            <div className={styles.convergence} style={{ flexDirection: 'row', flexWrap: 'wrap', gap: '4px' }}>
+                                {sources.map((s) => (
+                                    <div key={s} className={`${styles.node} ${styles.nodeSmall} ${isVisible(1) ? styles.nodeVisible : ''}`}>{s}</div>
+                                ))}
                             </div>
+                            <div className={`${styles.connector} ${isVisible(1) ? styles.connectorVisible : ''}`}>→</div>
+                            <div className={`${styles.node} ${isVisible(1) ? styles.nodeVisible : ''} ${beforeActive ? styles.nodeHighlight : ''}`}>{manualNode}</div>
                             <div className={`${styles.connector} ${isVisible(2) ? styles.connectorVisible : ''}`}>→</div>
-                            <div className={`${styles.node} ${isVisible(2) ? styles.nodeVisible : ''} ${isVisible(2) && !isAfterActive ? styles.nodeHighlight : ''}`}>System 1</div>
-                            <div className={`${styles.connector} ${isVisible(3) ? styles.connectorVisible : ''}`}>→</div>
-                            <div className={`${styles.node} ${styles.nodeOutput} ${isVisible(3) ? styles.nodeVisible : ''}`}>Output 1</div>
-                        </div>
-                        <div className={styles.flowRow}>
-                            <div className={styles.convergence} style={{ flexDirection: 'row', gap: '4px' }}>
-                                <div className={`${styles.node} ${styles.nodeSmall} ${isVisible(1) ? styles.nodeVisible : ''}`}>Zone C</div>
-                                <div className={`${styles.node} ${styles.nodeSmall} ${isVisible(1) ? styles.nodeVisible : ''}`}>Zone D</div>
-                            </div>
-                            <div className={`${styles.connector} ${isVisible(2) ? styles.connectorVisible : ''}`}>→</div>
-                            <div className={`${styles.node} ${isVisible(2) ? styles.nodeVisible : ''} ${isVisible(2) && !isAfterActive ? styles.nodeHighlight : ''}`}>System 2</div>
-                            <div className={`${styles.connector} ${isVisible(3) ? styles.connectorVisible : ''}`}>→</div>
-                            <div className={`${styles.node} ${styles.nodeOutput} ${isVisible(3) ? styles.nodeVisible : ''}`}>Output 2</div>
+                            <div className={`${styles.node} ${styles.nodeOutput} ${isVisible(2) ? styles.nodeVisible : ''}`}>{beforeOutputNode}</div>
                         </div>
                     </div>
-                    <div className={styles.rowCaption}>&quot;Multiple system-level outputs. Manual project reconciliation.&quot;</div>
+                    <div className={styles.rowCaption}>&quot;{beforeCaption}&quot;</div>
                 </div>
 
-                {/* BOTTOM ROW: AFTER */}
-                <div className={`${styles.comparisonRow} ${stage >= 5 ? styles.activeRow : ''}`}>
-                    <div className={styles.rowLabel}>Project-Level Hierarchy</div>
-                    <div className={styles.hierarchyGrid}>
-                        {['A', 'B', 'C', 'D'].map((zoneChar, i) => {
-                            const row = i + 1;
-                            const enc1 = String.fromCharCode(65 + i * 2);
-                            const enc2 = String.fromCharCode(65 + i * 2 + 1);
-
-                            return (
-                                <Fragment key={zoneChar}>
-                                    <div className={styles.gridCell} style={{ gridColumn: 1, gridRow: row }}>
-                                        <div className={`${styles.node} ${styles.nodeSmall} ${isVisible(5) ? styles.nodeVisible : ''}`}>
-                                            Enc {enc1}
-                                        </div>
-                                    </div>
-                                    <div className={styles.gridCell} style={{ gridColumn: 3, gridRow: row }}>
-                                        <div className={`${styles.node} ${styles.nodeSmall} ${isVisible(5) ? styles.nodeVisible : ''}`}>
-                                            Enc {enc2}
-                                        </div>
-                                    </div>
-                                    <div className={`${styles.gridConnector} ${isVisible(6) ? styles.connectorVisible : ''}`} style={{ gridColumn: 4, gridRow: row }}>→</div>
-                                    <div className={styles.gridCell} style={{ gridColumn: 5, gridRow: row }}>
-                                        <div className={`${styles.node} ${styles.nodeSmall} ${isVisible(6) ? styles.nodeVisible : ''}`}>
-                                            Zone {zoneChar}
-                                        </div>
-                                    </div>
-                                </Fragment>
-                            );
-                        })}
-
-                        <div className={`${styles.gridConnector} ${isVisible(7) ? styles.connectorVisible : ''}`} style={{ gridColumn: 6, gridRow: '1 / span 2' }}>→</div>
-                        <div className={`${styles.systemNodeGroup} ${isVisible(7) ? styles.nodeHighlight : ''}`} style={{ gridRow: '1 / span 2' }}>
-                            <div className={`${styles.node} ${isVisible(7) ? styles.nodeVisible : ''}`}>System 1</div>
-                        </div>
-
-                        <div className={`${styles.gridConnector} ${isVisible(7) ? styles.connectorVisible : ''}`} style={{ gridColumn: 6, gridRow: '3 / span 2' }}>→</div>
-                        <div className={`${styles.systemNodeGroup} ${isVisible(7) ? styles.nodeHighlight : ''}`} style={{ gridRow: '3 / span 2' }}>
-                            <div className={`${styles.node} ${isVisible(7) ? styles.nodeVisible : ''}`}>System 2</div>
-                        </div>
-
-                        <div className={`${styles.gridConnector} ${isVisible(8) ? styles.connectorVisible : ''}`} style={{ gridColumn: 8, gridRow: '1 / span 4' }}>→</div>
-                        <div className={styles.projectNodeGroup}>
-                            <div className={`${styles.node} ${styles.nodeLarge} ${isVisible(8) ? styles.nodeVisible : ''} ${isVisible(8) ? styles.nodeHighlight : ''}`}>PROJECT</div>
-                        </div>
-
-                        <div className={`${styles.gridConnector} ${isVisible(9) ? styles.connectorVisible : ''}`} style={{ gridColumn: 10, gridRow: '1 / span 4' }}>→</div>
-                        <div className={styles.outputNodeGroup}>
-                            <div className={`${styles.node} ${styles.nodeLarge} ${styles.nodeUnified} ${isVisible(9) ? styles.nodeVisible : ''}`}>UNIFIED OUTPUT</div>
+                {/* BOTTOM ROW: AFTER — restructure (1) then encode (2) */}
+                <div className={`${styles.comparisonRow} ${afterActive ? styles.activeRow : ''}`}>
+                    <div className={styles.rowLabel}>{afterLabel}</div>
+                    <div className={styles.flowCanvas}>
+                        <div className={styles.flowRow}>
+                            <div className={styles.convergence}>
+                                {sources.map((s) => (
+                                    <div key={s} className={`${styles.node} ${styles.nodeSmall} ${isVisible(3) ? styles.nodeVisible : ''}`}>{s}</div>
+                                ))}
+                            </div>
+                            <div className={`${styles.connector} ${isVisible(4) ? styles.connectorVisible : ''}`}>→</div>
+                            <div className={`${styles.node} ${styles.nodeLarge} ${isVisible(4) ? styles.nodeVisible : ''} ${isVisible(4) ? styles.nodeHighlight : ''}`}>
+                                <span className={styles.moveTag}>① RESTRUCTURE</span>
+                                {modelNode}
+                            </div>
+                            <div className={`${styles.connector} ${isVisible(5) ? styles.connectorVisible : ''}`}>→</div>
+                            <div className={`${styles.node} ${styles.nodeLarge} ${isVisible(5) ? styles.nodeVisible : ''} ${isVisible(5) ? styles.nodeHighlight : ''}`}>
+                                <span className={styles.moveTag}>② ENCODE</span>
+                                {encodeNode}
+                            </div>
+                            <div className={`${styles.connector} ${isVisible(6) ? styles.connectorVisible : ''}`}>→</div>
+                            <div className={`${styles.node} ${styles.nodeLarge} ${styles.nodeUnified} ${isVisible(6) ? styles.nodeVisible : ''}`}>{outputNode}</div>
                         </div>
                     </div>
-                    <div className={styles.rowCaption}>&quot;One project. One BOM. One documentation set.&quot;</div>
+                    <div className={styles.rowCaption}>&quot;{afterCaption}&quot;</div>
                 </div>
             </div>
 
             <div className={styles.capabilityPanel}>
-                <h3 className={styles.capabilityTitle}>PLATFORM ORCHESTRATION</h3>
+                <h3 className={styles.capabilityTitle}>{panelTitle}</h3>
                 <ul className={styles.capabilityList}>
-                    <li><strong>Model:</strong> enclosure → zone → system → project modeling</li>
-                    <li><strong>Validate:</strong> cross-system validation logic</li>
-                    <li><strong>Aggregate:</strong> centralized BOM aggregation</li>
-                    <li><strong>Standardize:</strong> project-level documentation</li>
-                    <li><strong>Guide:</strong> warnings, tutorials, error codes</li>
+                    {panelItems.map((item) => (
+                        <li key={item.k}><strong>{item.k}:</strong> {item.v}</li>
+                    ))}
                 </ul>
-                <p className={styles.capabilityCaption}>Scaling from system validation to project-wide coordination.</p>
+                {panelCaption && <p className={styles.capabilityCaption}>{panelCaption}</p>}
             </div>
         </div>
     );

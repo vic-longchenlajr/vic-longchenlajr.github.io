@@ -1,6 +1,43 @@
 # Changelog
 
 
+## v1.5.0 — 2026-06-17
+
+### Presentation Engine — Motion system
+- Added framer-motion as the animation foundation; introduced a shared motion vocabulary (`components/PresentationEngine/motion.ts`): `EASE`, `DUR`, and the `staggerContainer`, `fadeUp`, `floatDown`, `slideIn`, `fadeIn`, and `wipeReveal` helpers
+- Added `Typewriter` component for character-by-character title reveals
+- Added `WipeText` component for word-staggered, left-to-right directional text
+
+### Presentation Engine — Animation behavior
+- Reworked rendering to mount only the active (snapped) slide's content; leaving a slide unmounts it and returning mounts it fresh, so every entrance replays cleanly from the start with no stale animation or timer state
+- Raised the active-slide IntersectionObserver threshold to 0.6 so small, interrupted scrolls no longer restart a slide
+- Converted the shell `.animateIn` reveal from a CSS transition to a keyframe so non-self-animating layouts replay on each visit
+- Disabled OS reduced-motion gating so animations always run — this also fixed an SSR hydration mismatch caused by `useReducedMotion()` differing between server and client
+
+### Presentation Engine — Persistent header
+- Added a persistent, fixed header (`chrome/PresentationHeader.tsx`): the title/subtitle and breadcrumb wipe left-to-right on slide change while the progress dots and counter update in place; hidden on the hero
+- Replaced per-slide headers with empty spacers sized from a shared `--header-bar-h`; removed the now-unused `SlideHeader` component
+
+### Presentation Engine — Layouts and footer
+- Converted Hero, Intro, and Grid layouts to self-animating framer-motion entrances (tracked in a `selfAnimated` list so the shell reveal does not double up)
+- Added a `slam` content flag to the Grid layout for a scale-overshoot "slam and settle" entrance
+- Added a `framedFooter` meta option that keeps the gradient footer band as a frame on every content slide while rendering no takeaway text
+
+### Lunch & Learn Presentation — Slide choreography
+- Hero: the title types out, then the tagline floats in from the top
+- Intro: the identity card floats in from the left followed by its orange spine; the two columns reveal strictly in sequence with bullets floating in one at a time
+- Root Problem: tiles slam in left-to-right, top-to-bottom and settle
+- A Real Example (SourceStack): the setup floats in from the top, the resource cards slide in from the left one after another, then the punchline wipes open
+- Vortex and VicFlex demos (DemoLaunch): the column labels float down, each row resolves signal → arrow → target row by row, and the launch button drops in last; VicFlex runs faster via a `tempo` flag
+- How I Build (ProcessLoop): the phase rail and connectors draw in left-to-right, the detail card types its phase and title then floats in the description and pills, and the principles wipe in one after another
+- Where the Effort Goes (ImpactCharts): the Vortex chart builds step by step (axes, lines, labels, diff reveal, axis labels, caption), the divider draws top-to-bottom, then the VicFlex chart repeats the sequence; chart titles animate on their own chart's schedule
+- Is This Your Workflow (ClosingSignals): the signals title floats in, the signals fade in top-to-bottom, the arrow slides in, and the target card wipes in
+- Slowed the overall timing for a more deliberate, projector-friendly pace
+
+### Build and dependencies
+- Added `framer-motion` (^12.40)
+
+
 ## v1.4.1 — 2026-06-02
 
 ### Changes

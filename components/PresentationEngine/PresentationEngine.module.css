@@ -11,6 +11,28 @@
     --main-height: 75%;
     --slide-padding-x: 8%;
     --sidebar-width: 320px;
+    /* Persistent-header height. Matches 12cqh of a slide (slide height is
+       100vh - topbar) so the fixed header lines up exactly with the empty
+       header spacer each slide reserves. */
+    --header-bar-h: clamp(64px, calc((100vh - var(--topbar-height)) * 0.12), 120px);
+
+    /* Fluid type scale — sizes track the smaller dimension of the slide box
+       (cqmin), so text rescales to fit at any screen size or browser zoom.
+       Tuned UP for projection: a slide read across a room needs body copy
+       near 1.2-1.3rem, not 0.95rem. Steps hold a >=1.25 ratio for hierarchy. */
+    --fs-hero:   clamp(2.2rem, 8cqmin, 4.4rem);
+    --fs-h2:     clamp(1.4rem, 4.4cqmin, 2.5rem);
+    --fs-title:  clamp(1.15rem, 3.1cqmin, 1.7rem);
+    --fs-body:   clamp(0.95rem, 2.2cqmin, 1.3rem);
+    --fs-small:  clamp(0.82rem, 1.8cqmin, 1.05rem);
+    --fs-label:  clamp(0.72rem, 1.5cqmin, 0.9rem);
+    --fs-metric: clamp(2.2rem, 7cqmin, 4rem);
+
+    /* Fluid spacing */
+    --gap-lg:   clamp(16px, 3.2cqmin, 40px);
+    --gap-md:   clamp(10px, 2cqmin, 24px);
+    --gap-sm:   clamp(6px, 1.2cqmin, 14px);
+    --pad-card: clamp(14px, 2.6cqmin, 32px);
 }
 
 /* ---- Container ---- */
@@ -24,6 +46,27 @@
     scroll-behavior: smooth;
     position: relative;
     background-color: var(--brand-black);
+    /* The deck is a fixed light-surface design (white slides + dark accent
+       cards). Pin text colors here so it stays legible regardless of the
+       site's global light/dark theme. Dark cards re-pin light text locally. */
+    color: var(--brand-black);
+    --text-muted: #5A5A5A;
+    /* Darker blue for blue text on white surfaces (the bright --brand-blue
+       only clears AA on dark cards). */
+    --brand-blue-ink: #0077A3;
+    /* Legacy deck tokens. The site-wide light/dark refactor dropped --border
+       and repurposed --highlight as solid orange, which broke every card
+       outline, the progress dots, and tint backgrounds across the deck.
+       Re-pin them here (warm-tinted neutral border; soft-peach tint) so the
+       deck is self-sufficient regardless of the global theme. */
+    --border: #D8D2C8;
+    --highlight: #FCEDE2;
+}
+
+/* Default: text on the white slide surface is dark. The hero and dark accent
+   cards override this locally. */
+.slide {
+    color: var(--brand-black);
 }
 
 /* ---- Base Slide ---- */
@@ -35,19 +78,24 @@
     scroll-snap-stop: always;
     display: grid !important;
     grid-template-columns: 1fr var(--sidebar-space);
-    grid-template-rows: 120px 1fr;
+    grid-template-rows: var(--header-row) 1fr;
     background-color: var(--bg-page);
     position: relative;
     box-sizing: border-box;
     overflow: hidden;
+    /* Establish a size query container so descendants can size in cq units. */
+    container-type: size;
+    container-name: slide;
+    --header-row: var(--header-bar-h);
+    --footer-row: clamp(48px, 9cqh, 72px);
 }
 
 .hasFooter {
-    grid-template-rows: 120px 1fr 70px;
+    grid-template-rows: var(--header-row) 1fr var(--footer-row);
 }
 
 .noFooter {
-    grid-template-rows: 120px 1fr;
+    grid-template-rows: var(--header-row) 1fr;
 }
 
 .noHeader.noFooter {
@@ -55,7 +103,7 @@
 }
 
 .noHeader.hasFooter {
-    grid-template-rows: 1fr 70px;
+    grid-template-rows: 1fr var(--footer-row);
 }
 
 /* ---- Zones ---- */
@@ -68,25 +116,25 @@
     box-sizing: border-box;
 }
 
+/* Now an empty spacer reserving the header-row height; the divider line lives
+   on the persistent header that overlays this zone. */
 .headerZone {
     grid-row: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 20px var(--slide-padding-x);
-    border-bottom: 1px solid var(--border);
+    min-height: 0;
+    overflow: hidden;
 }
 
 .headerInfo {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 12px;
+    gap: var(--gap-sm);
+    min-width: 0;
 }
 
 .headerTitle {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: var(--fs-title);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 900;
@@ -94,27 +142,80 @@
 
 .headerSubtitle {
     margin: 2px 0 0 0;
-    font-size: 0.81rem;
+    font-size: var(--fs-small);
     color: var(--brand-orange);
     font-weight: 800;
 }
 
 .breadcrumb {
-    font-size: 0.65rem;
+    font-size: var(--fs-label);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: var(--text-muted);
     font-weight: 900;
 }
 
+/* ---- Persistent header (fixed chrome; content wipes on slide change) ---- */
+
+.persistentHeader {
+    position: fixed;
+    top: var(--topbar-height);
+    left: 0;
+    right: var(--sidebar-space);
+    height: var(--header-bar-h);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--gap-md);
+    padding: clamp(8px, 1.4vh, 18px) var(--slide-padding-x);
+    background: var(--bg-page, #ffffff);
+    border-bottom: 1px solid var(--border);
+    box-sizing: border-box;
+    z-index: 40;
+}
+
+.persistentHeaderLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.persistentHeaderRight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--gap-sm);
+    min-width: 0;
+}
+
+/* Explicit sizes here — the fixed bar isn't a slide size-container, so the
+   cqmin-based defaults on these classes would collapse to their minimums. */
+.persistentHeader .headerTitle {
+    font-size: clamp(1rem, 1.5vw, 1.6rem);
+    line-height: 1.15;
+}
+
+.persistentHeader .headerSubtitle {
+    font-size: clamp(0.78rem, 1vw, 1rem);
+}
+
+.persistentHeader .breadcrumb {
+    font-size: clamp(0.7rem, 0.85vw, 0.9rem);
+}
+
 .mainZone {
     grid-row: 2;
-    padding: 30px var(--slide-padding-x);
+    padding: clamp(16px, 3cqh, 30px) var(--slide-padding-x);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    overflow: hidden;
+    min-height: 0;
+    /* Proportions are fluid so content fits; this is a graceful fallback
+       for pathological content rather than the primary mechanism. */
+    overflow: hidden auto;
     position: relative;
 }
 
@@ -144,12 +245,14 @@
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: var(--gap-md);
 }
 
 .mainInner {
     width: 100%;
     max-width: 1400px;
+    min-height: 0;
+    margin-inline: auto;
 }
 
 .mainZone > .animateIn {
@@ -160,29 +263,48 @@
 
 .progressDots {
     display: flex;
-    gap: 8px;
+    gap: 9px;
     align-items: center;
 }
 
 .dot {
-    width: 6px;
-    height: 6px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    background: var(--border);
-    transition: all 0.3s ease;
+    box-sizing: border-box;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+/* Completed slides: filled but recessive. */
+.dotPast {
+    background: var(--brand-orange);
+    border-color: var(--brand-orange);
+    opacity: 0.4;
+}
+
+/* Current slide: filled, enlarged, with a soft focus ring. */
 .dotActive {
     background: var(--brand-orange);
-    transform: scale(1.4);
+    border-color: var(--brand-orange);
+    transform: scale(1.55);
+    box-shadow: 0 0 0 3px rgba(232, 119, 34, 0.18);
+}
+
+/* Upcoming slides: hollow outline (now visible — --border was undefined). */
+.dotFuture {
+    background: transparent;
+    border-color: var(--border);
 }
 
 .dotCounter {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: 800;
-    margin-left: 8px;
+    margin-left: 10px;
     color: var(--text-muted);
     font-family: monospace;
+    letter-spacing: 0.05em;
 }
 
 /* ---- Takeaway Band ---- */
@@ -192,29 +314,29 @@
     color: var(--brand-black);
     padding: 4px 12px;
     font-weight: 900;
-    font-size: 0.75rem;
+    font-size: var(--fs-label);
     letter-spacing: 0.05em;
     flex-shrink: 0;
 }
 
 .takeawayText {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: clamp(0.82rem, 2cqmin, 1.1rem);
     font-weight: 600;
     letter-spacing: -0.01em;
 }
 
 /* ---- Animations ---- */
 
+/* Keyframe (not transition) so it replays every time the element mounts — and
+   content only mounts while its slide is active, so this restarts on each visit. */
 .animateIn {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    animation: animateInRise 0.8s cubic-bezier(0.19, 1, 0.22, 1) both;
 }
 
-.visible .animateIn {
-    opacity: 1;
-    transform: translateY(0);
+@keyframes animateInRise {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .delay1 {
@@ -359,16 +481,18 @@
 
 .notesOverlay {
     position: fixed;
-    bottom: 50px;
-    left: 50px;
-    width: 420px;
-    background: rgba(255, 255, 255, 0.8);
+    bottom: 40px;
+    left: 40px;
+    width: 460px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
     color: var(--brand-black);
-    padding: 40px;
+    padding: 32px 36px;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 30px;
+    border-radius: 24px;
     z-index: 2000;
     font-size: 1rem;
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
@@ -377,30 +501,45 @@
 
 .notesTitle {
     color: var(--brand-orange);
-    margin-bottom: 12px;
-    font-size: 0.7rem;
+    margin-bottom: 16px;
+    font-size: 0.72rem;
     font-weight: 900;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
 }
 
 .notesSection {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
 
 .notesLabel {
-    color: white;
-    font-size: 0.65rem;
+    color: var(--brand-black);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
 .notesBody {
-    opacity: 0.9;
+    color: var(--brand-black);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    white-space: pre-line;
+    opacity: 0.88;
+}
+
+/* The transition line to say out loud, into the next slide. */
+.notesBridge {
+    color: var(--brand-orange);
+    font-size: 0.92rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.45;
 }
 
 .notesHint {
-    margin-top: 20px;
-    font-size: 0.6rem;
+    margin-top: 18px;
+    font-size: 0.62rem;
     opacity: 0.5;
 }
 
@@ -431,7 +570,7 @@
 }
 
 .heroSlide h1 {
-    font-size: 3rem;
+    font-size: var(--fs-hero);
     color: var(--brand-orange);
     margin: 0;
     text-transform: uppercase;

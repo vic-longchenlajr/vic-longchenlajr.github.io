@@ -17,10 +17,11 @@
 .flowStages {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
     width: 100%;
     position: relative;
-    padding-bottom: 40px;
+    padding-bottom: var(--gap-lg);
+    min-height: 0;
 }
 
 .flowStages::before {
@@ -39,21 +40,27 @@
 
 .flowStage {
     flex: 1;
+    min-width: 0;
     background: var(--bg-sidebar);
     border: 1px solid var(--border);
-    padding: 25px;
+    padding: var(--pad-card);
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: var(--gap-sm);
     transition: all 0.4s ease;
     position: relative;
-    margin-right: 20px;
+    margin-right: var(--gap-md);
+    /* Dark card: light text overrides the slide's dark default. */
+    color: #EDEDED;
+    --text-muted: #C4C4C4;
 }
 
 .flowStage:last-child {
     margin-right: 0;
     border-color: rgba(242, 103, 34, 0.3);
-    background: linear-gradient(135deg, var(--bg-sidebar) 0%, rgba(242, 103, 34, 0.05) 100%);
+    /* Opaque warm-dark gradient — the previous end stop was 95% transparent,
+       so the white slide bled through and killed text contrast. */
+    background: linear-gradient(135deg, var(--bg-sidebar) 0%, #2A1C12 100%);
 }
 
 .flowStage:hover {
@@ -64,7 +71,7 @@
 }
 
 .flowStageHeader {
-    font-size: 0.8rem;
+    font-size: var(--fs-small);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -92,11 +99,11 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--gap-sm);
 }
 
 .flowBullets li {
-    font-size: 0.9rem;
+    font-size: var(--fs-body);
     color: var(--text-muted);
     position: relative;
     padding-left: 15px;
@@ -112,9 +119,9 @@
 }
 
 .flowCaption {
-    margin-top: 30px;
+    margin-top: var(--gap-md);
     text-align: center;
-    font-size: 0.85rem;
+    font-size: var(--fs-small);
     color: var(--text-muted);
     font-style: italic;
     opacity: 0.7;
@@ -125,8 +132,10 @@
 .comparisonContainer {
     display: flex;
     width: 100%;
+    height: 100%;
     justify-content: space-between;
-    gap: 40px;
+    gap: var(--gap-lg);
+    min-height: 0;
 }
 
 .comparisonCard {
@@ -134,10 +143,12 @@
     border: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: var(--pad-card);
     height: 100%;
     box-sizing: border-box;
     flex: 1;
+    min-width: 0;
+    overflow: hidden;
     transition: all 0.3s ease;
 }
 
@@ -161,7 +172,7 @@
 }
 
 .comparisonTitle {
-    font-size: 1.8rem;
+    font-size: var(--fs-h2);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -0.01em;
@@ -170,7 +181,7 @@
 }
 
 .comparisonSub {
-    font-size: 0.95rem;
+    font-size: var(--fs-body);
     color: var(--text-muted);
     margin: 0;
     line-height: 1.5;
@@ -179,22 +190,24 @@
 .comparisonSections {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    margin-top: 20px;
+    gap: var(--gap-md);
+    margin-top: var(--gap-md);
+    min-height: 0;
+    overflow: hidden;
 }
 
 .comparisonSection {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--gap-sm);
 }
 
 .comparisonSectionLabel {
-    font-size: 0.75rem;
+    font-size: var(--fs-small);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--brand-blue);
+    color: var(--brand-blue-ink);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -218,7 +231,7 @@
 }
 
 .comparisonList li {
-    font-size: 0.9rem;
+    font-size: var(--fs-body);
     color: var(--text-muted);
     line-height: 1.5;
     position: relative;
@@ -240,7 +253,7 @@
 }
 
 .chip {
-    font-size: 0.65rem;
+    font-size: var(--fs-label);
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -258,20 +271,22 @@
     justify-content: center;
     align-items: stretch;
     width: 100%;
-    gap: 80px;
+    gap: clamp(20px, 4cqi, 80px);
+    min-height: 0;
 }
 
 .transformCol {
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
-    min-height: 320px;
+    gap: var(--gap-md);
+    min-height: 0;
 }
 
 .transformColLabel {
-    font-size: 0.7rem;
+    font-size: var(--fs-label);
     font-weight: 900;
     color: var(--text-muted);
     letter-spacing: 0.15em;
@@ -280,8 +295,8 @@
 
 .transformStack {
     position: relative;
-    width: 200px;
-    height: 240px;
+    width: clamp(120px, 16cqi, 200px);
+    height: clamp(150px, 24cqmin, 240px);
     opacity: 0;
     margin-left: -60px;
 }
@@ -292,8 +307,8 @@
 
 .transformCard {
     position: absolute;
-    width: 160px;
-    height: 200px;
+    width: clamp(96px, 13cqi, 160px);
+    height: clamp(120px, 20cqmin, 200px);
     background: white;
     border: 1px solid var(--border);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -302,7 +317,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 0.8rem;
+    font-size: var(--fs-small);
     color: var(--brand-black);
     transition: all 0.5s ease;
     top: 50%;
@@ -316,7 +331,7 @@
 .transformCard:nth-child(4) { animation: sheetCycle 9s -6s infinite; }
 
 .transformArrow {
-    font-size: 2rem;
+    font-size: var(--fs-h2);
     color: var(--border);
     opacity: 0.5;
     font-weight: 300;
@@ -329,11 +344,11 @@
 }
 
 .transformEngine {
-    width: 280px;
+    width: clamp(180px, 24cqi, 280px);
     background: white;
     border: 2px solid var(--brand-black);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    padding: 25px;
+    padding: var(--pad-card);
     border-radius: 4px;
     position: relative;
     opacity: 0;
@@ -354,9 +369,9 @@
 }
 
 .transformEngineHeader {
-    font-size: 0.9rem;
+    font-size: var(--fs-body);
     font-weight: 900;
-    margin-bottom: 20px;
+    margin-bottom: var(--gap-md);
     text-align: center;
     letter-spacing: 0.05em;
 }
@@ -364,11 +379,11 @@
 .transformEngineBody {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--gap-sm);
 }
 
 .transformEngineModule {
-    font-size: 0.75rem;
+    font-size: var(--fs-small);
     font-weight: 700;
     color: var(--text-muted);
     padding: 8px 0;
@@ -382,15 +397,15 @@
 .transformOutputStack {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    width: 250px;
+    gap: var(--gap-sm);
+    width: clamp(160px, 22cqi, 250px);
 }
 
 .transformOutputTile {
     background: white;
     border: 1px solid var(--border);
     padding: 12px 15px;
-    font-size: 0.8rem;
+    font-size: var(--fs-small);
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -417,7 +432,7 @@
 }
 
 .transformCaption {
-    font-size: 0.65rem;
+    font-size: var(--fs-label);
     font-weight: 700;
     color: var(--text-muted);
     text-align: center;
@@ -428,7 +443,7 @@
 /* ---- Hero Layout (Anchor Stat) ---- */
 
 .heroStat {
-    margin-top: 40px;
+    margin-top: var(--gap-lg);
     display: flex;
     align-items: baseline;
     justify-content: center;
@@ -443,14 +458,14 @@
 }
 
 .heroStatValue {
-    font-size: 2.5rem;
+    font-size: var(--fs-metric);
     font-weight: 900;
     color: var(--brand-orange);
     line-height: 1;
 }
 
 .heroStatLabel {
-    font-size: 1rem;
+    font-size: var(--fs-body);
     font-weight: 600;
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.3;
@@ -462,48 +477,61 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: var(--gap-lg);
+    min-height: 0;
 }
 
 .gridContainer {
     display: grid;
-    gap: 30px;
+    gap: var(--gap-md);
     width: 100%;
 }
 
 .gridTile {
-    background: white;
+    background: linear-gradient(180deg, #ffffff 0%, var(--highlight) 100%);
     border: 1px solid var(--border);
-    padding: 35px;
-    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    padding: var(--pad-card);
+    /* Transform is owned by framer-motion (entrance + hover lift); CSS only
+       transitions the hover color/shadow so the two don't fight. */
+    transition: border-color 0.4s cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     display: flex;
     flex-direction: column;
+    gap: var(--gap-sm);
     border-radius: 4px;
+    min-width: 0;
 }
 
 .gridTile:hover {
     border-color: var(--brand-orange);
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 20px 40px rgba(232, 119, 34, 0.12);
 }
 
 .gridTileIcon {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    color: var(--brand-orange);
+    display: flex;
+    align-items: center;
+}
+
+.gridTileIcon svg {
+    width: clamp(30px, 5.2cqmin, 48px);
+    height: auto;
 }
 
 .gridTileTitle {
-    color: var(--brand-orange);
-    margin: 0 0 15px 0;
+    color: var(--brand-black);
+    margin: 0;
     text-transform: uppercase;
-    font-size: 1.15rem;
+    font-size: var(--fs-title);
     font-weight: 900;
+    line-height: 1.15;
 }
 
 .gridTileDesc {
-    font-size: 0.8rem;
+    font-size: var(--fs-body);
     color: var(--text-muted);
     margin: 0;
+    line-height: 1.5;
 }
 
 /* ---- Grid Callout ---- */
@@ -517,7 +545,7 @@
 }
 
 .gridCallout p {
-    font-size: 1.4rem;
+    font-size: var(--fs-h2);
     font-weight: 900;
     color: var(--brand-black);
     margin: 0;
@@ -530,7 +558,7 @@
 .highlightContainer {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    gap: 40px;
+    gap: var(--gap-lg);
     width: 100%;
     align-items: center;
 }
@@ -538,32 +566,35 @@
 .highlightProblem h4 {
     color: var(--brand-orange);
     text-transform: uppercase;
-    font-size: 1.2rem;
+    font-size: var(--fs-title);
     margin: 0 0 15px 0;
 }
 
 .highlightProblem p {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: var(--fs-body);
     line-height: 1.6;
 }
 
 .highlightImpact {
     text-align: center;
-    padding: 30px;
+    padding: var(--pad-card);
     background: var(--bg-sidebar);
     border: 1px solid var(--border);
     border-radius: 4px;
+    /* Dark panel: light text. */
+    color: #EDEDED;
+    --text-muted: #C4C4C4;
 }
 
 .highlightMetric {
-    font-size: 2.5rem;
+    font-size: var(--fs-metric);
     font-weight: 900;
     color: var(--brand-orange);
 }
 
 .highlightMetricLabel {
-    font-size: 0.75rem;
+    font-size: var(--fs-small);
     font-weight: 800;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -577,13 +608,13 @@
 }
 
 .highlightSecondaryMetric {
-    font-size: 1.3rem;
+    font-size: var(--fs-h2);
     font-weight: 900;
     color: var(--brand-orange);
 }
 
 .highlightSecondaryLabel {
-    font-size: 0.65rem;
+    font-size: var(--fs-label);
     font-weight: 800;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -600,7 +631,7 @@
 }
 
 .highlightResult li {
-    font-size: 0.95rem;
+    font-size: var(--fs-body);
     color: var(--text-muted);
     padding-left: 18px;
     position: relative;
@@ -623,44 +654,46 @@
 .metricsGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-bottom: 50px;
+    gap: var(--gap-md);
+    margin-bottom: var(--gap-lg);
 }
 
 .metricCard {
     background: white;
     border: 1px solid var(--border);
-    padding: 25px;
+    padding: var(--pad-card);
     text-align: center;
+    min-width: 0;
 }
 
 .metricType {
-    font-size: 0.65rem;
+    font-size: var(--fs-label);
     font-weight: 800;
     color: var(--text-muted);
     margin-bottom: 10px;
 }
 
 .metricValue {
-    font-size: 3rem;
+    font-size: var(--fs-metric);
     font-weight: 900;
     color: var(--brand-orange);
 }
 
 .metricLabel {
     font-weight: 800;
-    font-size: 0.9rem;
+    font-size: var(--fs-body);
 }
 
 .metricSub {
-    font-size: 0.75rem;
-    color: var(--brand-blue);
+    font-size: var(--fs-small);
+    color: var(--brand-blue-ink);
 }
 
 .milestoneContainer {
     display: flex;
     justify-content: space-between;
-    padding-top: 40px;
+    gap: var(--gap-sm);
+    padding-top: var(--gap-lg);
     border-top: 1px solid var(--border);
 }
 
@@ -683,11 +716,11 @@
 
 .milestoneLabel {
     font-weight: 800;
-    font-size: 0.8rem;
+    font-size: var(--fs-small);
 }
 
 .milestoneDate {
-    font-size: 0.65rem;
+    font-size: var(--fs-label);
     color: var(--text-muted);
 }
 
@@ -723,37 +756,45 @@
 
 .boardGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: var(--gap-md);
     width: 100%;
-    align-items: start;
+    height: 100%;
+    align-items: stretch;
+    min-height: 0;
 }
 
 .boardColumn {
     background: var(--bg-sidebar);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 24px;
-    min-height: 420px;
+    padding: var(--pad-card);
+    min-height: 0;
+    overflow: hidden;
+    /* Dark column header on light text; the white item cards re-pin dark. */
+    color: #EDEDED;
 }
 
 .boardColumnTitle {
     border-bottom: 4px solid var(--brand-blue);
     padding-bottom: 12px;
-    margin-bottom: 25px;
+    margin-bottom: var(--gap-md);
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: var(--fs-title);
     font-weight: 900;
 }
 
 .boardItem {
     background: white;
     border: 1px solid var(--border);
-    padding: 24px;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
+    padding: var(--pad-card);
+    margin-bottom: var(--gap-sm);
+    font-size: var(--fs-body);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     border-radius: 4px;
+    /* White card inside the dark column: re-pin dark text. */
+    color: var(--brand-black);
+    --text-muted: #5A5A5A;
 }
 
 .boardItemText {
@@ -761,7 +802,7 @@
 }
 
 .boardItemDesc {
-    font-size: 0.8rem;
+    font-size: var(--fs-small);
     color: var(--text-muted);
     margin-top: 8px;
     line-height: 1.5;
@@ -772,29 +813,32 @@
 
 .demoContainer {
     display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 40px;
+    grid-template-columns: clamp(160px, 22cqi, 250px) 1fr;
+    gap: var(--gap-lg);
     width: 100%;
+    height: 100%;
+    min-height: 0;
 }
 
 .demoStepper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--gap-sm);
+    min-width: 0;
 }
 
 .demoStep {
-    padding: 15px;
+    padding: var(--gap-sm);
     border-left: 4px solid var(--border);
     color: var(--text-muted);
     font-weight: 700;
     opacity: 0.5;
-    font-size: 0.8rem;
+    font-size: var(--fs-small);
 }
 
 .demoStepActive {
     border-left-color: var(--brand-orange);
-    color: var(--brand-black);
+    color: #EDEDED;
     opacity: 1;
     background: var(--bg-sidebar);
 }
@@ -807,7 +851,8 @@
     justify-content: center;
     color: white;
     text-align: center;
-    padding: 40px;
+    padding: var(--pad-card);
+    min-width: 0;
 }
 
 .demoPreviewInner {
@@ -815,12 +860,12 @@
 }
 
 .demoIcon {
-    font-size: 3rem;
+    font-size: var(--fs-metric);
     margin-bottom: 20px;
 }
 
 .demoDesc {
-    font-size: 0.9rem;
+    font-size: var(--fs-body);
     opacity: 0.6;
 }
 
@@ -832,6 +877,230 @@
     font-weight: 900;
     margin-top: 20px;
     cursor: pointer;
+}
+
+/* ---- Intro Layout (Presenter Introduction) ---- */
+
+.introContainer {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(24px, 5cqi, 64px);
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.introIdentity {
+    position: relative;
+    min-width: 0;
+    padding-left: var(--gap-md);
+}
+
+/* The orange spine is a separate element so it can float in after the card. */
+.introBar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    border-radius: 2px;
+    background: var(--brand-orange);
+}
+
+.introIdentityInner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    min-width: 0;
+}
+
+.introName {
+    font-size: clamp(1.6rem, 5.2cqmin, 2.8rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.introRole {
+    font-size: var(--fs-title);
+    font-weight: 800;
+    color: var(--brand-orange);
+}
+
+.introMeta {
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.introPositioning {
+    font-size: var(--fs-body);
+    line-height: 1.55;
+    margin: var(--gap-sm) 0 0 0;
+    max-width: 42ch;
+}
+
+.introWork {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+    min-width: 0;
+}
+
+.introWorkGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+}
+
+.introWorkLabel {
+    font-size: var(--fs-label);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--brand-orange);
+}
+
+.introList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+}
+
+.introList li {
+    font-size: var(--fs-body);
+    color: var(--brand-black);
+    position: relative;
+    padding-left: 20px;
+    line-height: 1.4;
+}
+
+.introList li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--brand-orange);
+    font-weight: 900;
+}
+
+/* ---- Storyboard Layout (Old-Way Walkthrough) ---- */
+
+.storyboardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--gap-lg);
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.storyboardSetup {
+    font-size: var(--fs-body);
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 70ch;
+}
+
+.storyboardTrack {
+    display: flex;
+    align-items: stretch;
+    gap: var(--gap-lg);
+    width: 100%;
+    min-height: 0;
+}
+
+.storyboardStep {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: var(--pad-card);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    transition: all 0.4s ease;
+    /* Dark card: light text. */
+    color: #EDEDED;
+    --text-muted: #C4C4C4;
+}
+
+.storyboardStep:hover {
+    transform: translateY(-5px);
+    border-color: var(--brand-orange);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.storyboardNum {
+    font-size: var(--fs-metric);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--brand-orange);
+    opacity: 0.35;
+    font-family: monospace;
+}
+
+.storyboardStepBody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+}
+
+.storyboardStepTitle {
+    font-size: var(--fs-title);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+}
+
+.storyboardStepDetail {
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+.storyboardArrow {
+    position: absolute;
+    right: calc(var(--gap-lg) / -2);
+    top: 50%;
+    transform: translate(50%, -50%);
+    color: var(--border);
+    font-size: var(--fs-h2);
+    z-index: 1;
+}
+
+.storyboardPunchline {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--gap-md);
+    border-left: 4px solid var(--brand-orange);
+    background: rgba(242, 103, 34, 0.06);
+    border-radius: 0 6px 6px 0;
+    padding: var(--gap-md) var(--gap-lg);
+}
+
+.storyboardPunchStat {
+    font-size: var(--fs-h2);
+    font-weight: 900;
+    color: var(--brand-orange);
+    line-height: 1;
+}
+
+.storyboardPunchLabel {
+    font-size: var(--fs-body);
+    font-weight: 600;
+    color: var(--brand-black);
+    line-height: 1.3;
 }
 
 /* ---- Shared Animations ---- */
@@ -914,6 +1183,18 @@
     }
 
     .demoContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .storyboardTrack {
+        flex-direction: column;
+    }
+
+    .storyboardArrow {
+        display: none;
+    }
+
+    .introContainer {
         grid-template-columns: 1fr;
     }
 }

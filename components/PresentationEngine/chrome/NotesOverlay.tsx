@@ -16,6 +16,12 @@ export const NotesOverlay = ({ notes }: NotesOverlayProps) => (
             <strong className={styles.notesLabel}>SUMMARY:</strong>
             <div className={styles.notesBody}>{notes.summary}</div>
         </div>
+        {notes.bridge && (
+            <div className={styles.notesSection}>
+                <strong className={styles.notesLabel}>TRANSITION:</strong>
+                <div className={styles.notesBridge}>{notes.bridge}</div>
+            </div>
+        )}
         <div className={styles.notesHint}>Press &apos;N&apos; to close</div>
     </div>
 );

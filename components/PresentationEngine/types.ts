@@ -8,6 +8,8 @@ export type BuiltInLayout =
     | 'metrics'
     | 'board'
     | 'demo'
+    | 'storyboard'
+    | 'intro'
     | 'custom';
 
 export type SlideLayout = BuiltInLayout | string;
@@ -22,11 +24,15 @@ export interface PresentationMeta {
     theme?: 'dark' | 'light';
     sidebarTitle?: string;
     sidebarSubtitle?: string;
+    // When true, every content slide keeps the gradient footer band as a frame
+    // but renders no takeaway text (the takeaway fields are ignored for display).
+    framedFooter?: boolean;
 }
 
 export interface SlideNotes {
     intent: string;
     summary: string;
+    bridge?: string;
 }
 
 export interface SlideDefinition {

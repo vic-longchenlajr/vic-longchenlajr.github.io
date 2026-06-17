@@ -5,123 +5,143 @@
 
 /* ---- Process Loop ---- */
 
-.processLoopContainer {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 60px;
-    align-items: center;
-    width: 100%;
-}
-
-.loopLeft {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: 20px;
-}
-
-.circularWrapper {
-    position: relative;
-    width: 440px;
-    height: 440px;
-}
-
-.loopSvg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 440px;
-    height: 440px;
-    overflow: visible;
-}
-
-.svgTrack {
-    fill: none;
-    stroke: var(--border);
-    stroke-width: 2;
-    stroke-dasharray: 4 6;
-}
-
-.svgHighlight {
-    fill: none;
-    stroke: var(--brand-orange);
-    stroke-width: 6;
-    stroke-dasharray: 356 1068;
-    stroke-linecap: round;
-    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-    filter: drop-shadow(0 0 12px rgba(242, 103, 34, 0.5));
-}
-
-.loopNode {
-    position: absolute;
-    width: 96px;
-    height: 96px;
-    background: white;
-    border: 3px solid var(--border);
-    border-radius: 50%;
+.processWrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: var(--gap-lg);
+    width: 100%;
+    min-height: 0;
+}
+
+/* Fixed-height region sized in container units (the slide is a size container),
+   so the card is identical across phases regardless of content. This is what
+   keeps the rail above and principles below from moving. */
+.detailFrame {
+    height: clamp(150px, 32cqh, 320px);
+    min-height: 0;
+    display: flex;
+    overflow: hidden;
+}
+
+/* ---- Phase rail (all six phases, progress fills to the active one) ---- */
+
+.phaseRail {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0;
+}
+
+.railNode {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    transform: translate(-50%, -50%);
+    gap: 8px;
+    width: clamp(70px, 12cqi, 120px);
+    padding: 0;
+    background: none;
+    border: none;
     cursor: pointer;
-    z-index: 50;
-    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    color: inherit;
+    font: inherit;
 }
 
-.nodeActive {
-    border-color: var(--brand-orange);
-    transform: translate(-50%, -50%) scale(1.15);
-    box-shadow: 0 15px 45px rgba(242, 103, 34, 0.25);
-    z-index: 100;
-    animation: activePulse 4s infinite ease-in-out;
-}
-
-@keyframes activePulse {
-    0%, 100% { box-shadow: 0 15px 45px rgba(242, 103, 34, 0.25); }
-    50% { box-shadow: 0 15px 60px rgba(242, 103, 34, 0.4); }
-}
-
-.nodeIcon {
-    font-size: 1.7rem;
-    margin-bottom: 2px;
-}
-
-.nodeLabel {
-    font-size: 0.58rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+.railNodeIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(44px, 8cqmin, 64px);
+    height: clamp(44px, 8cqmin, 64px);
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: white;
     color: var(--text-muted);
-    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.45s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.nodeActive .nodeLabel {
+.railNodeIcon svg {
+    width: clamp(18px, 3.6cqmin, 28px);
+    height: auto;
+}
+
+.railNodeDone .railNodeIcon {
+    border-color: var(--brand-orange);
     color: var(--brand-orange);
 }
 
-.loopRight {
-    padding-left: 40px;
-    border-left: 2px solid var(--highlight);
-    min-height: 300px;
-    display: flex;
-    align-items: center;
+.railNodeActive .railNodeIcon {
+    border-color: var(--brand-orange);
+    background: var(--highlight);
+    color: var(--brand-orange);
+    transform: scale(1.12);
+    box-shadow: 0 12px 28px rgba(232, 119, 34, 0.25);
 }
+
+.railNodeLabel {
+    font-size: var(--fs-label);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    text-align: center;
+    color: var(--text-muted);
+    transition: color 0.45s ease;
+}
+
+.railNodeDone .railNodeLabel {
+    color: var(--brand-black);
+}
+
+.railNodeActive .railNodeLabel {
+    color: var(--brand-orange);
+}
+
+.railConnector {
+    flex: 1 1 auto;
+    min-width: 10px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--border);
+    /* Align to the vertical center of the icon circle, not the whole node. */
+    margin-top: clamp(21px, 4cqmin, 31px);
+    transition: background 0.45s ease;
+}
+
+.railConnectorFilled {
+    background: var(--brand-orange);
+}
+
+.railLoop {
+    flex: 0 0 auto;
+    margin-top: clamp(8px, 1.8cqmin, 18px);
+    margin-left: 4px;
+    font-size: var(--fs-h2);
+    line-height: 1;
+    color: var(--text-muted);
+    cursor: default;
+}
+
+/* ---- Phase detail card (slides in on change) ---- */
 
 .detailPanel {
-    animation: fadeSlideIn 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-@keyframes fadeSlideIn {
-    from { opacity: 0; transform: translateX(30px); }
-    to { opacity: 1; transform: translateX(0); }
+    background: linear-gradient(180deg, #ffffff 0%, var(--highlight) 160%);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: var(--pad-card);
+    /* Fill the fixed middle region; content variation stays inside the card. */
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* Phase-change transition is owned by framer-motion (AnimatePresence). */
 }
 
 .detailIndex {
-    font-size: 0.8rem;
+    font-size: var(--fs-small);
     font-weight: 900;
     letter-spacing: 0.25em;
     color: var(--brand-orange);
@@ -129,31 +149,32 @@
 }
 
 .detailTitle {
-    font-size: 2.2rem;
+    font-size: var(--fs-h2);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -0.02em;
-    margin: 0 0 20px 0;
+    margin: 0 0 var(--gap-md) 0;
     line-height: 1.1;
     color: var(--brand-black);
 }
 
 .detailDesc {
-    font-size: 1.1rem;
+    font-size: var(--fs-body);
     color: var(--text-muted);
     line-height: 1.6;
-    margin-bottom: 35px;
-    max-width: 380px;
+    margin-bottom: 0;
+    max-width: 42ch;
 }
 
 .detailTags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin-top: auto;
 }
 
 .detailTag {
-    font-size: 0.7rem;
+    font-size: var(--fs-label);
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -161,19 +182,83 @@
     border: 1px solid var(--border);
     padding: 8px 16px;
     border-radius: 999px;
-    color: var(--brand-black);
+    color: #EDEDED;
 }
 
 .tagStakeholder {
     background: var(--bg-sidebar);
     border: 1px solid var(--border);
-    color: var(--text-muted);
+    color: #C4C4C4;
 }
 
 .tagValue {
     background: rgba(0, 80, 255, 0.08);
     border: 1px solid rgba(0, 80, 255, 0.25);
-    color: var(--brand-blue);
+    color: var(--brand-blue-ink);
+}
+
+/* ---- Principles Strip (folded into Process slide) ---- */
+
+.principlesStrip {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    padding-top: var(--gap-md);
+    border-top: 1px solid var(--border);
+    min-height: 0;
+}
+
+.principlesTitle {
+    font-size: var(--fs-label);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--brand-orange);
+}
+
+.principlesChips {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap-md);
+}
+
+.principleChip {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: var(--gap-sm) var(--gap-md);
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--brand-orange);
+    border-radius: 0 4px 4px 0;
+    min-width: 0;
+    /* Dark chip: light text. */
+    color: #EDEDED;
+    --text-muted: #C4C4C4;
+}
+
+.principleChipTitle {
+    font-size: var(--fs-small);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #F5F5F5;
+}
+
+.principleChipDesc {
+    font-size: var(--fs-label);
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+@media screen and (max-width: 900px) {
+    .principlesChips {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .comparisonContainer {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ---- Platform Orchestration ---- */
@@ -181,30 +266,35 @@
 .comparisonContainer {
     display: grid;
     grid-template-columns: 1.85fr 1fr;
-    gap: 48px;
+    gap: clamp(20px, 4cqi, 48px);
     align-items: center;
     width: 100%;
+    height: 100%;
+    min-height: 0;
 }
 
 .modelSplit {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: var(--gap-lg);
     height: 100%;
+    min-height: 0;
+    min-width: 0;
 }
 
 .comparisonRow {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 32px 24px;
+    gap: var(--gap-sm);
+    padding: var(--pad-card);
     background: rgba(0, 0, 0, 0.02);
     border: 1px solid var(--border);
     border-radius: 8px;
     position: relative;
     transition: all 0.5s ease;
-    min-height: 240px;
+    min-height: 0;
+    min-width: 0;
     justify-content: center;
 }
 
@@ -215,41 +305,34 @@
 }
 
 .rowLabel {
-    font-size: 0.75rem;
+    font-size: var(--fs-small);
     font-weight: 900;
     color: var(--brand-black);
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-bottom: 8px;
-    position: absolute;
-    top: 16px;
-    left: 20px;
 }
 
 .rowCaption {
-    font-size: 0.7rem;
+    font-size: var(--fs-label);
     color: var(--text-muted);
     font-style: italic;
-    margin-top: auto;
     opacity: 0.8;
-    position: absolute;
-    bottom: 12px;
-    left: 20px;
 }
 
 .flowCanvas {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--gap-sm);
     flex-grow: 1;
     justify-content: center;
-    padding-top: 10px;
+    min-height: 0;
 }
 
 .flowRow {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: var(--gap-sm);
+    flex-wrap: wrap;
 }
 
 .convergence {
@@ -265,7 +348,7 @@
     border: 1px solid var(--border);
     border-radius: 4px;
     padding: 8px 14px;
-    font-size: 0.7rem;
+    font-size: var(--fs-label);
     font-weight: 700;
     color: var(--text-muted);
     transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
@@ -288,14 +371,27 @@
 
 .nodeSmall {
     padding: 5px 10px;
-    font-size: 0.6rem;
+    font-size: clamp(0.5rem, 1.1cqmin, 0.6rem);
     font-weight: 600;
+    white-space: normal;
 }
 
 .nodeLarge {
-    padding: 16px 28px;
-    font-size: 0.95rem;
+    padding: var(--gap-sm) var(--gap-md);
+    font-size: var(--fs-body);
     font-weight: 900;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+    white-space: normal;
+}
+
+.moveTag {
+    font-size: var(--fs-label);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: var(--brand-orange);
 }
 
 .nodeOutput {
@@ -314,7 +410,7 @@
 .connector {
     font-weight: 900;
     color: var(--border);
-    font-size: 0.8rem;
+    font-size: var(--fs-small);
     opacity: 0;
     transition: all 0.4s ease;
 }
@@ -323,69 +419,15 @@
     opacity: 1;
 }
 
-.hierarchyGrid {
-    display: grid;
-    grid-template-columns: 0.8fr 0.1fr 0.2fr 1fr 0.2fr 1.2fr 0.2fr 1fr 0.2fr 1.2fr;
-    grid-template-rows: repeat(4, 1fr);
-    gap: 10px 0;
-    width: 100%;
-    height: 100%;
-    padding: 20px 0;
-    align-items: center;
-}
-
-.gridCell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    height: 100%;
-}
-
-.gridConnector {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--border);
-    font-size: 0.8rem;
-    font-weight: 900;
-    opacity: 0;
-    transition: all 0.4s ease;
-}
-
-.systemNodeGroup {
-    grid-column: 7;
-    margin: 4px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.projectNodeGroup {
-    grid-column: 9;
-    grid-row: 1 / span 4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.outputNodeGroup {
-    grid-column: 11;
-    grid-row: 1 / span 4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .capabilityPanel {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: var(--gap-md);
+    min-width: 0;
 }
 
 .capabilityTitle {
-    font-size: 1.2rem;
+    font-size: var(--fs-title);
     font-weight: 900;
     letter-spacing: 0.05em;
     color: var(--brand-black);
@@ -398,11 +440,11 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--gap-sm);
 }
 
 .capabilityList li {
-    font-size: 0.9rem;
+    font-size: var(--fs-body);
     color: var(--text-muted);
     position: relative;
     padding-left: 28px;
@@ -418,8 +460,625 @@
 }
 
 .capabilityCaption {
-    font-size: 0.75rem;
+    font-size: var(--fs-small);
     color: var(--text-muted);
     font-style: italic;
     opacity: 0.7;
+}
+
+/* ---- Impact Charts (Slide 8 — illustrative story charts) ---- */
+
+.impactChartsContainer {
+    display: grid;
+    /* Equal columns so both SVGs render at identical size: same baseline,
+       top line, and gridlines. They read as two panels of one system. */
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 6cqi, 72px);
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    align-items: start;
+    justify-items: center;
+    position: relative;
+}
+
+/* Faint unifying divider, centered in the gap (does not affect panel widths).
+   Drawn top-to-bottom by framer-motion (scaleY) once the Vortex chart finishes,
+   so transform is reserved for the animation — centered via margin, not translate. */
+.chartDivider {
+    position: absolute;
+    left: 50%;
+    margin-left: -0.5px;
+    top: 8%;
+    bottom: 8%;
+    width: 1px;
+    background: var(--border);
+    transform-origin: top center;
+}
+
+.chartPanel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+}
+
+.chartTitle {
+    margin: 0;
+    /* Reserve two lines so both chart SVGs start at the same Y. */
+    min-height: 2.5em;
+    font-size: var(--fs-title);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+    color: var(--brand-black);
+}
+
+.chartSvg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.chartGrid {
+    stroke: var(--border);
+    stroke-width: 1;
+    opacity: 0.5;
+    stroke-dasharray: 2 5;
+}
+
+.chartAxis {
+    stroke: var(--border);
+    stroke-width: 1.5;
+}
+
+.chartAxisLabel {
+    fill: var(--text-muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* The chart reveal (curve draw via pathLength + sequenced fades) is owned by
+   framer-motion in ImpactCurve.tsx / ImpactRecovery.tsx. CSS here is static
+   styling only — framer sets opacity/pathLength inline. */
+.savingsArea {
+    fill: rgba(232, 119, 34, 0.12);
+}
+
+.savingsLabel {
+    fill: var(--brand-orange);
+    font-size: 12px;
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: 0.02em;
+}
+
+.curvePath {
+    fill: none;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.curveOld {
+    stroke: var(--brand-black);
+}
+
+.curveNew {
+    stroke: var(--brand-orange);
+    filter: drop-shadow(0 3px 6px rgba(232, 119, 34, 0.3));
+}
+
+.endDot {
+    stroke: var(--bg-page);
+    stroke-width: 2;
+}
+
+.endDotOld {
+    fill: var(--brand-black);
+}
+
+.endDotNew {
+    fill: var(--brand-orange);
+}
+
+.endLabel {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.endLabelOld {
+    fill: var(--brand-black);
+}
+
+.endLabelNew {
+    fill: var(--brand-orange);
+}
+
+/* Recovery curve total flag — the measured annual number, on the chart */
+
+.recoveryTotal {
+    fill: var(--brand-orange);
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.recoveryBasis {
+    margin: 0;
+    font-size: var(--fs-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.chartCaption {
+    margin: 0;
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+.chartFootnote {
+    margin: 0;
+    font-size: var(--fs-label);
+    font-style: italic;
+    color: var(--text-muted);
+    opacity: 0.75;
+}
+
+@media screen and (max-width: 900px) {
+    .impactChartsContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .chartDivider {
+        display: none;
+    }
+}
+
+/* ---- Closing Signals (Slide 9 — recognition + invitation) ---- */
+
+.closerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--gap-lg);
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+/* Convergence mirror: audience signals -> one shared answer (reuses the
+   .signalCell / .targetCell / .mirrorArrow language from slides 5-6). */
+.closerMirror {
+    display: grid;
+    grid-template-columns: 1fr auto 0.85fr;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+}
+
+.closerSignals {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    min-width: 0;
+}
+
+/* Elevated signal cards (matching the slide-3 tiles / slide-4 cards) */
+.closerSignalCell {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: var(--gap-sm) var(--gap-md);
+    background: linear-gradient(180deg, #ffffff 0%, var(--highlight) 100%);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    min-width: 0;
+    /* Reveal + hover lift owned by framer-motion in ClosingSignals.tsx. */
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.closerSignalCell:hover {
+    border-color: var(--brand-orange);
+    box-shadow: 0 14px 30px rgba(232, 119, 34, 0.14);
+}
+
+.closerSignalIcon {
+    flex: 0 0 auto;
+    display: flex;
+    color: var(--brand-orange);
+}
+
+.closerSignalIcon svg {
+    width: clamp(20px, 3cqmin, 28px);
+    height: auto;
+}
+
+.closerSignalText {
+    font-size: var(--fs-body);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--brand-black);
+}
+
+.closerArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 clamp(10px, 2cqi, 28px);
+    font-size: var(--fs-h2);
+    font-weight: 900;
+    color: var(--brand-orange);
+    filter: drop-shadow(0 2px 6px rgba(232, 119, 34, 0.3));
+    /* Reveal owned by framer-motion. */
+}
+
+.closerTargetCol {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    min-width: 0;
+}
+
+/* Hero target card with a glow (matching the launch button / metric emphasis) */
+.closerTarget {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: var(--gap-lg) var(--gap-md);
+    background: linear-gradient(155deg, #ffffff 0%, var(--highlight) 120%);
+    border: 1.5px solid var(--brand-orange);
+    border-radius: 8px;
+    box-shadow: 0 14px 36px rgba(232, 119, 34, 0.2);
+    /* Reveal owned by framer-motion. */
+}
+
+.closerTargetIcon {
+    display: flex;
+    color: var(--brand-orange);
+}
+
+.closerTargetIcon svg {
+    width: clamp(26px, 4cqmin, 40px);
+    height: auto;
+}
+
+.closerTargetKey {
+    font-size: var(--fs-h2);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+}
+
+.closerTargetText {
+    font-size: var(--fs-body);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--brand-black);
+}
+
+.closerEmail {
+    color: var(--brand-orange);
+    font-weight: 800;
+    text-decoration: none;
+    border-bottom: 1px solid var(--brand-orange);
+    white-space: nowrap;
+}
+
+/* The emotional close, below the mirror */
+.closerReframe {
+    margin: 0;
+    border-top: 1px solid var(--border);
+    padding-top: var(--gap-md);
+    font-size: var(--fs-h2);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    color: var(--brand-black);
+    /* Reveal owned by framer-motion. */
+}
+
+@media screen and (max-width: 900px) {
+    .closerMirror {
+        grid-template-columns: 1fr;
+        gap: var(--gap-md);
+    }
+
+    .closerMirror .mirrorArrow {
+        display: none;
+    }
+}
+
+/* ---- Source Stack (Slide 4 — scattered "old way" artifacts) ---- */
+
+.sourceStackContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--gap-lg);
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.sourceSetup {
+    font-size: var(--fs-body);
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 78ch;
+}
+
+.sourceScatter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(16px, 3cqi, 44px);
+    padding: clamp(12px, 2.5cqmin, 28px) 0;
+    min-height: 0;
+}
+
+.sourceCard {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: clamp(150px, 18cqi, 220px);
+    padding: var(--gap-md);
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: var(--brand-black);
+    /* Opacity + transform (resting tilt, entrance, hover lift) are owned by
+       framer-motion in SourceStack.tsx; CSS only transitions hover color/shadow. */
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* Pick the paper up: framer's whileHover straightens + lifts; CSS adds the glow. */
+.sourceCard:hover {
+    border-color: var(--brand-orange);
+    box-shadow: 0 22px 44px rgba(232, 119, 34, 0.18);
+    z-index: 5;
+}
+
+.sourceBadge {
+    align-self: flex-start;
+    font-family: monospace;
+    font-size: var(--fs-label);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--brand-orange);
+    background: var(--highlight);
+    border: 1px solid rgba(232, 119, 34, 0.3);
+    padding: 2px 8px;
+    border-radius: 3px;
+}
+
+.sourceTitle {
+    font-size: var(--fs-title);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--brand-black);
+}
+
+.sourceSub {
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.sourceOpen {
+    margin-top: auto;
+    padding-top: 6px;
+    font-size: var(--fs-label);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+}
+
+.sourcePunchline {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--gap-md);
+    border-left: 4px solid var(--brand-orange);
+    background: rgba(232, 119, 34, 0.06);
+    border-radius: 0 6px 6px 0;
+    padding: var(--gap-md) var(--gap-lg);
+}
+
+.sourcePunchStat {
+    font-size: var(--fs-h2);
+    font-weight: 900;
+    color: var(--brand-orange);
+    line-height: 1;
+}
+
+.sourcePunchLabel {
+    font-size: var(--fs-body);
+    font-weight: 600;
+    color: var(--brand-black);
+    line-height: 1.3;
+}
+
+/* ---- Demo Launch (Vortex / VicFlex live-demo slides) ---- */
+
+.launchContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.mirror {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    min-height: 0;
+}
+
+.mirrorHeader,
+.mirrorRow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    gap: 0;
+}
+
+.mirrorColLabel {
+    font-size: var(--fs-small);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.signalLabel {
+    color: var(--brand-black);
+}
+
+.targetLabel {
+    color: var(--brand-orange);
+}
+
+.mirrorArrowSpacer {
+    width: clamp(36px, 7cqi, 72px);
+}
+
+.mirrorRow {
+    flex: 1;
+    min-height: 0;
+    /* Reveal (per-cell slide-in) is owned by framer-motion in DemoLaunch.tsx. */
+}
+
+.mirrorCell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: var(--gap-sm) var(--gap-md);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    min-width: 0;
+}
+
+.signalCell {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.targetCell {
+    background: var(--highlight);
+    border-color: rgba(242, 103, 34, 0.4);
+}
+
+.cellKey {
+    font-size: var(--fs-body);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+    color: var(--brand-black);
+}
+
+.targetCell .cellKey {
+    color: var(--brand-orange);
+}
+
+.cellVal {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-muted);
+}
+
+/* Arrow bridging each signal to its mirrored target */
+.mirrorArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(36px, 7cqi, 72px);
+    position: relative;
+}
+
+.mirrorArrow::before {
+    content: '';
+    height: 2px;
+    width: calc(100% - 10px);
+    background: linear-gradient(to right, var(--border), var(--brand-orange));
+}
+
+.mirrorArrow::after {
+    content: '▶';
+    position: absolute;
+    right: 2px;
+    font-size: 0.7rem;
+    color: var(--brand-orange);
+}
+
+.launchFooter {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    padding-top: var(--gap-md);
+}
+
+.launchButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--fs-body);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    background: var(--brand-orange);
+    padding: 14px clamp(28px, 5cqi, 56px);
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(242, 103, 34, 0.3);
+    transition: transform 0.25s cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 0.25s ease;
+}
+
+.launchButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(242, 103, 34, 0.45);
+}
+
+.launchButtonIcon {
+    font-size: 0.85em;
+}
+
+@media screen and (max-width: 900px) {
+    .mirrorHeader,
+    .mirrorRow {
+        grid-template-columns: 1fr;
+    }
+
+    .mirrorArrow,
+    .mirrorArrowSpacer {
+        display: none;
+    }
+
+    .mirrorRow {
+        gap: var(--gap-sm);
+        margin-bottom: var(--gap-sm);
+    }
 }

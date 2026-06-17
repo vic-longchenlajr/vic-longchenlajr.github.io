@@ -48,7 +48,7 @@ export default function PresentationsPage() {
                         <span className={styles.cardAffordance}>View ›</span>
                     </Link> */}
 
-            <Link href="" aria-readonly className={styles.card}>
+            <Link href="/presentations/lunchandlearn" className={styles.card}>
               <div className={styles.cardBody}>
                 <div className={styles.cardLabelRow}>
                   <span
@@ -71,9 +71,9 @@ export default function PresentationsPage() {
                   reliable, scalable software platforms. Explore the process,
                   principles, and impact of building internal engineering tools.
                 </p>
-                <div className={styles.cardMeta}>11 slides · June 2026</div>
+                <div className={styles.cardMeta}>10 slides · June 2026</div>
               </div>
-              <span className={styles.cardAffordance}>Coming Soon ›</span>
+              <span className={styles.cardAffordance}>View ›</span>
             </Link>
           </div>
         </main>

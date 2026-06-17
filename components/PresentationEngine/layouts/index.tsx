@@ -8,6 +8,8 @@ import { HighlightLayout } from './HighlightLayout';
 import { MetricsLayout } from './MetricsLayout';
 import { BoardLayout } from './BoardLayout';
 import { DemoLayout } from './DemoLayout';
+import { StoryboardLayout } from './StoryboardLayout';
+import { IntroLayout } from './IntroLayout';
 
 type LayoutStyles = Record<string, string>;
 
@@ -20,7 +22,7 @@ export function resolveLayout(
 
     switch (slide.layout) {
         case 'hero':
-            return <HeroLayout slide={slide} content={content} />;
+            return <HeroLayout slide={slide} content={content} isVisible={isVisible} />;
         case 'flow':
             return <FlowLayout content={content} isVisible={isVisible} engineStyles={engineStyles} />;
         case 'comparison':
@@ -28,7 +30,7 @@ export function resolveLayout(
         case 'transform':
             return <TransformLayout content={content} isVisible={isVisible} engineStyles={engineStyles} />;
         case 'grid':
-            return <GridLayout content={content} />;
+            return <GridLayout content={content} isVisible={isVisible} />;
         case 'highlight':
             return <HighlightLayout content={content} />;
         case 'metrics':
@@ -37,6 +39,10 @@ export function resolveLayout(
             return <BoardLayout content={content} />;
         case 'demo':
             return <DemoLayout content={content} />;
+        case 'storyboard':
+            return <StoryboardLayout content={content} />;
+        case 'intro':
+            return <IntroLayout content={content} isVisible={isVisible} />;
         default:
             return (
                 <div style={{ textAlign: 'center', color: 'var(--text-muted)' }}>

@@ -54,12 +54,12 @@ export const TOOLS: Tool[] = [
     name: "VicForge",
     description:
       "Engineering & lab management — projects, timesheets, analytics, part codes",
-    version: "v0.14.0",
+    version: "v0.18.0",
     status: "alpha",
     category: "engineering",
     type: "external",
     url: "https://victaulic-engineering-tech-solutions.github.io/vicforge/",
-    updatedAt: "2026-05-28",
+    updatedAt: "2026-06-15",
   },
 
   {

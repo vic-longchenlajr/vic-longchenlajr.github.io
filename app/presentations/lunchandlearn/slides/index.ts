@@ -1,15 +1,19 @@
 import ProcessLoop from './ProcessLoop';
 import PlatformOrchestration from './PlatformOrchestration';
+import AICarousel from './AICarousel';
+import GrillMe from './GrillMe';
 import DemoLaunch from './DemoLaunch';
-import SourceStack from './SourceStack';
-import ImpactCharts from './ImpactCharts';
+import VortexImpact from './VortexImpact';
+import VicflexImpact from './VicflexImpact';
 import ClosingSignals from './ClosingSignals';
 
 export const slideComponents = {
     ProcessLoop,
     PlatformOrchestration,
+    AICarousel,
+    GrillMe,
     DemoLaunch,
-    SourceStack,
-    ImpactCharts,
+    VortexImpact,
+    VicflexImpact,
     ClosingSignals
 };

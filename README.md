@@ -126,7 +126,7 @@ scripts/
 
 | Field | Value |
 |-------|-------|
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Repository | fs3.github.io |
 | Maintainer | Fire Suppression Engineering — Easton, PA |
 | License | Proprietary — Victaulic Company. Internal use only. |

@@ -15,22 +15,41 @@ interface Pair {
     target: Item;
 }
 
-// Shared layout for the two live-demo slides (Vortex, VicFlex). The column
-// labels float down together, then each row resolves left-to-right — signal,
-// then the bridging arrow, then the target — row by row. The launch button
-// drops in once the last target has landed. VicFlex passes tempo:"fast".
+interface Source {
+    badge: string;
+    title: string;
+    href: string;
+    external?: boolean;
+}
+
+interface Origin {
+    setup?: string;
+    bullets?: string[];
+    sources?: Source[];
+}
+
+// Shared layout for the two collapsed case-study slides (VicFlex, Vortex). An
+// optional origin block (the compressed backstory — bullets, or openable source
+// chips) floats in first; then the column labels float down together and each
+// Signal → Target row resolves left-to-right; then the launch button drops in.
+// VicFlex passes tempo:"fast".
 export default function DemoLaunch({ content, isVisible }: SlideComponentProps) {
     const link = (content?.link as string) || '#';
     const launchLabel = (content?.launchLabel as string) || 'LAUNCH';
     const signalsLabel = (content?.signalsLabel as string) || 'THE SIGNALS';
     const targetLabel = (content?.targetLabel as string) || 'THE TARGET';
     const pairs = (content?.pairs as Pair[]) || [];
+    const origin = (content?.origin as Origin) || null;
     const fast = (content?.tempo as string) === 'fast';
 
     const reduce = false; // run animations regardless of OS reduced-motion
 
+    // Origin reveals first; the mirror timeline starts after it has landed.
+    const hasOrigin = !!(origin && (origin.setup || origin.bullets?.length || origin.sources?.length));
+    const mirrorOffset = hasOrigin ? (fast ? 0.45 : 0.6) : 0;
+
     // Timeline (seconds).
-    const rowStart = fast ? 0.5 : 0.75;
+    const rowStart = (fast ? 0.5 : 0.75) + mirrorOffset;
     const rowGap = fast ? 0.58 : 0.9;
     const arrowOffset = fast ? 0.18 : 0.3;
     const targetOffset = fast ? 0.34 : 0.55;
@@ -59,11 +78,44 @@ export default function DemoLaunch({ content, isVisible }: SlideComponentProps) 
 
     return (
         <div className={styles.launchContainer}>
+            {hasOrigin && (
+                <div className={styles.demoOrigin}>
+                    {origin?.setup && (
+                        <motion.p className={styles.demoOriginSetup} {...downIn(0, 0.6)}>{origin.setup}</motion.p>
+                    )}
+                    {!!origin?.bullets?.length && (
+                        <ul className={styles.demoOriginBullets}>
+                            {origin.bullets.map((b, i) => (
+                                <motion.li key={i} className={styles.demoOriginBullet} {...downIn(0.18 + i * 0.12, 0.5)}>{b}</motion.li>
+                            ))}
+                        </ul>
+                    )}
+                    {!!origin?.sources?.length && (
+                        <div className={styles.demoSources}>
+                            {origin.sources.map((s, i) => (
+                                <motion.a
+                                    key={i}
+                                    className={styles.demoSourceChip}
+                                    href={s.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    {...downIn(0.18 + i * 0.1, 0.5)}
+                                >
+                                    <span className={styles.demoSourceChipBadge}>{s.badge}</span>
+                                    {s.title}
+                                    <span className={styles.demoSourceChipOpen}>{s.external ? '↗' : '↓'}</span>
+                                </motion.a>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            )}
+
             <div className={styles.mirror}>
                 <div className={styles.mirrorHeader}>
-                    <motion.div className={`${styles.mirrorColLabel} ${styles.signalLabel}`} {...downIn(0)}>{signalsLabel}</motion.div>
+                    <motion.div className={`${styles.mirrorColLabel} ${styles.signalLabel}`} {...downIn(mirrorOffset)}>{signalsLabel}</motion.div>
                     <div className={styles.mirrorArrowSpacer} />
-                    <motion.div className={`${styles.mirrorColLabel} ${styles.targetLabel}`} {...downIn(0)}>{targetLabel}</motion.div>
+                    <motion.div className={`${styles.mirrorColLabel} ${styles.targetLabel}`} {...downIn(mirrorOffset)}>{targetLabel}</motion.div>
                 </div>
 
                 {pairs.map((pair, i) => {

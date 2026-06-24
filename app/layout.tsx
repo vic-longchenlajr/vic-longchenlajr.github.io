@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 import TopBar from "@/components/TopBar";
 import CommandPalette from "@/components/CommandPalette";
@@ -12,6 +12,13 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+// Handwritten script — used to set Claude Code *skills* apart from product names
+// (see the AI carousel slide), reading like an annotation scribbled in.
+const caveat = Caveat({
+  variable: "--font-script",
   subsets: ["latin"],
 });
 
@@ -41,7 +48,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} antialiased`}
       >
         <ThemeProvider>
           <TopBar />

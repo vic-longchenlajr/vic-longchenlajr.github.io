@@ -113,14 +113,59 @@
     background: var(--brand-orange);
 }
 
-.railLoop {
-    flex: 0 0 auto;
-    margin-top: clamp(8px, 1.8cqmin, 18px);
-    margin-left: 4px;
-    font-size: var(--fs-h2);
-    line-height: 1;
-    color: var(--text-muted);
-    cursor: default;
+/* Rail + return arc share a positioning context so the arc can line up with
+   measured node centers (offsetLeft is relative to this positioned ancestor). */
+.railZone {
+    position: relative;
+    width: 100%;
+}
+
+/* Return arc: the SVG sits below the rail; its path is drawn by framer-motion
+   (pathLength) from Deploy back to Architect once the rail finishes. */
+.returnArc {
+    position: relative;
+    width: 100%;
+}
+
+.returnArcSvg {
+    display: block;
+    overflow: visible;
+}
+
+.returnArcPath {
+    fill: none;
+    stroke: var(--brand-orange);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 5 5;
+}
+
+.returnArcHead {
+    fill: none;
+    stroke: var(--brand-orange);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.returnArcLabel {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    padding: 0 10px;
+    background: var(--bg-page);
+    font-size: var(--fs-label);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--brand-orange);
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 900px) {
+    .returnArc {
+        display: none;
+    }
 }
 
 /* ---- Phase detail card (slides in on change) ---- */
@@ -197,65 +242,7 @@
     color: var(--brand-blue-ink);
 }
 
-/* ---- Principles Strip (folded into Process slide) ---- */
-
-.principlesStrip {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-sm);
-    padding-top: var(--gap-md);
-    border-top: 1px solid var(--border);
-    min-height: 0;
-}
-
-.principlesTitle {
-    font-size: var(--fs-label);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--brand-orange);
-}
-
-.principlesChips {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--gap-md);
-}
-
-.principleChip {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: var(--gap-sm) var(--gap-md);
-    background: var(--bg-sidebar);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--brand-orange);
-    border-radius: 0 4px 4px 0;
-    min-width: 0;
-    /* Dark chip: light text. */
-    color: #EDEDED;
-    --text-muted: #C4C4C4;
-}
-
-.principleChipTitle {
-    font-size: var(--fs-small);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: #F5F5F5;
-}
-
-.principleChipDesc {
-    font-size: var(--fs-label);
-    color: var(--text-muted);
-    line-height: 1.4;
-}
-
 @media screen and (max-width: 900px) {
-    .principlesChips {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .comparisonContainer {
         grid-template-columns: 1fr;
     }
@@ -503,6 +490,21 @@
     width: 100%;
     min-width: 0;
     min-height: 0;
+}
+
+/* Single-chart slide: center one chartPanel and cap its width so it doesn't
+   stretch across the full stage the way the paired grid layout fills it. */
+.impactSingle {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.impactSingle > * {
+    width: min(100%, 820px);
 }
 
 .chartTitle {
@@ -790,6 +792,29 @@
     /* Reveal owned by framer-motion. */
 }
 
+/* Q&A opener + AI User Group plug, below the reframe */
+.closerFooter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    margin-top: var(--gap-sm);
+}
+
+.closerQa {
+    margin: 0;
+    font-size: var(--fs-body);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--brand-orange);
+}
+
+.closerGroup {
+    margin: 0;
+    font-size: var(--fs-small);
+    line-height: 1.4;
+    color: var(--text-muted);
+}
+
 @media screen and (max-width: 900px) {
     .closerMirror {
         grid-template-columns: 1fr;
@@ -925,6 +950,98 @@
     width: 100%;
     height: 100%;
     min-height: 0;
+}
+
+/* Origin block: the compressed backstory above the Signal → Target mirror on
+   the collapsed case-study slides. */
+.demoOrigin {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+}
+
+.demoOriginSetup {
+    margin: 0;
+    font-size: var(--fs-body);
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 80ch;
+}
+
+.demoOriginBullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.demoOriginBullet {
+    position: relative;
+    padding-left: 22px;
+    font-size: var(--fs-small);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--brand-black);
+}
+
+.demoOriginBullet::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 0.55em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--brand-orange);
+}
+
+/* Openable source chips (Vortex) — the real artifacts, kept openable as a live
+   backup even though the slide is collapsed. */
+.demoSources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.demoSourceChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: var(--fs-label);
+    font-weight: 700;
+    color: var(--brand-black);
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.demoSourceChip:hover {
+    border-color: var(--brand-orange);
+    box-shadow: 0 8px 20px rgba(232, 119, 34, 0.16);
+    transform: translateY(-2px);
+}
+
+.demoSourceChipBadge {
+    font-family: monospace;
+    font-size: 0.7em;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--brand-orange);
+    background: var(--highlight);
+    border: 1px solid rgba(232, 119, 34, 0.3);
+    padding: 1px 6px;
+    border-radius: 3px;
+}
+
+.demoSourceChipOpen {
+    color: var(--brand-orange);
+    font-weight: 900;
 }
 
 .mirror {
@@ -1080,5 +1197,785 @@
     .mirrorRow {
         gap: var(--gap-sm);
         margin-bottom: var(--gap-sm);
+    }
+}
+
+/* ---- Grill-Me (session-excerpt artifact slide) ---- */
+
+.grillContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--gap-md);
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.grillLead {
+    margin: 0;
+    font-size: var(--fs-body);
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 80ch;
+}
+
+/* The "session" card — a terminal-flavored panel in the house style. */
+.grillPanel {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #ffffff 0%, var(--highlight) 220%);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    min-height: 0;
+}
+
+.grillPanelBar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px var(--gap-md);
+    background: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border);
+}
+
+.grillPanelDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--brand-orange);
+    flex: 0 0 auto;
+}
+
+.grillPanelLabel {
+    font-family: monospace;
+    font-size: var(--fs-label);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.grillPlaceholder {
+    margin-left: auto;
+    font-size: var(--fs-label);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+    border: 1px dashed var(--brand-orange);
+    border-radius: 3px;
+    padding: 2px 8px;
+}
+
+.grillTranscript {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    padding: var(--gap-md);
+    min-height: 0;
+}
+
+.grillTurn {
+    display: grid;
+    grid-template-columns: clamp(64px, 9cqi, 96px) 1fr;
+    gap: var(--gap-md);
+    align-items: baseline;
+}
+
+.grillTurnWho {
+    font-family: monospace;
+    font-size: var(--fs-label);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-align: right;
+}
+
+.grillTurnGrill .grillTurnWho {
+    color: var(--brand-orange);
+}
+
+.grillTurnMe .grillTurnWho {
+    color: var(--text-muted);
+}
+
+.grillTurnText {
+    font-size: var(--fs-body);
+    line-height: 1.45;
+}
+
+.grillTurnGrill .grillTurnText {
+    font-weight: 800;
+    color: var(--brand-black);
+}
+
+.grillTurnMe .grillTurnText {
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* The SPEC the interview produced — the payoff, emphasized. */
+.grillOutcome {
+    margin: 0;
+    padding: var(--gap-md) var(--gap-md) var(--gap-md) var(--gap-lg);
+    border-top: 1px solid var(--border);
+    border-left: 4px solid var(--brand-orange);
+    background: rgba(232, 119, 34, 0.06);
+    font-family: monospace;
+    font-size: var(--fs-body);
+    font-weight: 800;
+    line-height: 1.4;
+    color: var(--brand-black);
+}
+
+.grillFootnote {
+    margin: 0;
+    font-size: var(--fs-small);
+    font-style: italic;
+    color: var(--text-muted);
+    opacity: 0.85;
+}
+
+@media screen and (max-width: 900px) {
+    .grillTurn {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+
+    .grillTurnWho {
+        text-align: left;
+    }
+}
+
+/* ---- ProcessLoop: loop-target glow (Architect, when the arc fires) ---- */
+
+.railNodeLoopTarget .railNodeIcon {
+    border-color: var(--brand-orange);
+    background: var(--highlight);
+    color: var(--brand-orange);
+    transform: scale(1.12);
+    box-shadow: 0 0 0 4px rgba(242, 103, 34, 0.18), 0 12px 28px rgba(232, 119, 34, 0.35);
+}
+
+.railNodeLoopTarget .railNodeLabel {
+    color: var(--brand-orange);
+}
+
+/* ---- Grill-Me: the rough-idea block + interview counter ---- */
+
+.grillAsk {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: var(--gap-md);
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.015);
+}
+
+.grillAskLabel {
+    font-size: var(--fs-label);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.grillAskText {
+    font-size: var(--fs-body);
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--brand-black);
+}
+
+.grillCounter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: var(--gap-sm);
+}
+
+.grillCounterArrow {
+    color: var(--brand-orange);
+    font-weight: 900;
+    font-size: var(--fs-h2);
+    line-height: 1;
+}
+
+.grillCounterText {
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+}
+
+.grillCounterText strong {
+    color: var(--brand-orange);
+    font-weight: 800;
+}
+
+/* ---- Impact chart slides: two-column split (chart left, reasoning right) ---- */
+
+.impactSplit {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(24px, 5cqi, 64px);
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    align-items: center;
+}
+
+.impactSplitChart {
+    min-width: 0;
+}
+
+.chartContext {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+    min-width: 0;
+}
+
+.chartContextHeading {
+    margin: 0;
+    font-size: var(--fs-title);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--brand-black);
+}
+
+.chartContextList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+}
+
+.chartContextItem {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-left: 16px;
+    border-left: 3px solid var(--brand-orange);
+}
+
+.chartContextLabel {
+    font-size: var(--fs-body);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    color: var(--brand-black);
+}
+
+.chartContextText {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--text-muted);
+}
+
+/* ---- Closing recap (signals + process) + open question ---- */
+
+.closerRecap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 5cqi, 56px);
+    align-items: start;
+}
+
+.closerProcess {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    min-width: 0;
+}
+
+.closerSteps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.closerStep {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.closerStepNum {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--brand-orange);
+    color: #fff;
+    font-size: var(--fs-label);
+    font-weight: 900;
+    line-height: 1;
+}
+
+.closerStepText {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--brand-black);
+}
+
+.closerOpen {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.closerOpenQuestion {
+    margin: 0;
+    font-size: var(--fs-h2);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    color: var(--brand-orange);
+}
+
+.closerOpenInvite {
+    margin: 0;
+    font-size: var(--fs-body);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-muted);
+}
+
+@media screen and (max-width: 900px) {
+    .impactSplit,
+    .closerRecap {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---- AI Pipeline (slide 4 — handoff between tools) ---- */
+
+.pipelineWrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    justify-content: center;
+}
+
+.pipelineTrack {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    min-height: 0;
+}
+
+.pipelineCap {
+    flex: 0 0 auto;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    width: clamp(74px, 9cqi, 112px);
+}
+
+.pipelineCapWho {
+    font-size: var(--fs-body);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: var(--brand-orange);
+    border: 2px dashed var(--brand-orange);
+    border-radius: 999px;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.pipelineCapNote {
+    font-size: var(--fs-label);
+    font-weight: 700;
+    color: var(--text-muted);
+    line-height: 1.25;
+}
+
+.pipelineArrow {
+    flex: 0 0 auto;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: clamp(52px, 7cqi, 96px);
+    padding: 0 4px;
+}
+
+.pipelinePayload {
+    font-size: var(--fs-label);
+    font-style: italic;
+    font-weight: 700;
+    color: var(--brand-orange);
+    text-align: center;
+    line-height: 1.15;
+}
+
+.pipelineArrowLine {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background: var(--brand-orange);
+}
+
+.pipelineArrowLine::after {
+    content: '▶';
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.6rem;
+    color: var(--brand-orange);
+}
+
+.pipelineStage {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: var(--gap-md);
+    background: linear-gradient(180deg, #ffffff 0%, var(--highlight) 220%);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--brand-orange);
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.pipelineStage:hover {
+    box-shadow: 0 18px 36px rgba(232, 119, 34, 0.16);
+}
+
+.pipelineStagePhase {
+    font-size: var(--fs-label);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+}
+
+.pipelineStageTool {
+    font-size: var(--fs-title);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--brand-black);
+}
+
+.pipelineStageBullets {
+    list-style: none;
+    margin: 4px 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pipelineStageBullets li {
+    position: relative;
+    padding-left: 16px;
+    font-size: var(--fs-small);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-muted);
+}
+
+.pipelineStageBullets li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.5em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brand-orange);
+}
+
+.pipelineLoop {
+    flex: 0 0 auto;
+    align-self: center;
+    width: clamp(78px, 9cqi, 116px);
+    margin-left: 10px;
+    font-size: var(--fs-label);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--brand-orange);
+    background: var(--highlight);
+    border: 1px solid rgba(242, 103, 34, 0.35);
+    border-radius: 4px;
+    padding: 8px 10px;
+    text-align: center;
+    line-height: 1.25;
+}
+
+.pipelineCaption {
+    margin: 0;
+    font-size: var(--fs-small);
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.45;
+    text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+    .pipelineTrack {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pipelineCap,
+    .pipelineArrow,
+    .pipelineLoop {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .pipelineArrowLine {
+        display: none;
+    }
+}
+
+/* ---- AI Carousel (AICarousel) ---- */
+/* One tool per view: input artifact → tool card → output artifact, stepped with
+   the flanking arrows or the ←/→ keys. Each output is the next view's input. */
+.aicWrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.aicStage {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 1.5cqi, 22px);
+    width: 100%;
+    min-height: 0;
+}
+
+.aicRow {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 1.5cqi, 18px);
+}
+
+.aicFlow {
+    flex: 0 0 auto;
+    align-self: center;
+    color: var(--brand-orange);
+    font-size: clamp(0.85rem, 1.4cqi, 1.25rem);
+}
+
+/* Artifacts are uniform across every step — fixed, identical box: wider and
+   shorter than the tool card, so they read as secondary. Sized for the densest
+   block (Context In, 6 items). */
+.aicArtifact {
+    flex: 0 0 auto;
+    width: clamp(190px, 23cqi, 285px);
+    height: clamp(158px, 27cqh, 214px);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--gap-md);
+    background: #fff;
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    /* Sits below the tool card so it can tuck behind it during the animation. */
+    position: relative;
+    z-index: 1;
+}
+
+.aicArtifactOut {
+    border: 1px solid var(--brand-orange);
+}
+
+.aicArtifactKind {
+    font-size: var(--fs-label);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+}
+
+.aicArtifactOut .aicArtifactKind {
+    color: var(--brand-orange);
+}
+
+.aicArtifactLabel {
+    font-size: var(--fs-body);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--brand-black);
+}
+
+.aicArtifactItems {
+    list-style: none;
+    margin: 2px 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.aicArtifactItems li {
+    position: relative;
+    padding-left: 12px;
+    font-size: var(--fs-small);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-muted);
+}
+
+.aicArtifactItems li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--brand-orange);
+}
+
+.aicArtifactLoop {
+    margin-top: 6px;
+    font-size: var(--fs-label);
+    font-weight: 800;
+    font-style: italic;
+    color: var(--brand-orange);
+}
+
+/* The focal centerpiece — uniform across every step, taller and skinnier than
+   the artifacts. Content is vertically centered so the tool sits as the hero. */
+.aicTool {
+    flex: 0 0 auto;
+    width: clamp(205px, 22cqi, 300px);
+    height: clamp(286px, 50cqh, 422px);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: var(--gap-lg);
+    background: linear-gradient(180deg, #ffffff 0%, var(--highlight) 240%);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--brand-orange);
+    border-radius: 4px;
+    box-shadow: 0 18px 36px rgba(232, 119, 34, 0.12);
+    /* Above the artifacts so they hide behind it as they slide in/out. */
+    position: relative;
+    z-index: 2;
+}
+
+.aicToolPhase {
+    font-size: var(--fs-label);
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+    text-align: center;
+}
+
+/* Tool name + skill, stacked and tightly grouped so every card shares the same
+   structure: phase / product / skill. */
+.aicToolHead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.aicToolName {
+    font-size: var(--fs-title);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--brand-black);
+    text-align: center;
+}
+
+/* A Claude Code skill, not a product — set in a handwritten script, on its own
+   line beneath the tool, so it reads like an annotation. Kept to one line. */
+.aicToolSkill {
+    font-family: var(--font-script), 'Segoe Script', cursive;
+    font-size: clamp(1.5rem, 2.8cqi, 2.3rem);
+    font-weight: 700;
+    line-height: 0.9;
+    color: var(--brand-orange);
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Long skill names (e.g. dispatching-parallel-agents) shrink to stay on one
+   line; short ones keep the larger size. */
+.aicToolSkillLong {
+    font-size: clamp(1.05rem, 2cqi, 1.6rem);
+}
+
+.aicToolDesc {
+    margin: 0;
+    font-size: var(--fs-body);
+    line-height: 1.45;
+    color: var(--text-muted);
+}
+
+.aicDots {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.aicDot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border-radius: 999px;
+    border: 2px solid var(--brand-orange);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.aicDotActive {
+    background: var(--brand-orange);
+    transform: scale(1.25);
+}
+
+@media screen and (max-width: 900px) {
+    .aicRow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .aicFlow {
+        transform: rotate(90deg);
     }
 }

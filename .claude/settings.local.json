@@ -30,7 +30,8 @@
       "Bash(rtk wc *)",
       "Bash(xargs -I {} basename {})",
       "Bash(mv \"app/documentation/tutorial-fire-vault\" \"app/documentation/guide-fire-vault\")",
-      "Bash(mv \"app/documentation/guide-fire-vault/tutorial-fire-vault.module.css\" \"app/documentation/guide-fire-vault/guide-fire-vault.module.css\")"
+      "Bash(mv \"app/documentation/guide-fire-vault/tutorial-fire-vault.module.css\" \"app/documentation/guide-fire-vault/guide-fire-vault.module.css\")",
+      "Bash(git check-ignore *)"
     ]
   }
 }

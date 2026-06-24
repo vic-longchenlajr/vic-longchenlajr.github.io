@@ -1,14 +1,14 @@
 'use client';
 
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Lightbulb,
     Search,
     Blocks,
     FlaskConical,
-    Repeat,
     Rocket,
+    Repeat,
     type LucideIcon,
 } from 'lucide-react';
 import styles from './slides.module.css';
@@ -21,61 +21,56 @@ interface Step {
     title: string;
     desc: string;
     stakeholders: string[];
-    value: string[];
 }
 
+// Six phases. Steps 1-2 (Validate, Immerse) run once; steps 3-6 (Architect →
+// Prototype → Deploy → Feedback) are the loop that repeats — the return arc
+// below the rail bends from Feedback back to Architect, not back to the start.
 const steps: Step[] = [
     {
         Icon: Lightbulb,
-        title: 'Discovery',
-        desc: 'Validate value, scope, and cross-department impact before building.',
+        title: 'Validate',
+        desc: 'Is it worth building? Validate the value, scope, and who it touches.',
         stakeholders: ['Product Mgmt', 'Project Engr'],
-        value: ['Strategic Alignment', 'Risk Reduction'],
     },
     {
         Icon: Search,
-        title: 'Immersion',
-        desc: 'Map real use cases, constraints, and edge conditions.',
-        stakeholders: ['Project Engr', 'Applications Engr', 'Customer Care', 'End Users'],
-        value: ['Use-Case Clarity', 'Requirement Confidence'],
+        title: 'Immerse',
+        desc: 'Learn the real workflow, constraints, edge cases, and domain.',
+        stakeholders: ['Project Engr', 'Applications Engr', 'End Users'],
     },
     {
         Icon: Blocks,
-        title: 'Architecture',
-        desc: 'Define data models, rules, system boundaries, and visibility.',
+        title: 'Architect',
+        desc: 'Plan and design the build — and, on every loop, the updates.',
         stakeholders: ['Project Engr', 'IT'],
-        value: ['Scalable Framework', 'Standards Enforcement'],
     },
     {
         Icon: FlaskConical,
         title: 'Prototype',
-        desc: 'Prove feasibility with a minimal, validated build.',
+        desc: 'Build it — a minimal, working version to put in real hands.',
         stakeholders: ['Project Engr', 'Applications Engr'],
-        value: ['Feasibility Validation', 'Accelerated Learning'],
-    },
-    {
-        Icon: Repeat,
-        title: 'Validation Sprints',
-        desc: 'Pressure-test assumptions and iterate through structured feedback.',
-        stakeholders: ['Internal Testing Group', 'Product Mgmt'],
-        value: ['Accuracy', 'Operational Confidence'],
     },
     {
         Icon: Rocket,
-        title: 'Deploy & Sustain',
-        desc: 'Release, align stakeholders, and continuously improve.',
-        stakeholders: ['Sales', 'Marketing', 'Legal', 'IT', 'Customer Care'],
-        value: ['Adoption', 'Continuous Improvement'],
+        title: 'Deploy',
+        desc: 'Put it in front of testers so they can actually use it.',
+        stakeholders: ['Internal Testing Group', 'IT'],
+    },
+    {
+        Icon: Repeat,
+        title: 'Feedback',
+        desc: 'Collect it — then loop right back to Architect and go deeper.',
+        stakeholders: ['Test Group', 'Product Mgmt'],
     },
 ];
 
-interface Principle {
-    title: string;
-    description: string;
-}
+// The iteration loop runs between Feedback (last) and Architect.
+const LOOP_FROM = steps.length - 1; // Feedback
+const LOOP_TO = 2; // Architect
 
 // The detail card: types the phase label + title simultaneously, then floats in
-// the description, then the pills (all together). Remounts per phase, so the
+// the description, then the stakeholder pills. Remounts per phase, so the
 // internal sequence replays on every phase change.
 function PhaseDetail({ step, index, reduce }: { step: Step; index: number; reduce: boolean }) {
     const [headDone, setHeadDone] = useState(false);
@@ -105,34 +100,44 @@ function PhaseDetail({ step, index, reduce }: { step: Step; index: number; reduc
                 {step.stakeholders.map((tag) => (
                     <span key={tag} className={`${styles.detailTag} ${styles.tagStakeholder}`}>{tag}</span>
                 ))}
-                {step.value.map((tag) => (
-                    <span key={tag} className={`${styles.detailTag} ${styles.tagValue}`}>{tag}</span>
-                ))}
             </motion.div>
         </>
     );
 }
 
-export default function ProcessLoop({ content, isVisible }: SlideComponentProps) {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [autoAdvance, setAutoAdvance] = useState(true);
-    // Rail finishes drawing before the detail card + principles reveal.
-    const [railDone, setRailDone] = useState(false);
+// Geometry of the return arc, measured from the live DOM so it lines up with the
+// node centers regardless of how flexbox distributed the connectors.
+interface ArcGeo {
+    w: number;
+    h: number;
+    fromX: number;
+    toX: number;
+}
 
-    const principles = (content?.principles as Principle[]) || [];
-    const principlesTitle = (content?.principlesTitle as string) || '';
+export default function ProcessLoop({ isVisible }: SlideComponentProps) {
+    const [activeIndex, setActiveIndex] = useState(0);
+    // Rail finishes drawing before the detail card reveals.
+    const [railDone, setRailDone] = useState(false);
+    const [arc, setArc] = useState<ArcGeo | null>(null);
+
+    const railRef = useRef<HTMLDivElement>(null);
+    const nodeRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
     const reduce = false; // run animations regardless of OS reduced-motion
 
     const nodeGap = 0.35;
     const detailStart = 2.4;
-    const principleTitleAt = detailStart + 0.4;
-    const principleStart = principleTitleAt + 0.4;
-    const principleGap = 0.62; // > wipe duration, so each fires after the prior
+    const ARC_H = 60;
+
+    // The loop arc is the climax — it draws only once the presenter clicks
+    // through to Feedback (the last node), so the motion lands on the spoken
+    // "…and it goes right back to Architect."
+    const arcActive = activeIndex === LOOP_FROM;
 
     useEffect(() => {
         if (!isVisible) {
             setRailDone(false);
+            setActiveIndex(0);
             return;
         }
         if (reduce) {
@@ -143,19 +148,46 @@ export default function ProcessLoop({ content, isVisible }: SlideComponentProps)
         return () => clearTimeout(t);
     }, [isVisible, reduce]);
 
+    // Arrow keys step through phases; at the ends we DON'T consume the event, so
+    // it reaches the engine's window listener and moves to the prev/next slide.
+    // Capture phase + stopImmediatePropagation means we win over that listener
+    // only on the steps we actually handle.
     useEffect(() => {
-        // Only cycle once the rail has drawn and the slide is on screen.
-        if (!autoAdvance || !isVisible || !railDone) return;
-        const interval = setInterval(() => {
-            setActiveIndex((prev) => (prev + 1) % steps.length);
-        }, 9000);
-        return () => clearInterval(interval);
-    }, [autoAdvance, isVisible, railDone]);
+        if (!isVisible) return;
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowRight' && activeIndex < steps.length - 1) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                setActiveIndex((i) => Math.min(steps.length - 1, i + 1));
+            } else if (e.key === 'ArrowLeft' && activeIndex > 0) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                setActiveIndex((i) => Math.max(0, i - 1));
+            }
+        };
+        window.addEventListener('keydown', onKey, { capture: true });
+        return () => window.removeEventListener('keydown', onKey, { capture: true });
+    }, [isVisible, activeIndex]);
 
-    const select = (i: number) => {
-        setAutoAdvance(false);
-        setActiveIndex(i);
-    };
+    // Measure node centers (via offsetLeft — layout-based, so the active node's
+    // scale transform doesn't skew it) and recompute on resize.
+    useLayoutEffect(() => {
+        const measure = () => {
+            const rail = railRef.current;
+            const from = nodeRefs.current[LOOP_FROM];
+            const to = nodeRefs.current[LOOP_TO];
+            if (!rail || !from || !to) return;
+            const centerOf = (n: HTMLButtonElement) => n.offsetLeft + n.offsetWidth / 2;
+            setArc({ w: rail.offsetWidth, h: ARC_H, fromX: centerOf(from), toX: centerOf(to) });
+        };
+        measure();
+        const ro = new ResizeObserver(measure);
+        if (railRef.current) ro.observe(railRef.current);
+        return () => ro.disconnect();
+    }, [isVisible]);
+
+    // Presenter advances phases by clicking the rail nodes — no auto-advance.
+    const select = (i: number) => setActiveIndex(i);
 
     const activeStep = steps[activeIndex];
 
@@ -169,53 +201,78 @@ export default function ProcessLoop({ content, isVisible }: SlideComponentProps)
         animate: isVisible ? { opacity: 1, scaleX: 1 } : { opacity: reduce ? 0 : 1, scaleX: reduce ? 1 : 0 },
         transition: { delay: reduce ? 0 : delay, duration: reduce ? 0.25 : 0.4, ease: EASE },
     });
-    const downIn = (delay: number, dur = 0.7) => ({
-        initial: { opacity: 0, y: reduce ? 0 : -16 },
-        animate: isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: reduce ? 0 : -16 },
-        transition: { delay: reduce ? 0 : delay, duration: reduce ? 0.25 : dur, ease: EASE },
-    });
-    const wipe = (delay: number, dur = 0.55) => {
-        const hidden = reduce ? { opacity: 0 } : { opacity: 0, clipPath: 'inset(0 100% 0 0)' };
-        const shown = reduce ? { opacity: 1 } : { opacity: 1, clipPath: 'inset(0 0% 0 0)' };
-        return {
-            initial: hidden,
-            animate: isVisible ? shown : hidden,
-            transition: { delay: reduce ? 0 : delay, duration: reduce ? 0.25 : dur, ease: EASE },
-        };
-    };
+
+    // The return path: down from Feedback, left across, up into Architect.
+    const arcPath = arc ? `M ${arc.fromX} 4 V ${arc.h - 16} H ${arc.toX} V 6` : '';
 
     return (
         <div className={styles.processWrapper}>
-            {/* Phase rail: each button + the line to its right draw in sequence */}
-            <div className={styles.phaseRail}>
-                {steps.map((step, i) => (
-                    <Fragment key={i}>
-                        {i > 0 && (
-                            <motion.div
-                                className={`${styles.railConnector} ${i <= activeIndex ? styles.railConnectorFilled : ''}`}
-                                style={{ transformOrigin: 'left center' }}
-                                {...connAnim((i - 1) * nodeGap + 0.18)}
-                            />
-                        )}
-                        <motion.button
-                            type="button"
-                            className={`${styles.railNode} ${i === activeIndex ? styles.railNodeActive : ''} ${i < activeIndex ? styles.railNodeDone : ''}`}
-                            {...nodeAnim(i)}
-                            onClick={() => select(i)}
+            <div className={styles.railZone}>
+                {/* Phase rail: each button + the line to its right draw in sequence */}
+                <div className={styles.phaseRail} ref={railRef}>
+                    {steps.map((step, i) => (
+                        <Fragment key={i}>
+                            {i > 0 && (
+                                <motion.div
+                                    className={`${styles.railConnector} ${i <= activeIndex ? styles.railConnectorFilled : ''}`}
+                                    style={{ transformOrigin: 'left center' }}
+                                    {...connAnim((i - 1) * nodeGap + 0.18)}
+                                />
+                            )}
+                            <motion.button
+                                type="button"
+                                ref={(el) => { nodeRefs.current[i] = el; }}
+                                className={`${styles.railNode} ${i === activeIndex ? styles.railNodeActive : ''} ${i < activeIndex ? styles.railNodeDone : ''} ${arcActive && i === LOOP_TO ? styles.railNodeLoopTarget : ''}`}
+                                {...nodeAnim(i)}
+                                onClick={() => select(i)}
+                            >
+                                <span className={styles.railNodeIcon}>
+                                    <step.Icon strokeWidth={2} />
+                                </span>
+                                <span className={styles.railNodeLabel}>{step.title}</span>
+                            </motion.button>
+                        </Fragment>
+                    ))}
+                </div>
+
+                {/* Return arc: bends from Feedback (6) back to Architect (3).
+                    Draws only when the presenter reaches the Feedback node. */}
+                {arc && (
+                    <div className={styles.returnArc} style={{ height: arc.h }}>
+                        <svg
+                            className={styles.returnArcSvg}
+                            width={arc.w}
+                            height={arc.h}
+                            viewBox={`0 0 ${arc.w} ${arc.h}`}
+                            fill="none"
+                            aria-hidden="true"
                         >
-                            <span className={styles.railNodeIcon}>
-                                <step.Icon strokeWidth={2} />
-                            </span>
-                            <span className={styles.railNodeLabel}>{step.title}</span>
-                        </motion.button>
-                    </Fragment>
-                ))}
-                <motion.div
-                    className={styles.railConnector}
-                    style={{ transformOrigin: 'left center' }}
-                    {...connAnim(5 * nodeGap + 0.18)}
-                />
-                <motion.span className={styles.railLoop} title="The cycle repeats" {...nodeAnim(6)}>↺</motion.span>
+                            <motion.path
+                                d={arcPath}
+                                className={styles.returnArcPath}
+                                initial={{ pathLength: 0, opacity: 0 }}
+                                animate={arcActive ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+                                transition={{ duration: reduce ? 0.2 : 0.85, ease: EASE }}
+                            />
+                            <motion.path
+                                d={`M ${arc.toX - 6} 14 L ${arc.toX} 4 L ${arc.toX + 6} 14`}
+                                className={styles.returnArcHead}
+                                initial={{ opacity: 0 }}
+                                animate={arcActive ? { opacity: 1 } : { opacity: 0 }}
+                                transition={{ delay: reduce ? 0 : 0.85, duration: 0.3, ease: EASE }}
+                            />
+                        </svg>
+                        <motion.span
+                            className={styles.returnArcLabel}
+                            style={{ left: (arc.fromX + arc.toX) / 2, top: arc.h - 16 }}
+                            initial={{ opacity: 0 }}
+                            animate={arcActive ? { opacity: 1 } : { opacity: 0 }}
+                            transition={{ delay: reduce ? 0 : 0.6, duration: 0.5, ease: EASE }}
+                        >
+                            ↺ returns to Architect
+                        </motion.span>
+                    </div>
+                )}
             </div>
 
             {/* Detail card: floats in after the rail, then types + reveals */}
@@ -235,24 +292,6 @@ export default function ProcessLoop({ content, isVisible }: SlideComponentProps)
                     </AnimatePresence>
                 )}
             </div>
-
-            {principles.length > 0 && (
-                <div className={styles.principlesStrip}>
-                    {principlesTitle && (
-                        <motion.span className={styles.principlesTitle} {...downIn(principleTitleAt)}>
-                            {principlesTitle}
-                        </motion.span>
-                    )}
-                    <div className={styles.principlesChips}>
-                        {principles.map((p, i) => (
-                            <motion.div key={p.title} className={styles.principleChip} {...wipe(principleStart + i * principleGap)}>
-                                <span className={styles.principleChipTitle}>{p.title}</span>
-                                <span className={styles.principleChipDesc}>{p.description}</span>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            )}
         </div>
     );
 }

@@ -1,18 +1,18 @@
 {
     "meta": {
-      "title": "Custom Software for Complex Engineering Design",
+      "title": "Automating Engineering Workflows with Custom Software",
       "subtitle": "Encoding engineering and design logic into reliable, validated tools",
       "presenter": "Chenla Long, Jr",
       "department": "Fire Suppression Technology",
       "sidebarTitle": "LUNCH & LEARN",
-      "sidebarSubtitle": "Custom Software for Complex Engineering Design",
+      "sidebarSubtitle": "Automating Engineering Workflows with Custom Software",
       "theme": "dark",
       "framedFooter": true
     },
     "slides": [
       {
         "id": "hero",
-        "title": "Custom Software for Complex Engineering Design",
+        "title": "Automating Engineering Workflows with Custom Software",
         "subtitle": "A systematic approach to converting tribal knowledge into powerful, reliable internal tools",
         "breadcrumb": "CONTEXT",
         "layout": "hero",
@@ -20,59 +20,207 @@
         "takeaway": "When design logic is encoded into software, risk drops and quality stops depending on who does the work.",
         "notes": {
           "intent": "Open with confidence and let the tagline frame the thesis, before pitching any product.",
-          "summary": "• Read the room in, then read the title and the tagline.\n• One line on the thesis: I turn tribal knowledge into reliable, validated tools.\n• This is the cold open. Don't dwell, and don't explain the product yet.",
+          "summary": "• This slide is already up while everyone gets situated — let it sit.\n• When you start: read the title and the tagline, one line on the thesis.\n• Thesis: I turn tribal knowledge into reliable, validated tools.\n• Cold open. Don't dwell, and don't explain the product yet.",
           "bridge": "Before I show you what I build, a quick word on who I am."
         },
         "content": {
-          "heading": "Custom Software for Complex Engineering Design",
+          "heading": "Automating Engineering Workflows with Custom Software",
           "tagline": "A systematic approach to converting tribal knowledge into powerful, reliable internal tools."
         }
       },
       {
         "id": "intro",
         "title": "Introduction",
-        "subtitle": "Who I am and the kind of work I do.",
+        "subtitle": "Who I am, and what we'll cover today.",
         "breadcrumb": "INTRODUCTION",
         "layout": "intro",
         "hideTakeaway": true,
         "takeaway": "I turn engineering work that's repetitive and rule-based into reliable software.",
         "notes": {
-          "intent": "Establish credibility and frame this as an expanding mandate, not a one-off side project.",
-          "summary": "• Engineer I in Fire Suppression Technology; CS & Engineering from Lehigh; about three years in.\n• Left column is what I've shipped; right column is where I'm taking it.\n• Where it's going: AI for project knowledge, cloud infrastructure with IT, department-wide AI, other teams.\n• Quick aside: hosting this talk is one of those goals in action.\n• Keep it to 60 to 90 seconds.",
-          "bridge": "So why does this kind of work even need to exist? Here's the root problem."
+          "intent": "Establish credibility with shipped work, then set the roadmap out loud. Goals stay spoken, not printed.",
+          "summary": "• Engineer I in Fire Suppression Technology; CS & Engineering from Lehigh; ~3 years in.\n• Left column is what I've actually shipped — three categories, not a project list.\n• Right column is today's roadmap; walk it out loud.\n• Forward direction is spoken, not on the slide: 'right now I'm working with IT to stand up the infrastructure to get tools like these in front of all of you — and honestly, hosting this talk is part of that.'\n• Name VicFlex and Vortex out loud here, don't print them. Keep it to 60–90 seconds.",
+          "bridge": "So how do I actually build these? Here's the process underneath all of it."
         },
         "content": {
           "name": "Chenla Long, Jr.",
           "role": "Engineer I — Fire Suppression Technology",
           "meta": "3 years (½ year intern, 2½ full-time)",
           "education": "B.S. Computer Science & Engineering, Lehigh University",
-          "focusLabel": "What I've Done",
+          "focusLabel": "What I've Built",
           "focus": [
-            "Designed, developed, and deployed a customer-facing tool and numerous internal engineering tools",
-            "Built a modular data-acquisition platform — capture, visualize, and auto-report on any sensor, at any scale",
-            "Created a KPI & project-planning dashboard from historical LiquidPlanner data",
-            "Converted manual, repetitive workflows into self-service tools"
+            "Customer-facing and internal tools that turn manual, repetitive work into self-service software",
+            "A modular data-acquisition platform — capture, visualize, and auto-report on any sensor, at any scale",
+            "A KPI and project-planning dashboard built from historical project data",
+            "A comprehensive fire suppression platform with integrated presentation engine and best practices documentation"
           ],
-          "recentLabel": "Current Goals",
+          "recentLabel": "What's On Deck Today",
           "recent": [
-            "Leverage AI capabilities to reinvent how Fire Protection stores and retrieves project knowledge",
-            "Stand up cloud infrastructure with IT to deploy and manage engineering software internally",
-            "Share AI research across the department to surface workflows worth automating",
-            "Expand support to other engineering-technology teams — scaling current tools and investigating new avenues for automation"
+            "How I build — my development process",
+            "How I use AI to scale as a solo developer",
+            "The signals that flag a workflow worth automating",
+            "Two real examples — and the value that compounds"
           ]
         }
       },
       {
-        "id": "root-problem",
-        "title": "The Root Problem",
-        "subtitle": "The real reasons capable teams keep solving new problems with the tools already on the desk.",
-        "breadcrumb": "THE PROBLEM",
+        "id": "process",
+        "title": "How I Build",
+        "subtitle": "A standard product development lifecycle — adapted so one person can run every phase.",
+        "breadcrumb": "METHODOLOGY",
+        "layout": "custom",
+        "component": "ProcessLoop",
+        "takeaway": "After the pilot you don't start over — you loop back to Architect and go deeper. That's a living system, not a one-time build.",
+        "notes": {
+          "intent": "Frame the process as the lifecycle everyone knows, then land the real insight: after a pilot it loops back to Architect, not the start.",
+          "summary": "• Say it plainly: this is the same development lifecycle everyone here knows — Validate through Feedback.\n• Click through the phases as you talk; don't read all six, hit the arc.\n• Land the loop on the last click: when you hit Feedback, the arc draws back to Architect — 'you don't start over, you go back to plan the updates and go deeper.'\n• That return, with no endpoint, is what makes it a living system. Release happens when feedback's clean and stakeholders align — and even that can drop back into the loop.\n• The other half of the point: normally each phase leans on a different team. I run the whole loop solo.",
+          "bridge": "Running this whole loop alone only works because of how I use AI. Here's the toolkit."
+        },
+        "content": {}
+      },
+      {
+        "id": "ai-tools",
+        "title": "The AI Behind It",
+        "subtitle": "Walk the chain — each tool takes the last one's output as its input.",
+        "breadcrumb": "METHODOLOGY · AI",
+        "layout": "custom",
+        "component": "AICarousel",
+        "takeaway": "One developer can run the whole lifecycle when each phase has the right AI tool.",
+        "notes": {
+          "intent": "Make AI concrete — walk the carousel one tool at a time so the room sees each phase's tool AND the artifact it hands to the next.",
+          "summary": "• Step through with the arrows — one tool per view, input on the left, output on the right.\n• The whole point: each tool's output becomes the next tool's input. Say that as you advance.\n• Immerse — Claude Projects: the whole problem in; research agents study prior art → a context report.\n• Architect — grill-me interviews me into a design spec (the next slide is the payoff), then writing-plans breaks that spec into parallel lanes → an implementation plan.\n• Prototype — dispatching-parallel-agents: a controller scopes each subagent's context and permissions, then verifies every result against the plan's tests → a working prototype.\n• Feedback — readme-kit logs every change and maps the version so anything can be reverted → then it loops back to Architect.\n• Say it out loud: Validate and Deploy have no tool — deciding it's worth building, and shipping it, are still me. AI doesn't pick the problem.\n• Don't linger on any one tool; the story is the handoff chain.",
+          "bridge": "Of all of these, the one people ask me about most is grill-me. Let me show you what it actually does."
+        },
+        "content": {
+          "artifacts": [
+            {
+              "label": "Context In",
+              "items": [
+                "Existing data",
+                "Workflow examples",
+                "Calculation logic",
+                "Input logic",
+                "Desired output",
+                "Infrastructure constraints"
+              ]
+            },
+            {
+              "label": "Context Report",
+              "items": [
+                "Summary of the research",
+                "Decisions made"
+              ]
+            },
+            {
+              "label": "Product Design Spec",
+              "items": [
+                "Full picture of the solution",
+                "Architecture design",
+                "Tech stack",
+                "Calculation logic"
+              ]
+            },
+            {
+              "label": "Implementation Plan",
+              "items": [
+                "Clearly defined tasks",
+                "Verification tests"
+              ]
+            },
+            {
+              "label": "Prototype",
+              "items": [
+                "A minimal viable product",
+                "Ready to iterate on"
+              ]
+            },
+            {
+              "label": "Documented Release",
+              "items": [
+                "Standardized changelog",
+                "Mapped version bump",
+                "Reversible history"
+              ],
+              "loop": "↺ back to Architect"
+            }
+          ],
+          "tools": [
+            {
+              "phase": "IMMERSE",
+              "tool": "Claude Projects",
+              "desc": "Discusses the problem and the steps to a solution, and deploys research agents to study how others have solved it."
+            },
+            {
+              "phase": "ARCHITECT",
+              "tool": "Claude Code",
+              "skill": "grill-me",
+              "desc": "Interviews me into an airtight spec — surfaces blind spots and presents alternative solutions with their tradeoffs."
+            },
+            {
+              "phase": "ARCHITECT",
+              "tool": "Claude Code",
+              "skill": "writing-plans",
+              "desc": "Breaks the design spec into parallel development lanes."
+            },
+            {
+              "phase": "PROTOTYPE",
+              "tool": "Claude Code",
+              "skill": "dispatching-parallel-agents",
+              "desc": "Delegates each task to a specialized agent with a focused scope. The controller gives each only the context it needs and scopes its permissions so lanes don't conflict — then verifies every result against the predefined tests."
+            },
+            {
+              "phase": "FEEDBACK",
+              "tool": "Claude Code",
+              "skill": "readme-kit",
+              "desc": "After every update, documents the changes in a standard format and maps the version bump — so breaking changes can be tracked and reverted if needed."
+            }
+          ]
+        }
+      },
+      {
+        "id": "grill-me",
+        "title": "Inside grill-me",
+        "subtitle": "How a rough idea becomes a spec I can build from.",
+        "breadcrumb": "METHODOLOGY · GRILL-ME",
+        "layout": "custom",
+        "component": "GrillMe",
+        "takeaway": "It won't let me hand-wave — every assumption gets a decision before a line of code is written.",
+        "notes": {
+          "intent": "Make grill-me concrete and stealable — show it catching a definitional decision before any code.",
+          "summary": "• Frame it: I start vague, and grill-me won't let me stay vague.\n• The length is the point — it asks 20+ questions, one at a time. The badge stands in for that; don't read a transcript.\n• Walk the one exchange: it asked whether 'hours per engineer' should include admin and out-of-office. That's a definition that would've made every chart wrong.\n• Land the SPEC: Productive Hours = logged − admin − OOO, decided before building anything.\n• This is the part people can steal tomorrow — flag it for Q&A.",
+          "bridge": "So that's how I build. Now — when do I point all this at a problem? When I see these signals."
+        },
+        "content": {
+          "lead": "Before I write any code, grill-me interviews me about the idea — one question at a time, until every assumption has a decision.",
+          "askLabel": "THE ROUGH IDEA I WALKED IN WITH",
+          "ask": "I've got a pile of LiquidPlanner timesheet data. What KPIs can we pull out of it, and what should I build to view it?",
+          "questionCount": 23,
+          "questionNote": "questions, one at a time",
+          "exchangeLabel": "ONE OF THEM",
+          "turns": [
+            {
+              "role": "grill",
+              "text": "Should \"hours per engineer\" include admin time and out-of-office — or only project work?"
+            },
+            {
+              "role": "me",
+              "text": "…only productive work. Exclude admin and out-of-office, and label it clearly."
+            }
+          ],
+          "outcome": "→ SPEC: \"Productive Hours = logged − admin − out-of-office\" — defined before a single chart was built.",
+          "footnote": "One representative exchange from a much longer session. The full output is an implementation plan handed straight to the build step."
+        }
+      },
+      {
+        "id": "signals",
+        "title": "The Signals",
+        "subtitle": "The patterns that say a workflow is ready to become a tool.",
+        "breadcrumb": "THE SIGNALS",
         "layout": "grid",
         "takeaway": "We're not short on engineering talent — we're short on tools built for the way we actually work.",
         "notes": {
-          "intent": "Win buy-in by naming the real reasons capable teams stay stuck on the tools already on the desk.",
-          "summary": "• Walk the four root causes; don't just say things are hard.\n• Excel overextended, tribal knowledge undocumented, the right tool is rare and costly, and plain habit.\n• The 'expensive' tile sets up my reveal: it takes product depth and software skill in one person, the gap I fill.\n• Keep it universal, no product names yet. Don't resolve it; let it sit.",
-          "bridge": "Let me show you what this actually looked like for one of our systems."
+          "intent": "Give the audience a checklist they recognize, so the demos land as answers to a problem they have too.",
+          "summary": "• Frame these as the tells that a workflow is worth automating — not just 'things that are hard.'\n• Speak the title plus one phrase per tile; don't read the descriptions verbatim.\n• The 'rare skillset' tile is the callback to the AI slide — that combination is exactly what AI unlocks for a solo developer.\n• Don't resolve it yet; let it sit. The demos are the resolution.",
+          "bridge": "Here's the first place I saw these signals — VicFlex."
         },
         "content": {
           "columns": 2,
@@ -81,138 +229,38 @@
             {
               "icon": "sheet",
               "title": "Excel, Overextended",
-              "description": "We lean on spreadsheets to do the work of real applications, far beyond what they were ever built for."
+              "description": "Spreadsheets doing the work of real software."
             },
             {
               "icon": "brain",
               "title": "Tribal Knowledge",
-              "description": "The logic that matters lives in senior engineers' heads, not in anything documented or shared."
+              "description": "The logic that matters lives in one person's head."
             },
             {
               "icon": "scale",
-              "title": "The Right Tool Is Expensive",
-              "description": "Purpose-built software needs someone who knows the product deeply and can build software: a rare, costly combination, so it rarely gets built."
+              "title": "The Right Tool Is Rare",
+              "description": "Takes product and software skill in one person — so it rarely gets built."
             },
             {
               "icon": "repeat",
               "title": "\"We've Always Done It This Way\"",
-              "description": "Proven processes are comfortable, and few realize a better tool is even possible, so change is hard to justify."
+              "description": "Comfortable process; nobody knows a better tool is possible."
             }
           ]
         }
       },
       {
-        "id": "old-design",
-        "title": "A Real Example",
-        "subtitle": "What designing one system used to take — and where the logic lived.",
-        "breadcrumb": "THE OLD WAY",
-        "layout": "custom",
-        "component": "SourceStack",
-        "takeaway": "The logic was real engineering judgment — just scattered across documents that never talked to each other.",
-        "notes": {
-          "intent": "Make the fragmentation felt: one design used to mean four disconnected sources and no single source of truth.",
-          "summary": "• Frame the product in one line: a hybrid suppression system, powerful but painful to configure.\n• Open the four real artifacts live as you talk: Configurator (media, partcodes), Estimator (hand calcs), Price List, Design Manual (agency rules).\n• Land it: 4+ sources that never talked to each other, so quality depended on who did the work.\n• Backup: the XLSX and XLSM download, so have them already open in Excel; the PDFs open in a tab.",
-          "bridge": "That's what it felt like. Here's what we actually changed underneath."
-        },
-        "content": {
-          "setup": "Take one of our most capable products — a hybrid suppression system. Powerful in the field, painful to configure. To assemble a single design, the rules you needed were spread across separate, disconnected documents:",
-          "sources": [
-            {
-              "badge": "XLSX",
-              "title": "Vortex Configurator",
-              "sub": "Media constraints, valid configurations, and partcodes.",
-              "href": "/lunch-and-learn-resources/Vortex%20Configurator%20-%20US%20April%202023.xlsx"
-            },
-            {
-              "badge": "XLSM",
-              "title": "Vortex Project Estimator v2.4",
-              "sub": "The design calculations, run by hand.",
-              "href": "/lunch-and-learn-resources/Victaulic-Vortex-Project-Estimator-2_4%201.xlsm"
-            },
-            {
-              "badge": "PDF",
-              "title": "Vortex Price List (PL2021 Rev. A)",
-              "sub": "Pricing, looked up and transcribed separately.",
-              "href": "/lunch-and-learn-resources/PL2021-VORTEX%20Rev.%20A.pdf"
-            },
-            {
-              "badge": "PDF",
-              "title": "Vortex Design Manual (VDM-VORTEX-01)",
-              "sub": "Agency rules, standards, and reference data, recalled from memory.",
-              "href": "https://assets.victaulic.com/assets/uploads/literature/VDM-VORTEX-01.pdf",
-              "external": true
-            }
-          ],
-          "punchline": {
-            "stat": "4+ disconnected sources",
-            "label": "no single source of truth — so the result was only as good as the engineer who did it."
-          }
-        }
-      },
-      {
-        "id": "vortex-demo",
-        "title": "Vortex Project Builder",
-        "subtitle": "From scattered logic to one validated tool — live.",
-        "breadcrumb": "LIVE DEMO · VORTEX",
-        "layout": "custom",
-        "component": "DemoLaunch",
-        "takeaway": "Same inputs, same output — every engineer, every time.",
-        "notes": {
-          "intent": "Show the turn, restructure then encode, and prove it with a live build.",
-          "summary": "• Read each Signal as how I spotted the candidate; the Target across from it is the response.\n• Say the maturity line: I didn't just digitize the sheets, I restructured the method into one model, then encoded it once.\n• Launch live: load a preset, define two zones, trigger a warning on purpose, export the BOM (about 7 minutes).\n• Close: that BOM is audit-ready and identical for any engineer on the same inputs.\n• Keep screenshots ready as backup if the demo stalls.",
-          "bridge": "Now, not everything needs a platform this big."
-        },
-        "content": {
-          "link": "https://vortex.victaulicmobile.com",
-          "launchLabel": "LAUNCH BUILDER",
-          "signalsLabel": "THE SIGNALS",
-          "targetLabel": "THE TARGET",
-          "pairs": [
-            {
-              "signal": {
-                "k": "Complexity",
-                "v": "Project complexity scaled the design-calculation complexity — all done by hand."
-              },
-              "target": {
-                "k": "Algorithms",
-                "v": "Handle the calculations, with transparent results so the logic can be validated — closing the calculation gap."
-              }
-            },
-            {
-              "signal": {
-                "k": "Throughput",
-                "v": "Feasibility was bottlenecked by Applications Engineering and training support."
-              },
-              "target": {
-                "k": "Intuitive UI + Runtime Rules",
-                "v": "Abstracts requirements into simple inputs and enforces standards at runtime — anyone produces a compliant project."
-              }
-            },
-            {
-              "signal": {
-                "k": "Resources",
-                "v": "One estimate meant juggling async files (price list, manual, NFPA codes), job knowledge, hand calcs, and coordination across Sales, Apps Eng & Customer Care."
-              },
-              "target": {
-                "k": "Database-Driven BOM",
-                "v": "Price list & partcodes build the BOM alongside the config, then hand off directly to Customer Care — one flow replaces the juggle."
-              }
-            }
-          ]
-        }
-      },
-      {
-        "id": "vicflex-demo",
+        "id": "vicflex",
         "title": "VicFlex Bracket Filter",
-        "subtitle": "Same thinking, smaller scale — also live.",
-        "breadcrumb": "LIVE DEMO · VICFLEX",
+        "subtitle": "A high-frequency lookup, turned into a self-service tool — live.",
+        "breadcrumb": "CASE 1 · VICFLEX",
         "layout": "custom",
         "component": "DemoLaunch",
         "takeaway": "Automating the decision you make 40 times beats optimizing the one you make once.",
         "notes": {
-          "intent": "Prove the same Signal-to-Target thinking scales down to a high-frequency lookup.",
-          "summary": "• The pattern is familiar now, so move faster through the five pairs.\n• Launch live: pick known components, watch it return compatible configurations instantly against the D-value threshold (about 6 minutes).\n• Reinforce the wins: self-service for sales, no engineering gatekeeping, no training needed.",
-          "bridge": "Both of those followed the exact same process. Here's that process."
+          "intent": "Land VicFlex fast — one setup line plus two relatable pairs set up a quick live demo. Tell the Brian/intern story aloud.",
+          "summary": "• Tell the Brian/intern story out loud — it lands better than bullets, especially with Brian in the room: the repeated lookup pulling him into SolidWorks, his interns' database, the shopping-style filter.\n• On screen: one setup line + the two Signal→Target pairs (the reusable model).\n• Two pairs only — tribal knowledge becomes queryable, the bottleneck becomes self-service.\n• Get to LAUNCH fast: pick known components, instant compatible configs against the D-value threshold (~5 min). Screenshots ready as backup.",
+          "bridge": "So what did giving that time back actually look like?"
         },
         "content": {
           "link": "https://victaulic-engineering-tech-solutions.github.io/vicflex-bracket-filter/",
@@ -220,27 +268,10 @@
           "launchLabel": "LAUNCH BRACKET FILTER",
           "signalsLabel": "THE SIGNALS",
           "targetLabel": "THE TARGET",
+          "origin": {
+            "setup": "The modular VicFlex bracket line has tons of possible configurations — and every compatibility question kept landing on engineering."
+          },
           "pairs": [
-            {
-              "signal": {
-                "k": "Thousands of Configurations",
-                "v": "The modular VicFlex line introduces thousands of possible configuration options."
-              },
-              "target": {
-                "k": "Configuration Database",
-                "v": "A database of the most common configurations captures the space that actually matters."
-              }
-            },
-            {
-              "signal": {
-                "k": "Compatibility Rules",
-                "v": "Each option carries its own compatibility requirements."
-              },
-              "target": {
-                "k": "A Universal Metric",
-                "v": "One feasibility gauge — the D-VALUE distance threshold — replaces scattered, per-option rules."
-              }
-            },
             {
               "signal": {
                 "k": "Tribal Knowledge",
@@ -260,103 +291,175 @@
                 "k": "Self-Service Sales Tool",
                 "v": "Sales answers compatibility themselves, instantly — no round-trip."
               }
+            }
+          ]
+        }
+      },
+      {
+        "id": "vicflex-impact",
+        "title": "VicFlex: Hours Recovered",
+        "subtitle": "What self-service gives back to engineering.",
+        "breadcrumb": "CASE 1 · IMPACT",
+        "layout": "custom",
+        "component": "VicflexImpact",
+        "takeaway": "Three hours a week, back for NPD — every week, all year.",
+        "notes": {
+          "intent": "Put a real, measured number on the VicFlex win and make it human.",
+          "summary": "• Human first: 3 hours a week, every week — then let the curve climb to 156.\n• Measured, not modeled: 2 requests/week × 1.5 hrs × 52 = 156 hours.\n• Now it's self-service, so the residual is basically zero — the recovered area is the whole chart.\n• Make it Brian, not 'engineering' — that's NPD time back in his week.\n• The right column is the derivation; let the room follow the arithmetic.",
+          "bridge": "Now here's the same process applied to a much more complex product."
+        },
+        "content": {
+          "xLabel": "WEEKS (FULL YEAR)",
+          "yLabel": "HOURS",
+          "newLabel": "With the tool",
+          "recoveredLabel": "recovered",
+          "endpointLabel": "156 hrs",
+          "total": 156,
+          "toolHours": 0,
+          "context": {
+            "heading": "How we measured it",
+            "points": [
+              {
+                "label": "The lookup",
+                "text": "~2 requests a week, ~1.5 hours each in SolidWorks."
+              },
+              {
+                "label": "Across a year",
+                "text": "52 weeks → 156 engineering hours."
+              },
+              {
+                "label": "With the tool",
+                "text": "Sales self-serves → about zero. Nearly all of it recovered."
+              },
+              {
+                "label": "Human scale",
+                "text": "~3 hours a week back in Brian's week, for NPD."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "vortex",
+        "title": "Vortex Project Builder",
+        "subtitle": "Four scattered sources, replaced by one validated tool — live.",
+        "breadcrumb": "CASE 2 · VORTEX",
+        "layout": "custom",
+        "component": "DemoLaunch",
+        "takeaway": "One stop: configure, validate, price, and export — same inputs, same output, every engineer.",
+        "notes": {
+          "intent": "Land the one-stop-shop: the builder packages four old sources into one validated flow. Keep the source docs openable as live backup.",
+          "summary": "• One line on the product: a hybrid suppression system — powerful, painful to configure.\n• The four chips are the old way — open one or two live (the Estimator with its hand calcs is the vivid one), let the rest just sit there making the point. No single source of truth, so quality depended on who did it.\n• Two pairs: hand calcs become a transparent calc engine; four sources become one flow.\n• Maturity line, spoken: I didn't just digitize the sheets — I restructured the method into one model, then encoded it once.\n• Launch live: load a preset, define two zones, trigger a warning on purpose, export the BOM (~7 min). Screenshots ready as backup.",
+          "bridge": "And the value of that doesn't stay flat — it grows with the project."
+        },
+        "content": {
+          "link": "https://vortex.victaulicmobile.com",
+          "launchLabel": "LAUNCH BUILDER",
+          "signalsLabel": "THE SIGNALS",
+          "targetLabel": "THE TARGET",
+          "origin": {
+            "setup": "One of our most capable products — a hybrid suppression system, powerful in the field but painful to configure. A single design used to mean four disconnected sources, with no single source of truth:",
+            "sources": [
+              {
+                "badge": "XLSX",
+                "title": "Configurator",
+                "href": "/lunch-and-learn-resources/Vortex%20Configurator%20-%20US%20April%202023.xlsx"
+              },
+              {
+                "badge": "XLSM",
+                "title": "Estimator v2.4",
+                "href": "/lunch-and-learn-resources/Victaulic-Vortex-Project-Estimator-2_4%201.xlsm"
+              },
+              {
+                "badge": "PDF",
+                "title": "Price List",
+                "href": "/lunch-and-learn-resources/PL2021-VORTEX%20Rev.%20A.pdf"
+              },
+              {
+                "badge": "PDF",
+                "title": "Design Manual",
+                "href": "https://assets.victaulic.com/assets/uploads/literature/VDM-VORTEX-01.pdf",
+                "external": true
+              }
+            ]
+          },
+          "pairs": [
+            {
+              "signal": {
+                "k": "Done by Hand",
+                "v": "Project complexity scaled the design-calculation complexity — all worked out by hand."
+              },
+              "target": {
+                "k": "Calculation Engine",
+                "v": "Handles the math and shows its work, so the logic stays validated — no more hand calcs."
+              }
             },
             {
               "signal": {
-                "k": "Hours Per Week",
-                "v": "Engineers spent hours each week rebuilding custom configurations to reproduce feasibility."
+                "k": "Scattered Resources",
+                "v": "One estimate meant juggling async files — price list, manual, codes — plus hand calcs and coordination across Sales, Apps Eng & Customer Care."
               },
               "target": {
-                "k": "Online-Shopping UX",
-                "v": "A familiar shopping-style interface means no training and no engineering labor to build a valid configuration."
+                "k": "One-Stop-Shop",
+                "v": "Price list & partcodes build an accurate BOM as you configure — then quote, export for Applications, and hand to Customer Care from one flow."
               }
             }
           ]
         }
       },
       {
-        "id": "process",
-        "title": "How I Build Internal Platforms",
-        "subtitle": "A cross-functional lifecycle from concept to deployment.",
-        "breadcrumb": "METHODOLOGY",
+        "id": "vortex-impact",
+        "title": "Vortex: Effort vs. Complexity",
+        "subtitle": "Why the tool's value grows with the project.",
+        "breadcrumb": "CASE 2 · IMPACT",
         "layout": "custom",
-        "component": "ProcessLoop",
-        "takeaway": "Alignment, validation, and iteration are what make tools scalable.",
+        "component": "VortexImpact",
+        "takeaway": "The more complex the project, the wider the gap — and the more the tool saves.",
         "notes": {
-          "intent": "Answer 'how do you actually do this?' through the four principles, not a six-phase lecture.",
-          "summary": "• Frame it: every tool you just saw followed this same lifecycle.\n• Don't read all six phases. Use the four principles, each pairs two phases:\n   - Deeply Immerse covers Discovery and Immersion\n   - Prototype Fast covers Architecture and Prototype\n   - All Feedback Is Valuable covers Validation Sprints\n   - Leverage AI runs underneath all of it\n• Name the AI tools out loud: grill-me to plan, Claude Code to build.",
-          "bridge": "So does this actually move the needle? Here's the measurable side."
+          "intent": "Show the shape of the savings honestly — assert the shape, not exact numbers — and let the divergence be the argument.",
+          "summary": "• Be upfront: VicFlex I can measure to the hour; this one's a model. I'm asserting the shape, not numbers — there are no ticks on the axes.\n• Read the right column: base effort, then the old method goes exponential (every added zone or enclosure compounds, rework restarts), while the builder stays near-flat (complexity = clicks, not effort).\n• The widening gap is the point — even worst case the old way scales numerically worse.\n• The line to land: effort stays flat as complexity grows.",
+          "bridge": "So if any of this sounds like your day to day — let's take one and think it through together."
         },
         "content": {
-          "principlesTitle": "The principles underneath it",
-          "principles": [
-            {
-              "title": "Deeply Immerse",
-              "description": "Learn the whole problem: who it affects, who actually uses it, the assumptions hiding in the old workflow, and the data that reveals the pattern."
-            },
-            {
-              "title": "Prototype Fast",
-              "description": "Get to a working build fast, even a wrong one. It's hard to critique a concept while the workflow itself is changing; a real prototype gives people something concrete to react to."
-            },
-            {
-              "title": "All Feedback Is Valuable",
-              "description": "Cross-functional testing surfaces every use case. A complaint or a suggestion is signal: the tool improves, and it never adds a learning curve."
-            },
-            {
-              "title": "Leverage AI",
-              "description": "Use AI to capture the idea, surface blind spots, and turn a clear plan into a working prototype, fast."
-            }
-          ]
-        }
-      },
-      {
-        "id": "impact",
-        "title": "Where the Effort Goes",
-        "subtitle": "How effort behaves, the old way versus now.",
-        "breadcrumb": "IMPACT",
-        "layout": "custom",
-        "component": "ImpactCharts",
-        "takeaway": "The more complex the work, the wider the gap, and the more the tool saves.",
-        "notes": {
-          "intent": "Show the shape of the savings, backed by one real, measured proof.",
-          "summary": "• Be upfront: the left chart is an illustrative model, the right is measured.\n• Vortex (left): old cost accelerates (calc per enclosure, then a hand-built BOM, then slower pricing), the builder stays flat, so the gap widens with complexity.\n• VicFlex (right): 156 engineering hours recovered a year (2 requests per week, 1.5 hours each, 52 weeks).\n• Make it human: each request was a focused interruption into SolidWorks; now Sales self-serves in under five minutes.",
-          "bridge": "And this is where I want your help."
-        },
-        "content": {
-          "curve": {
-            "title": "Vortex: Effort vs. Complexity",
-            "xLabel": "PROJECT COMPLEXITY (ZONES × ENCLOSURES)",
-            "yLabel": "EFFORT",
-            "oldLabel": "Old method",
-            "newLabel": "Vortex Builder",
-            "caption": "Each enclosure used to add its own calc, BOM, and pricing work, so cost accelerated. The builder absorbs complexity in one codified step, so effort stays flat and the gap widens."
-          },
-          "recovery": {
-            "title": "VicFlex: Engineering Hours Recovered",
-            "xLabel": "WEEKS (FULL YEAR)",
-            "yLabel": "HOURS",
-            "newLabel": "With the tool",
-            "recoveredLabel": "recovered",
-            "endpointLabel": "156 hrs",
-            "total": 156,
-            "toolHours": 9,
-            "basis": "2 requests/week × 1.5 hrs × 52 weeks",
-            "caption": "Each request used to pull an engineer into SolidWorks to verify geometry and D-value compatibility; the tool returns it in under five minutes. The recovered time compounds across the year."
+          "xLabel": "PROJECT COMPLEXITY (ZONES × ENCLOSURES)",
+          "yLabel": "EFFORT",
+          "oldLabel": "Old method",
+          "newLabel": "Vortex Builder",
+          "context": {
+            "heading": "Reading the curve",
+            "points": [
+              {
+                "label": "Base effort",
+                "text": "Every project starts with the same baseline estimate work — the y-intercept."
+              },
+              {
+                "label": "Old method → exponential",
+                "text": "Hand calcs, async files, and coordination across departments — each added zone or enclosure compounds across every layer, and any rework meant starting from scratch."
+              },
+              {
+                "label": "Vortex Builder → near-flat",
+                "text": "Same baseline; each added zone is just a few more clicks. Complexity drives clicks, not effort."
+              },
+              {
+                "label": "The gap",
+                "text": "Even worst-case, the divergence compounds — the old way scales numerically worse."
+              }
+            ]
           }
         }
       },
       {
         "id": "next",
         "title": "Is This Your Workflow?",
-        "subtitle": "Maybe there's a better way.",
+        "subtitle": "What to look for — and how to approach it.",
         "breadcrumb": "YOUR TURN",
         "layout": "custom",
         "component": "ClosingSignals",
         "takeaway": "Make the correct way the easy way.",
         "notes": {
-          "intent": "Turn the Signals device on the audience and make a concrete, low-friction ask.",
-          "summary": "• Read the signals slowly; let each person picture their own workflow.\n• Land the reframe, the line to remember: we should spend more time engineering and less time organizing.\n• Make the ask concrete: if any of this sounds familiar, message me on Teams or email; let's build it together.\n• Then open it up for questions.",
-          "bridge": "So, what's the workflow you keep dreading? Let's open it up. (hand to Q&A)"
+          "intent": "Recap the takeaways — the signals and the process — then open the room to think one through live. No self-promotion.",
+          "summary": "• Recap, turned on them: the signals to watch for in your own work, and the process — simplified — to approach them.\n• Read a couple signals slowly; let people picture their own workflow.\n• Open question: 'What's one thing you've always wanted to automate?' Take ONE and walk it down the seven steps OUT LOUD with the room — this is a verbal think-through, NOT a live grill-me session. Don't run the tool live.\n• You don't have to solve it — just model the thinking, and end branches with 'and that's where grill-me takes over.'\n• Have a backup workflow in your pocket in case the room's quiet. Time-box to one example, then open broader Q&A.\n• Land the line last: 'Make the correct way the easy way.'",
+          "bridge": "So — what's one you'd want to take on? Let's pick one and walk it. (open Q&A)"
         },
         "content": {
           "signalsLabel": "The signals — in your work",
@@ -367,10 +470,18 @@
             "You make the same lookup dozens of times a project.",
             "The output depends on who did the work."
           ],
-          "targetLabel": "Sound familiar?",
-          "targetKey": "Let's build it together",
-          "targetText": "Message me on Teams, or email",
-          "contactEmail": "chenla.long@victaulic.com",
+          "processLabel": "The process — simplified",
+          "steps": [
+            "Determine the value and scope of automation",
+            "Organize the context and data",
+            "Research existing solutions",
+            "Plan and design the prototype with grill-me",
+            "Build the prototype",
+            "Organize a testing group",
+            "Iterate on feedback"
+          ],
+          "openQuestion": "What's one thing you've always wanted to automate?",
+          "openInvite": "Let's pick one and walk it through these steps together.",
           "reframe": "Make the correct way the easy way."
         }
       }

@@ -1,6 +1,32 @@
 # Changelog
 
 
+## v1.6.0 — 2026-06-24
+
+### Lunch & Learn Presentation — Narrative redesign
+- Rewrote `presentation.json` around a process-first narrative arc with revised slide ordering, wording, takeaways, and speaker notes
+- Added "The AI Behind It" slide (`AICarousel`): a walkable artifact → tool → artifact chain where each tool's output becomes the next tool's input; one tool per view with input/output artifact cards, navigable by on-screen dots and ←/→ arrow keys (keys fall through to slide navigation at the ends)
+- Added "Inside grill-me" slide (`GrillMe`): shows a rough idea becoming a build-ready spec through a representative interview exchange
+- Split the combined impact chart into two dedicated case slides — `VicflexImpact` (hours recovered, via `ImpactRecovery`) and `VortexImpact` (effort vs. complexity, via `ImpactCurve`) — sharing a new `ChartContext` panel for the "how we measured it" derivation
+- Removed `ImpactCharts`, superseded by the per-case impact slides
+- Reworked the closing slide (`ClosingSignals`) from a Signals → Target mirror with an email call-to-action into a recap (the signals plus a simplified numbered process) followed by an open question that invites a live, think-it-through-together Q&A
+- Extended the demo slides (`DemoLaunch`) with an optional origin block — a compressed backstory of setup text, bullets, and openable source-document chips — that reveals before the Signal → Target mirror
+
+### Lunch & Learn Presentation — Motion and interaction
+- `AICarousel` entrance choreography: the tool card slides gently down into place, then the input and output cards slide out from behind it (z-layered) in unison, with the flow arrows fading in last; on step change the artifacts retract behind the tool and the next tool drops into place
+- `ProcessLoop`: added ←/→ arrow-key navigation through the phases (a capture-phase handler that falls through to slide navigation at the ends) and a reset to the first phase whenever the slide re-enters
+
+### Typography
+- Added the Caveat handwritten script font (`--font-script`) via `next/font`; used on the AI carousel to set Claude Code skill names apart from product names, with long skill names auto-shrinking to stay on one line
+
+### Documentation
+- Added `DELIVERY-NOTES.md`: personal delivery cues (pacing, emphasis) for the talk, separate from the on-deck presenter notes
+- Added the redesign design spec under `docs/superpowers/specs/`
+
+### Build
+- Bumped version to 1.6.0
+
+
 ## v1.5.0 — 2026-06-17
 
 ### Presentation Engine — Motion system

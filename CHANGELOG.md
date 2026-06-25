@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.6.0 — 2026-06-25
+## v1.6.1 — 2026-06-25
 
 ### Lunch & Learn Presentation
 - Updated title and description card in the /presentations page

@@ -17,7 +17,7 @@ export interface ExportConfig {
     slideCount: number;
     /** Deck title for <title> + filename. */
     title: string;
-    /** Called as each slide begins capturing (1-based), for progress UI. */
+    /** Called immediately before each slide's settle period begins (1-based), so the progress label updates without waiting. */
     onProgress?: (current: number) => void;
 }
 
@@ -82,18 +82,21 @@ async function inlineFonts(css: string): Promise<string> {
 /** Step through every slide, settle, and clone section + header into static
  *  markup. Returns each section's outerHTML with the header baked in. */
 async function captureSlides(cfg: ExportConfig): Promise<string[]> {
-    const { container, headerSelector, slideCount, onProgress } = cfg;
+    const { container, slideSelector, headerSelector, slideCount, onProgress } = cfg;
+    // The header is one persistent element whose text updates to the active slide.
+    // Query the node once, but clone it fresh each iteration AFTER settle so each
+    // clone captures that slide's header content.
     const header = container.querySelector(headerSelector) as HTMLElement | null;
     const out: string[] = [];
 
     for (let i = 0; i < slideCount; i++) {
-        let section = container.querySelector(`[data-index="${i}"]`) as HTMLElement | null;
+        let section = container.querySelector(`${slideSelector}[data-index="${i}"]`) as HTMLElement | null;
         if (section) section.scrollIntoView({ behavior: 'auto' });
         onProgress?.(i + 1);
         await wait(CAPTURE_SETTLE_MS);
 
         // Re-query after settle in case React remounted the node.
-        section = container.querySelector(`[data-index="${i}"]`) as HTMLElement | null;
+        section = container.querySelector(`${slideSelector}[data-index="${i}"]`) as HTMLElement | null;
         if (!section) {
             console.warn(`[export] slide index ${i} not found at capture time; skipping`);
             continue;

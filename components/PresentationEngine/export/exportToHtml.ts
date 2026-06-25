@@ -23,15 +23,31 @@ export interface ExportConfig {
 
 const wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
+/** Rewrite relative url(...) references to absolute, resolved against `base`
+ *  (the owning stylesheet's href). Leaves data:, fragment (#...), protocol, and
+ *  root-relative urls untouched. This is what lets inlineFonts fetch next/font's
+ *  stylesheet-relative woff2 urls (e.g. url(../media/x.woff2)) correctly. */
+function absolutizeUrls(cssText: string, base: string): string {
+    return cssText.replace(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g, (full, _quote: string, ref: string) => {
+        if (/^(data:|#|https?:|\/\/|\/)/i.test(ref)) return full;
+        try {
+            return `url(${new URL(ref, base).href})`;
+        } catch {
+            return full;
+        }
+    });
+}
+
 /** Concatenate every readable stylesheet's rules. Cross-origin sheets throw on
  *  cssRules access — skip those; the deck's own CSS is same-origin. */
 function collectCss(): string {
     let out = '';
     for (const sheet of Array.from(document.styleSheets)) {
+        const base = sheet.href ?? document.baseURI;
         try {
             const rules = sheet.cssRules;
             if (!rules) continue;
-            for (const rule of Array.from(rules)) out += rule.cssText + '\n';
+            for (const rule of Array.from(rules)) out += absolutizeUrls(rule.cssText, base) + '\n';
         } catch {
             // Cross-origin / inaccessible stylesheet — cannot read rules; skip.
         }

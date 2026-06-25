@@ -606,11 +606,11 @@
 /* ---- Export button (chrome) ---- */
 .exportButton {
     position: fixed;
-    right: 20px;
+    left: 20px;
     bottom: 20px;
     z-index: 50;
     padding: 8px 14px;
-    font-size: var(--fs-label);
+    font-size: 0.8rem;
     font-family: var(--font-geist-mono, monospace);
     letter-spacing: 0.02em;
     color: var(--brand-black, #1a1a1a);
@@ -624,6 +624,10 @@
 .exportButton:hover:not(:disabled) {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+.exportButton:focus-visible {
+    outline: 2px solid var(--brand-black, #1a1a1a);
+    outline-offset: 2px;
 }
 .exportButton:disabled {
     opacity: 0.7;

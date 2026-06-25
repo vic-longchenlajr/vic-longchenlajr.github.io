@@ -19,8 +19,8 @@ export const ExportButton = ({ exporting, progress, onExport }: ExportButtonProp
         aria-label="Export presentation to a shareable HTML file"
         title="Export to HTML (E)"
     >
-        {exporting && progress
-            ? `Exporting… ${progress.current}/${progress.total}`
+        {exporting
+            ? (progress ? `Exporting… ${progress.current}/${progress.total}` : 'Exporting…')
             : '↓ Export'}
     </button>
 );

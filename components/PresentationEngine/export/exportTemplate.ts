@@ -4,7 +4,7 @@
 export interface ExportTemplateInput {
     /** Deck title — used for <title> and the download filename. */
     title: string;
-    /** Live <html> className (carries data-theme via attribute, copied separately). */
+    /** Live <html> className. The deck pins its own colors regardless of site theme, so the exported <html> is intentionally fixed to data-theme="dark". */
     htmlClassName: string;
     /** Live <body> className — carries the next/font CSS-variable classes. */
     bodyClassName: string;
@@ -29,7 +29,8 @@ function escapeHtml(s: string): string {
     return s
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
 }
 
 // Export-only overrides. The cloned sections keep the deck's hashed CSS-module

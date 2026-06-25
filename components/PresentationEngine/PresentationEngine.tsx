@@ -95,12 +95,13 @@ export function PresentationEngine({
         const handleKeyDown = (e: KeyboardEvent) => {
             if (['ArrowDown', 'ArrowRight', ' '].includes(e.key)) {
                 e.preventDefault();
-                scrollToSlide(currentSlideIndex + 1);
+                if (!exporting) scrollToSlide(currentSlideIndex + 1);
             } else if (['ArrowUp', 'ArrowLeft'].includes(e.key)) {
                 e.preventDefault();
-                scrollToSlide(currentSlideIndex - 1);
+                if (!exporting) scrollToSlide(currentSlideIndex - 1);
             } else if (e.key.toLowerCase() === 'n') {
                 setShowNotes(prev => !prev);
+            // 'E' triggers export; safe to bind globally because the deck has no text inputs.
             } else if (e.key.toLowerCase() === 'e' && !exporting) {
                 e.preventDefault();
                 handleExport();

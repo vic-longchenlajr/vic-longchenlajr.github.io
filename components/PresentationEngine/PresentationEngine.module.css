@@ -602,3 +602,30 @@
         display: flex;
     }
 }
+
+/* ---- Export button (chrome) ---- */
+.exportButton {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 50;
+    padding: 8px 14px;
+    font-size: var(--fs-label);
+    font-family: var(--font-geist-mono, monospace);
+    letter-spacing: 0.02em;
+    color: var(--brand-black, #1a1a1a);
+    background: #ffffff;
+    border: 1px solid var(--border, #D8D2C8);
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.exportButton:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+.exportButton:disabled {
+    opacity: 0.7;
+    cursor: progress;
+}

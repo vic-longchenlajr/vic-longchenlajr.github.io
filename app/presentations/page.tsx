@@ -63,15 +63,15 @@ export default function PresentationsPage() {
                   </span>
                 </div>
                 <h3 className={styles.cardTitle}>
-                  From Problem to Platform: Building Customer-Facing Tools in
-                  Engineering
+                  Automating Engineering Workflows With Custom Software
                 </h3>
                 <p className={styles.cardDesc}>
-                  Cross-functional engineering workflows translated into
-                  reliable, scalable software platforms. Explore the process,
-                  principles, and impact of building internal engineering tools.
+                  A systematic approach to converting tribal knowledge into
+                  powerful, reliable internal tools. Explore the process,
+                  principles, and impact of building internal engineering
+                  software.
                 </p>
-                <div className={styles.cardMeta}>10 slides · June 2026</div>
+                <div className={styles.cardMeta}>11 slides · June 2026</div>
               </div>
               <span className={styles.cardAffordance}>View ›</span>
             </Link>

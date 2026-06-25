@@ -475,14 +475,14 @@
             "Determine the value and scope of automation",
             "Organize the context and data",
             "Research existing solutions",
-            "Plan and design the prototype with grill-me",
-            "Build the prototype",
+            "Plan and design the prototype with /grill-me and /writing-plans",
+            "Build the prototype with /dispatching-parallel-agents",
             "Organize a testing group",
             "Iterate on feedback"
           ],
           "openQuestion": "What's one thing you've always wanted to automate?",
-          "openInvite": "Let's pick one and walk it through these steps together.",
-          "reframe": "Make the correct way the easy way."
+          "openInvite": "",
+          "reframe": ""
         }
       }
     ]

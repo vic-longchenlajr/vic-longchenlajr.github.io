@@ -94,20 +94,26 @@ New module: `components/PresentationEngine/export/`
 
 ### Engine wiring
 
-- `PresentationEngine.tsx` gains:
-  - An `isExporting` state (drives the progress indicator and the
-    settled/final-state capture mode).
-  - An `exportDeck()` handler that calls `exportToHtml(...)`, passing
-    `slides.length`, a `goToSlide` that sets `currentSlideIndex` directly (not the
-    smooth-scroll path, so capture is deterministic), an accessor for the active
-    `SlideShell` DOM node, and the deck title from `meta`.
-  - Forcing final visual state during export: while `isExporting`, slides mount in
-    a "settled" mode (final state immediately, no entrance animation). Mechanism:
-    pass a `settled` / `forceVisible` prop down through `renderSlideContent` →
-    layouts and custom components, OR drive it via the existing `reduce`/isVisible
-    path set to an instant-final variant. The implementation plan picks the exact
-    threading; the requirement is: **during capture, the slide is in its end
-    state with no in-flight animation.**
+- `PresentationEngine.tsx` gains (**as built**):
+  - `exporting` and `exportProgress` state (drive the button label and disabled
+    state).
+  - A `handleExport()` `useCallback` that calls `exportDeckToHtml(...)`, passing
+    the live `containerRef.current`, the hashed `slideSelector`/`headerSelector`
+    (`.${styles.slide}` / `.${styles.persistentHeader}`), `slides.length`,
+    `meta.title`, and an `onProgress` callback. It saves `scrollTop` first and
+    restores it in a `finally`.
+  - Forcing final visual state during export — **as built, via wait-not-prop:**
+    the exporter scrolls each slide into view and waits a fixed
+    `CAPTURE_SETTLE_MS = 4800` so the slide's entrance animation lands before
+    capture. We did **not** thread a `settled`/`forceVisible` prop through the
+    layouts/components — waiting is surgical (zero changes to slide components)
+    and satisfies the requirement: **during capture, the slide is in its end
+    state with no in-flight animation.** Cost: a full 11-slide export takes
+    ~50s, mitigated by the in-progress button label. The constant is tunable in
+    one place (`exportToHtml.ts`).
+  - While `exporting`, arrow/space slide navigation is suppressed (the engine
+    mounts only the active slide, so user-driven index changes mid-settle would
+    capture an empty slide). `preventDefault` stays unconditional.
 - New chrome component `components/PresentationEngine/chrome/ExportButton.tsx`:
   small, unobtrusive control (bottom corner), shows a normal state, an in-progress
   state (e.g. "Exporting… 4/11"), and returns to normal on completion. Styled to
@@ -131,38 +137,45 @@ New module: `components/PresentationEngine/export/`
       /* 3. export-only layout + nav styles (scroll-snap container, counter) */
     </style>
   </head>
-  <body>
-    <div id="export-deck">  <!-- scroll-snap vertical container -->
-      <section class="export-slide" data-index="0"> {captured slide 0 HTML} </section>
+  <body class="{live body className — carries next/font CSS-var classes}">
+    <div id="export-deck" class="{live .presentationContainer className}">
+      <!-- Each captured <section> keeps its hashed .slide class + data-index, with
+           the persistent header cloned in as the first child (data-export-header). -->
+      <section data-index="0" class="...slide"> ...header clone + slide 0... </section>
       ...
     </div>
-    <div id="export-counter">1 / 11</div>
-    <script> /* arrow/space paging, counter update via scroll position */ </script>
+    <script> /* arrow/space/PageUp-Down paging via IntersectionObserver */ </script>
   </body>
 </html>
 ```
 
-- Live engine chrome that depends on React (Sidebar nav callbacks, NotesOverlay
-  toggle, MobileProgress, PresentationHeader animation) is **not** carried into the
-  output. The output's own minimal nav replaces it. If a static sidebar/title is
-  desired later, that is a follow-up — out of scope here.
-- The captured slide markup is the `SlideShell` content; the export wraps each in
-  an `.export-slide` section that provides scroll-snap alignment matching the
-  live deck's full-viewport slides.
+- **As built:** the export reuses the live `.presentationContainer` class on
+  `#export-deck` (so scroll-snap + the deck's color pinning come for free) and
+  copies the live `<body>`/`<html>` class attributes (so next/font CSS variables
+  resolve). The captured `<section>` markup is the live `SlideShell` (hashed
+  `.slide` class, `data-index`) — there is no separate `.export-slide` wrapper.
+- **The persistent header IS carried** (a refinement over the original draft,
+  which floated dropping all chrome). It is cloned into each section per-slide so
+  every slide keeps its title/subtitle/breadcrumb/progress-dots in their final
+  state, re-anchored with `[data-export-header]`. The interactive chrome —
+  Sidebar nav, NotesOverlay, MobileProgress, and the header's framer-motion
+  animation — is **not** carried; a small vanilla `<script>` replaces navigation.
+  There is no separate visible counter element.
 
 ## Data flow
 
 ```
 User on deck → clicks Export button (or presses E)
-   → engine.exportDeck()
-      → isExporting = true (button shows progress; slides render settled)
-      → exportToHtml():
-          for i in 0..N-1: goToSlide(i) → await settle → capture outerHTML
-          collect CSS from document.styleSheets
+   → engine.handleExport()
+      → exporting = true (button shows "Exporting… n/total"); save scrollTop
+      → exportDeckToHtml():
+          for i in 0..N-1: scrollIntoView(i) → await CAPTURE_SETTLE_MS →
+                           clone section + header clone → outerHTML
+          collect CSS from document.styleSheets (skip cross-origin)
           inline fonts (fetch woff2 → base64 → rewrite url())
-          assemble HTML string (exportTemplate)
-          Blob → <a download="lunch-and-learn.html"> → click
-      → restore original slide index; isExporting = false
+          assemble HTML string (buildExportHtml)
+          Blob → <a download="{slug(title)}.html"> → click
+      → finally: restore scrollTop; exporting = false
    → browser downloads the single .html file
 ```
 
